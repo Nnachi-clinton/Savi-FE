@@ -8,6 +8,7 @@ import { GlobalProvider } from './context/GlobalState';
 //import { useAuth } from './context/auth/AuthState'; // Import useAuth hook
 import 'react-toastify/dist/ReactToastify.css';
 import Home from '../src/pages/home/Home';
+import LandingPage from './pages/landingPage/LandingPage';
 
 // App component
 function App() {
@@ -16,10 +17,13 @@ function App() {
       <Suspense fallback="loading">
         <Router>
           <GlobalProvider>
-              <Routes>
-                {/* ... (your existing routes) */}
-                <Route path="/" element={<Home />} />
-              </Routes>
+            <Routes>
+              {/* ... (your existing routes) */}
+              <Route path="/" element={<Home />} />
+            </Routes>
+            <Routes>
+              <Route path="/LandingPage" element={<LandingPage/>} />
+            </Routes>
           </GlobalProvider>
         </Router>
       </Suspense>
