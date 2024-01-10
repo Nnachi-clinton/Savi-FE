@@ -13,7 +13,6 @@ import Personalsavings2 from '../src/pages/savings/PersonalSavings2.js';
 import EmptySavings from '../src/pages/savings/EmptySavings.js';
 import AddGoals from '../src/pages/savings/AddGoals.js';
 import Modal from '../src/pages/savings/SavingUpdateModal.js';
-import Login from '../src/pages/savings/Login.js';
 
 // App component
 function App() {
@@ -29,7 +28,6 @@ function App() {
               <Route path="/EmptySavings" element={<EmptySavings />} />
               <Route path="/Addgoals" element={<AddGoals />} />
               <Route path="/modal" element={<Modal />} />
-              <Route path="/Login" element={<Login />} />
             </Routes>
             <Routes>
               {/* ... (your existing routes) */}
