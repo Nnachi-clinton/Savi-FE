@@ -19,6 +19,7 @@ function EmptySavings(props) {
 const Div = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 10em;
 `;
 
 const Span = styled.span`
@@ -38,6 +39,7 @@ const Div2 = styled.div`
   letter-spacing: 0.15px;
   flex-grow: 1;
   flex-basis: auto;
+  margin-right: 0em;
   font: 700 32px/140% Inter, sans-serif;
 `;
 
@@ -45,6 +47,7 @@ const Div3 = styled.div`
   color: var(--Blue-1, #2f80ed);
   letter-spacing: 0.08px;
   margin: auto 0;
+  cursor: pointer;
   font: 500 16px/100% Inter, sans-serif;
 `;
 
@@ -76,6 +79,7 @@ const Div5 = styled.div`
   letter-spacing: 0.08px;
   align-self: center;
   margin-top: 10px;
+  cursor: pointer;
   white-space: nowrap;
   font: 500 16px/168% Inter, sans-serif;
   @media (max-width: 991px) {

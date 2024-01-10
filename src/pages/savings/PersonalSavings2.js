@@ -74,6 +74,7 @@ function Personalsavings2(props) {
 const Div = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 12em;
 `;
 
 const Span = styled.span`
@@ -100,6 +101,7 @@ const Div3 = styled.div`
   color: var(--Blue-1, #2f80ed);
   letter-spacing: 0.08px;
   margin: auto 0;
+  cursor: pointer;
   font: 500 16px/100% Inter, sans-serif;
 `;
 
