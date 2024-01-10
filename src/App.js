@@ -9,6 +9,7 @@ import { GlobalProvider } from './context/GlobalState';
 import 'react-toastify/dist/ReactToastify.css';
 import Home from '../src/pages/home/Home';
 import LandingPage from './pages/landingPage/LandingPage';
+import Login from './pages/Auth/Login.js';
 
 // App component
 function App() {
@@ -20,6 +21,7 @@ function App() {
             <Routes>
               {/* ... (your existing routes) */}
               <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
             </Routes>
             <Routes>
               <Route path="/LandingPage" element={<LandingPage/>} />
