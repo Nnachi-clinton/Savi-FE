@@ -7,8 +7,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { GlobalProvider } from './context/GlobalState';
 //import { useAuth } from './context/auth/AuthState'; // Import useAuth hook
 import 'react-toastify/dist/ReactToastify.css';
-import Home from '../src/pages/home/Home';
+// import Home from '../src/pages/home/Home';
 import LandingPage from './pages/landingPage/LandingPage';
+import Login from './pages/Auth/Login.js';
 import Personalsavings2 from '../src/pages/savings/PersonalSavings2.js';
 import EmptySavings from '../src/pages/savings/EmptySavings.js';
 import AddGoals from '../src/pages/savings/AddGoals.js';
@@ -23,18 +24,13 @@ function App() {
           <GlobalProvider>
             <Routes>
               {/* ... (your existing routes) */}
-              <Route path="/" element={<Home />} />
+              {/* <Route path="/" element={<Home />} /> */}
               <Route path="/Personalsavings2" element={<Personalsavings2 />} />
               <Route path="/EmptySavings" element={<EmptySavings />} />
               <Route path="/Addgoals" element={<AddGoals />} />
               <Route path="/modal" element={<Modal />} />
-            </Routes>
-            <Routes>
-              {/* ... (your existing routes) */}
-              <Route path="/" element={<Home />} />
-            </Routes>
-            <Routes>
-              <Route path="/LandingPage" element={<LandingPage />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/" element={<LandingPage />} />
             </Routes>
           </GlobalProvider>
         </Router>
