@@ -14,6 +14,7 @@ import Personalsavings2 from '../src/pages/savings/PersonalSavings2.js';
 import EmptySavings from '../src/pages/savings/EmptySavings.js';
 import AddGoals from '../src/pages/savings/AddGoals.js';
 import Modal from '../src/pages/savings/SavingUpdateModal.js';
+import Signin from '../src/pages/Auth/Login/Sginin.js';
 
 // App component
 function App() {
@@ -31,6 +32,7 @@ function App() {
               <Route path="/modal" element={<Modal />} />
               <Route path="/login" element={<Login />} />
               <Route path="/" element={<LandingPage />} />
+              <Route path="signin" element={<Signin />} />
             </Routes>
           </GlobalProvider>
         </Router>
