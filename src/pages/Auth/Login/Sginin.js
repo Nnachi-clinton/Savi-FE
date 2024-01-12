@@ -171,7 +171,6 @@ const Signin = () => {
               value={password}
               onChange={(e) => handlePasswordChange(e.target.value)}
             />
-            {passwordError && <ErrorMessage>{passwordError}</ErrorMessage>}
             <ShowPasswordIcon onClick={() => setShowPassword(!showPassword)}>
               {showPassword ? (
                 <img src={CloseEye} alt="Close" />
@@ -180,6 +179,7 @@ const Signin = () => {
               )}
             </ShowPasswordIcon>
           </Div22>
+          {passwordError && <ErrorMessage>{passwordError}</ErrorMessage>}
           <FP>
             <Link to="/resetpassword">Forgot Password</Link>
           </FP>
