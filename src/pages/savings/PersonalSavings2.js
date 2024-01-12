@@ -1,72 +1,86 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+import Logo from './images/Logo.svg';
 
 function Personalsavings2(props) {
+  const [goals, setGoals] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('your-backend-get-endpoint'); // Replace with your actual GET endpoint
+        setGoals(response.data); // Assuming your data is an array, adjust accordingly
+      } catch (error) {
+        console.error('Error fetching goals:', error);
+      }
+    };
+
+    fetchData();
+  }, []); // Empty dependency array to execute the effect only once when the component mounts
+
   return (
     <Div>
-      <Span>
-        <Div2>My Goals</Div2>
-        <Div3>Add New Goal</Div3>
-      </Span>
-      <Div4>
-        <Span2>
-          <Div5>
-            <Img
-              loading="lazy"
-              srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/ac0fb398fc259347b85c9b809d43383c07a85a47b97f8821588cfb28eff8e85f?apiKey=fdd3b98f4931492c8e932a5e6619fb3c&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/ac0fb398fc259347b85c9b809d43383c07a85a47b97f8821588cfb28eff8e85f?apiKey=fdd3b98f4931492c8e932a5e6619fb3c&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/ac0fb398fc259347b85c9b809d43383c07a85a47b97f8821588cfb28eff8e85f?apiKey=fdd3b98f4931492c8e932a5e6619fb3c&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/ac0fb398fc259347b85c9b809d43383c07a85a47b97f8821588cfb28eff8e85f?apiKey=fdd3b98f4931492c8e932a5e6619fb3c&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/ac0fb398fc259347b85c9b809d43383c07a85a47b97f8821588cfb28eff8e85f?apiKey=fdd3b98f4931492c8e932a5e6619fb3c&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/ac0fb398fc259347b85c9b809d43383c07a85a47b97f8821588cfb28eff8e85f?apiKey=fdd3b98f4931492c8e932a5e6619fb3c&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/ac0fb398fc259347b85c9b809d43383c07a85a47b97f8821588cfb28eff8e85f?apiKey=fdd3b98f4931492c8e932a5e6619fb3c&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/ac0fb398fc259347b85c9b809d43383c07a85a47b97f8821588cfb28eff8e85f?apiKey=fdd3b98f4931492c8e932a5e6619fb3c&"
-            />
-            <Span3>
-              <Span4>Travel</Span4>
-              <Div6>Trip to Bali</Div6>
-              <Div7>₦ 5,000,000.00 / ₦ 10,000,000.00 </Div7>
-            </Span3>
-          </Div5>
-          <Div8>50%</Div8>
-        </Span2>
-        <Div9>
-          <Div10 />
-        </Div9>
-      </Div4>
-      <Div11>
-        <Span5>
-          <Div12>
-            <img
-              loading="lazy"
-              srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/ac0fb398fc259347b85c9b809d43383c07a85a47b97f8821588cfb28eff8e85f?apiKey=fdd3b98f4931492c8e932a5e6619fb3c&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/ac0fb398fc259347b85c9b809d43383c07a85a47b97f8821588cfb28eff8e85f?apiKey=fdd3b98f4931492c8e932a5e6619fb3c&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/ac0fb398fc259347b85c9b809d43383c07a85a47b97f8821588cfb28eff8e85f?apiKey=fdd3b98f4931492c8e932a5e6619fb3c&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/ac0fb398fc259347b85c9b809d43383c07a85a47b97f8821588cfb28eff8e85f?apiKey=fdd3b98f4931492c8e932a5e6619fb3c&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/ac0fb398fc259347b85c9b809d43383c07a85a47b97f8821588cfb28eff8e85f?apiKey=fdd3b98f4931492c8e932a5e6619fb3c&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/ac0fb398fc259347b85c9b809d43383c07a85a47b97f8821588cfb28eff8e85f?apiKey=fdd3b98f4931492c8e932a5e6619fb3c&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/ac0fb398fc259347b85c9b809d43383c07a85a47b97f8821588cfb28eff8e85f?apiKey=fdd3b98f4931492c8e932a5e6619fb3c&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/ac0fb398fc259347b85c9b809d43383c07a85a47b97f8821588cfb28eff8e85f?apiKey=fdd3b98f4931492c8e932a5e6619fb3c&"
-              alt=""
-            />
-            <Span6>
-              <Span7>Travel</Span7>
-              <Div13>Trip to Bali</Div13>
-              <Div14>₦ 5,000,000.00 / ₦ 10,000,000.00 </Div14>
-            </Span6>
-          </Div12>
-          <Div15>50%</Div15>
-        </Span5>
-        <Div16>
-          <Div17 />
-        </Div16>
-      </Div11>
-      <Div18>
-        <Span8>
-          <Div19>
-            <img
-              loading="lazy"
-              srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/ac0fb398fc259347b85c9b809d43383c07a85a47b97f8821588cfb28eff8e85f?apiKey=fdd3b98f4931492c8e932a5e6619fb3c&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/ac0fb398fc259347b85c9b809d43383c07a85a47b97f8821588cfb28eff8e85f?apiKey=fdd3b98f4931492c8e932a5e6619fb3c&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/ac0fb398fc259347b85c9b809d43383c07a85a47b97f8821588cfb28eff8e85f?apiKey=fdd3b98f4931492c8e932a5e6619fb3c&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/ac0fb398fc259347b85c9b809d43383c07a85a47b97f8821588cfb28eff8e85f?apiKey=fdd3b98f4931492c8e932a5e6619fb3c&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/ac0fb398fc259347b85c9b809d43383c07a85a47b97f8821588cfb28eff8e85f?apiKey=fdd3b98f4931492c8e932a5e6619fb3c&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/ac0fb398fc259347b85c9b809d43383c07a85a47b97f8821588cfb28eff8e85f?apiKey=fdd3b98f4931492c8e932a5e6619fb3c&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/ac0fb398fc259347b85c9b809d43383c07a85a47b97f8821588cfb28eff8e85f?apiKey=fdd3b98f4931492c8e932a5e6619fb3c&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/ac0fb398fc259347b85c9b809d43383c07a85a47b97f8821588cfb28eff8e85f?apiKey=fdd3b98f4931492c8e932a5e6619fb3c&"
-              alt=""
-            />
-            <Span9>
-              <Span10>Travel</Span10>
-              <Div20>Trip to Bali</Div20>
-              <Div21>₦ 5,000,000.00 / ₦ 10,000,000.00 </Div21>
-            </Span9>
-          </Div19>
-          <Div22>50%</Div22>
-        </Span8>
-        <Div23>
-          <Div24 />
-        </Div23>
-      </Div18>
+      {goals.map((goal) => (
+        <Span key={goal.id}>
+          <Span>
+            <Div2>My Goals</Div2>
+            <Div3>Add New Goal</Div3>
+          </Span>
+          <Div4>
+            <Span2>
+              <Div5>
+                <Img loading="lazy" src={goal.imageUrl} />
+                <Span3>
+                  <Span4>{goal.category}</Span4>
+                  <Div6>{goal.description}</Div6>
+                  <Div7>
+                    {`₦ ${goal.currentAmount} / ₦ ${goal.targetAmount}`}
+                  </Div7>
+                </Span3>
+              </Div5>
+              <Div8>{`${
+                (goal.currentAmount / goal.targetAmount) * 100
+              }%`}</Div8>
+            </Span2>
+            <Div9>
+              <Div10 />
+            </Div9>
+          </Div4>
+          <Div11>
+            <Span5>
+              <Div12>
+                <img loading="lazy" src={Logo} alt="" />
+                <Span6>
+                  <Span7>Travel</Span7>
+                  <Div13>Trip to Bali</Div13>
+                  <Div14>₦ 5,000,000.00 / ₦ 10,000,000.00 </Div14>
+                </Span6>
+              </Div12>
+              <Div15>50%</Div15>
+            </Span5>
+            <Div16>
+              <Div17 />
+            </Div16>
+          </Div11>
+          <Div18>
+            <Span8>
+              <Div19>
+                <img loading="lazy" src={Logo} alt="" />
+                <Span9>
+                  <Span10>Travel</Span10>
+                  <Div20>Trip to Bali</Div20>
+                  <Div21>₦ 5,000,000.00 / ₦ 10,000,000.00 </Div21>
+                </Span9>
+              </Div19>
+              <Div22>50%</Div22>
+            </Span8>
+            <Div23>
+              <Div24 />
+            </Div23>
+          </Div18>
+        </Span>
+      ))}
     </Div>
   );
 }
@@ -75,6 +89,8 @@ const Div = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 12em;
+  width: 70%;
+  margin-left: 27em;
 `;
 
 const Span = styled.span`

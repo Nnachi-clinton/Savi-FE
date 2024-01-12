@@ -20,6 +20,8 @@ const Div = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 10em;
+  width: 70%;
+  margin-left: 27em;
 `;
 
 const Span = styled.span`
