@@ -9,13 +9,50 @@ import WhiteLogo from './images/WhiteLogo.svg';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 
+const isValidEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
+
+const isValidPassword = (password) => {
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
+  return passwordRegex.test(password);
+};
+
 const Signin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate();
 
+  const handleEmailChange = (value) => {
+    setEmail(value);
+    if (isValidEmail(value)) {
+      setEmailError('');
+    }
+  };
+
+  const handlePasswordChange = (value) => {
+    setPassword(value);
+    if (isValidPassword(value)) {
+      setPasswordError('');
+    }
+  };
+
   const handleSignIn = async () => {
+    if (!isValidEmail(email)) {
+      setEmailError('Invalid email address');
+      return;
+    }
+    if (!isValidPassword(password)) {
+      setPasswordError('Invalid password');
+      return;
+    }
+    setEmailError('');
+    setPasswordError('');
     try {
       const response = await axios.post(
         'https://localhost:7240/api/Authentication/Login',
@@ -24,8 +61,6 @@ const Signin = () => {
           password: password,
         }
       );
-
-      // Handle the response as needed (e.g., redirect, show success message)
       console.log(response.data);
       if (response.data.statusCode === 200) {
         const token = response.data.data;
@@ -122,10 +157,11 @@ const Signin = () => {
               name="email"
               placeholder="Enter your email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => handleEmailChange(e.target.value)}
             />
+            {emailError && <ErrorMessage>{emailError}</ErrorMessage>}
           </Div1>
-          <Div1>
+          <Div22>
             <Label htmlFor="password">Password:</Label>
             <PasswordInput
               type={showPassword ? 'text' : 'password'}
@@ -133,8 +169,9 @@ const Signin = () => {
               name="password"
               placeholder="*****************"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => handlePasswordChange(e.target.value)}
             />
+            {passwordError && <ErrorMessage>{passwordError}</ErrorMessage>}
             <ShowPasswordIcon onClick={() => setShowPassword(!showPassword)}>
               {showPassword ? (
                 <img src={CloseEye} alt="Close" />
@@ -142,7 +179,7 @@ const Signin = () => {
                 <img src={Eye} alt="show password" />
               )}
             </ShowPasswordIcon>
-          </Div1>
+          </Div22>
           <FP>
             <Link to="/resetpassword">Forgot Password</Link>
           </FP>
@@ -257,6 +294,10 @@ const EmailInput = styled.input`
 const Div1 = styled.div`
   margin-top: 24px;
 `;
+const Div22 = styled.div`
+  margin-top: 24px;
+  position: relative;
+`;
 const PasswordInput = styled.input`
   border-radius: 8px;
   border: 1px solid var(--Grey-300, #d0d5dd);
@@ -271,7 +312,7 @@ const PasswordInput = styled.input`
 const ShowPasswordIcon = styled.div`
   position: absolute;
   top: 58.5%;
-  right: 15%;
+  right: 3%;
   cursor: pointer;
 `;
 const Label = styled.label`
@@ -376,4 +417,8 @@ const Heading2 = styled.h4`
 const Logo = styled.div`
   padding-left: 50px;
   padding-top: 50px;
+`;
+const ErrorMessage = styled.div`
+  color: red;
+  margin-top: 4px;
 `;
