@@ -8,6 +8,7 @@ import { GlobalProvider } from './context/GlobalState';
 //import { useAuth } from './context/auth/AuthState'; // Import useAuth hook
 import 'react-toastify/dist/ReactToastify.css';
 // import Home from '../src/pages/home/Home';
+import Sidebar from '../src/pages/dashboards/Savings/Sidebar.js';
 import LandingPage from './pages/landingPage/LandingPage';
 import Login from './pages/Auth/Login.js';
 import Personalsavings2 from '../src/pages/savings/PersonalSavings2.js';
@@ -33,6 +34,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/" element={<LandingPage />} />
               <Route path="signin" element={<Signin />} />
+              <Route path="/sidebar" element={<Sidebar />} />
             </Routes>
           </GlobalProvider>
         </Router>
