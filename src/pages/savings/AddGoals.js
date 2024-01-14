@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { useNavigate, Link } from 'react-router-dom';
 
 function AddGoals(props) {
   const [target, setTarget] = useState('');
   const [targetAmount, setTargetAmount] = useState('');
+  const [amountToAdd, setAmountToAdd] = useState('');
   const [frequency, setFrequency] = useState('daily');
   const [startDate, setStartDate] = useState('');
   const [withdrawalDate, setWithdrawalDate] = useState('');
+  const navigate = useNavigate();
 
   const handleInputChange = (e, setter) => {
     setter(e.target.value);
@@ -18,16 +21,38 @@ function AddGoals(props) {
   };
   const handleSubmit = async () => {
     try {
-      const response = await axios.post('your-backend-api-endpoint', {
-        target: target,
-        targetAmount: targetAmount,
-        frequency: frequency,
-        startDate: startDate,
-        withdrawalDate: withdrawalDate,
-      });
-
+      const response = await axios.post(
+        'https://localhost:7240/api/Savings/SetGoal/34567098756323456',
+        {
+          targetName: target,
+          targetAmount: targetAmount,
+          amountToAdd: amountToAdd,
+          frequency: frequency,
+          startDate: startDate,
+          withdrawalDate: withdrawalDate,
+        }
+      );
       // Handle the response as needed (e.g., redirect, show success message)
-      console.log(response.data);
+      console.log(response.data.result);
+      if (response.data.statusCode === 200) {
+        navigate('/modal');
+
+        // Swal.fire({
+        //   icon: 'success',
+        //   title: 'Login successful!',
+        //   showConfirmButton: false,
+        //   timer: 1500,
+        //   position: 'top-end',
+        // });
+      } else {
+        console.error('Error:', response.data);
+        // Swal.fire({
+        //   icon: 'error',
+        //   title: 'Error',
+        //   text: `Error: ${response.data.message}`,
+        //   confirmButtonText: 'OK',
+        // });
+      }
     } catch (error) {
       // Handle errors (e.g., show error message)
       console.error('Error submitting goals:', error);
@@ -53,6 +78,13 @@ function AddGoals(props) {
         type="text"
         value={targetAmount}
         onChange={(e) => handleInputChange(e, setTargetAmount)}
+        placeholder="Numbers only"
+      />
+      <Div4>Amount to Add</Div4>
+      <Input
+        type="text"
+        value={amountToAdd}
+        onChange={(e) => handleInputChange(e, setAmountToAdd)}
         placeholder="Numbers only"
       />
 
@@ -118,8 +150,6 @@ const Input = styled.input`
   height: 45px;
 `;
 const Select = styled.select`
-  /* Add your select styles here */
-  /* For example: */
   padding: 8px;
   margin-top: 8px;
   width: 320px;

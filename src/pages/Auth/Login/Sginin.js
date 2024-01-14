@@ -64,7 +64,7 @@ const Signin = () => {
       console.log(response.data);
       if (response.data.statusCode === 200) {
         const token = response.data.data;
-        console.log(token);
+        console.log('token:', token);
         localStorage.setItem('authToken', token);
         navigate('/DashBoard');
 
