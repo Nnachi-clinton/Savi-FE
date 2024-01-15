@@ -8,6 +8,7 @@ import { GlobalProvider } from './context/GlobalState';
 //import { useAuth } from './context/auth/AuthState'; // Import useAuth hook
 import 'react-toastify/dist/ReactToastify.css';
 import Home from '../src/pages/home/Home';
+import Kyc from './pages/Kyc';
 import Sidebar from '../src/pages/dashboards/Savings/Sidebar.js';
 import LandingPage from './pages/landingPage/LandingPage';
 import Login from './pages/Auth/Login.js';
@@ -20,16 +21,15 @@ function App() {
       <Suspense fallback="loading">
         <Router>
           <GlobalProvider>
-            <Routes>
-              {/* ... (your existing routes) */}
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/sidebar" element={<Sidebar />} />
-              <Route path="/dashboard" element={<DashBoard/>} />
-            </Routes>
-            <Routes>
-              <Route path="/LandingPage" element={<LandingPage />} />
-            </Routes>
+              <Routes>
+                {/* ... (your existing routes) */}
+                <Route path="/" element={<Home />} />
+                <Route path="/LandingPage" element={<LandingPage/>} />
+                <Route path="/sidebar" element={<Sidebar />} />
+                <Route path="/dashboard" element={<DashBoard/>} />
+                <Route path="/login" element={<Login/>} />
+                <Route path="/kyc-verification" element={<Kyc />} />
+              </Routes>
           </GlobalProvider>
         </Router>
       </Suspense>
