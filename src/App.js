@@ -11,6 +11,7 @@ import Home from '../src/pages/home/Home';
 import Sidebar from '../src/pages/dashboards/Savings/Sidebar.js';
 import LandingPage from './pages/landingPage/LandingPage';
 import Login from './pages/Auth/Login.js';
+import DashBoard from './pages/dashboardmain/Dashboard.js';
 
 // App component
 function App() {
@@ -22,11 +23,12 @@ function App() {
             <Routes>
               {/* ... (your existing routes) */}
               <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/sidebar" element={<Sidebar />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/sidebar" element={<Sidebar />} />
+              <Route path="/dashboard" element={<DashBoard/>} />
             </Routes>
             <Routes>
-              <Route path="/LandingPage" element={<LandingPage/>} />
+              <Route path="/LandingPage" element={<LandingPage />} />
             </Routes>
           </GlobalProvider>
         </Router>
