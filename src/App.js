@@ -12,6 +12,8 @@ import Kyc from './pages/Kyc';
 import Sidebar from '../src/pages/dashboards/Savings/Sidebar.js';
 import LandingPage from './pages/landingPage/LandingPage';
 import Login from './pages/Auth/Login.js';
+import { ResetPassword } from './pages/Auth/ResetPassword.js';
+import { ForgotPassword } from './pages/Auth/ForgotPassword.js';
 import DashBoard from './pages/dashboardmain/Dashboard.js';
 
 // App component
@@ -26,10 +28,12 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/LandingPage" element={<LandingPage/>} />
                 <Route path="/sidebar" element={<Sidebar />} />
+                <Route path="/resetPassword" element={<ResetPassword />} />
+                <Route path="/forgotPassword" element={<ForgotPassword />} />
                 <Route path="/dashboard" element={<DashBoard/>} />
                 <Route path="/login" element={<Login/>} />
                 <Route path="/kyc-verification" element={<Kyc />} />
-              </Routes>
+            </Routes>            
           </GlobalProvider>
         </Router>
       </Suspense>
