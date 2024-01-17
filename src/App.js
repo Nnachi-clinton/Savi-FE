@@ -16,6 +16,7 @@ import EmptySavings from '../src/pages/savings/EmptySavings.js';
 import AddGoals from '../src/pages/savings/AddGoals.js';
 import Modal from '../src/pages/savings/SavingUpdateModal.js';
 import Signin from '../src/pages/Auth/Login/Sginin.js';
+import Signup from '../src/pages/Auth/Signup/Signup.js';
 import { ResetPassword } from './pages/Auth/ResetPassword.js';
 import { ForgotPassword } from './pages/Auth/ForgotPassword.js';
 import DashBoard from './pages/dashboardmain/Dashboard.js';
@@ -37,13 +38,14 @@ function App() {
               <Route path="/" element={<LandingPage />} />
               <Route path="signin" element={<Signin />} />
               <Route path="/sidebar" element={<Sidebar />} />
-                <Route path="/LandingPage" element={<LandingPage/>} />
-                <Route path="/resetPassword" element={<ResetPassword />} />
-                <Route path="/forgotPassword" element={<ForgotPassword />} />
-                <Route path="/dashboard" element={<DashBoard/>} />
-                <Route path="/login" element={<Login/>} />
-                <Route path="/kyc-verification" element={<Kyc />} />          
-            </Routes>            
+              <Route path="/LandingPage" element={<LandingPage />} />
+              <Route path="/resetPassword" element={<ResetPassword />} />
+              <Route path="/forgotPassword" element={<ForgotPassword />} />
+              <Route path="/dashboard" element={<DashBoard />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/kyc-verification" element={<Kyc />} />
+              <Route path="/signup" element={<Signup />} />
+            </Routes>
           </GlobalProvider>
         </Router>
       </Suspense>
