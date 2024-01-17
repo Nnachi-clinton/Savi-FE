@@ -8,6 +8,7 @@ import { GlobalProvider } from './context/GlobalState';
 //import { useAuth } from './context/auth/AuthState'; // Import useAuth hook
 import 'react-toastify/dist/ReactToastify.css';
 // import Home from '../src/pages/home/Home';
+import Kyc from './pages/Kyc';
 import Sidebar from '../src/pages/dashboards/Savings/Sidebar.js';
 import LandingPage from './pages/landingPage/LandingPage';
 import Login from './pages/Auth/Login.js';
@@ -16,6 +17,9 @@ import EmptySavings from '../src/pages/savings/EmptySavings.js';
 import AddGoals from '../src/pages/savings/AddGoals.js';
 import Modal from '../src/pages/savings/SavingUpdateModal.js';
 import Signin from '../src/pages/Auth/Login/Sginin.js';
+import { ResetPassword } from './pages/Auth/ResetPassword.js';
+import { ForgotPassword } from './pages/Auth/ForgotPassword.js';
+import DashBoard from './pages/dashboardmain/Dashboard.js';
 
 // App component
 function App() {
@@ -31,11 +35,16 @@ function App() {
               <Route path="/EmptySavings" element={<EmptySavings />} />
               <Route path="/Addgoals" element={<AddGoals />} />
               <Route path="/modal" element={<Modal />} />
-              <Route path="/login" element={<Login />} />
               <Route path="/" element={<LandingPage />} />
               <Route path="signin" element={<Signin />} />
               <Route path="/sidebar" element={<Sidebar />} />
-            </Routes>
+                <Route path="/LandingPage" element={<LandingPage/>} />
+                <Route path="/resetPassword" element={<ResetPassword />} />
+                <Route path="/forgotPassword" element={<ForgotPassword />} />
+                <Route path="/dashboard" element={<DashBoard/>} />
+                <Route path="/login" element={<Login/>} />
+                <Route path="/kyc-verification" element={<Kyc />} />
+            </Routes>            
           </GlobalProvider>
         </Router>
       </Suspense>
