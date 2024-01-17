@@ -12,6 +12,8 @@ export default createGlobalStyle`
 --default-bold-footnote: 'SF Pro Text';
 --default-regular-title2: 'SF Pro Display';
 --button-medium: Heebo;
+--body-text-bold-16: Inter;
+
 
 /* font sizes */
 --text-md-medium-size: 1rem;
@@ -28,9 +30,23 @@ export default createGlobalStyle`
 --headline-bold-40-size: 40px;
 --font-size-xl: 20px;
 --assistive-text-normal-12-size: 12px;
+<<<<<<< HEAD
+<<<<<<< HEAD
+--body-text-bold-16-size: 16px;
+--headline-semi-bold-32-size: 32px;
+--font-size-lg: 18px;
+--button-normal-14-size: 14px;
+
+=======
 --default-bold-footnote-size: 0.81rem;
 --default-regular-title2-size: 1.38rem;
 --default-bold-title3-size: 1.25rem;
+>>>>>>> a080f744ce1e15b829d5aeb4fc3e15e13f641b3b
+=======
+--default-bold-footnote-size: 0.81rem;
+--default-regular-title2-size: 1.38rem;
+--default-bold-title3-size: 1.25rem;
+>>>>>>> a080f744ce1e15b829d5aeb4fc3e15e13f641b3b
 
 /* Colors */
 --white: #fff;
@@ -42,6 +58,19 @@ export default createGlobalStyle`
 --grey-500: #667085;
 --color-black: #000;
 --green-1: #219653;
+<<<<<<< HEAD
+<<<<<<< HEAD
+--color-gainsboro: #d9d9d9;
+--grey-400: #98a2b3;
+--blue-600: #1570ef;
+--grey-300: #d0d5dd;
+
+
+
+
+=======
+=======
+>>>>>>> a080f744ce1e15b829d5aeb4fc3e15e13f641b3b
 --grey-50: #f9fafb;
 --gray-100: #f3f4f6;
 --gray-2001: #eee;
@@ -75,6 +104,10 @@ export default createGlobalStyle`
 --yellow-500: #eab308;
 --slate-400: #94a3b8;
 --default-systemred-light: #ff3b30;
+<<<<<<< HEAD
+>>>>>>> a080f744ce1e15b829d5aeb4fc3e15e13f641b3b
+=======
+>>>>>>> a080f744ce1e15b829d5aeb4fc3e15e13f641b3b
 
 /* Gaps */
 --gap-5xl: 24px;
@@ -118,6 +151,13 @@ export default createGlobalStyle`
 --padding-111xl: 130px;
 --padding-xs: 12px;
 --padding-base: 16px;
+<<<<<<< HEAD
+<<<<<<< HEAD
+--padding-31xl: 50px;
+
+=======
+=======
+>>>>>>> a080f744ce1e15b829d5aeb4fc3e15e13f641b3b
 --padding-5xm: 1.5rem;
 --padding-5xc: 0.5rem;
 --padding-9xf: 0.25rem;
@@ -136,6 +176,10 @@ export default createGlobalStyle`
 --padding-10xs-5: 0.16rem;
 --padding-8xs-5: 0.28rem;
 --padding-xl: 1.25rem;
+<<<<<<< HEAD
+>>>>>>> a080f744ce1e15b829d5aeb4fc3e15e13f641b3b
+=======
+>>>>>>> a080f744ce1e15b829d5aeb4fc3e15e13f641b3b
 
 /* Border radiuses */
 --br-81xl: 100px;
