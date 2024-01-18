@@ -36,6 +36,7 @@ const Apply = styled.div`
   letter-spacing: 0.15px;
   line-height: 140%;
   font-weight: 600;
+  cursor: pointer;
 `;
 const Button = styled.div`
   border-radius: 5px;

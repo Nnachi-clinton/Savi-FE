@@ -20,6 +20,7 @@ import Signup from '../src/pages/Auth/Signup/Signup.js';
 import { ResetPassword } from './pages/Auth/ResetPassword.js';
 import { ForgotPassword } from './pages/Auth/ForgotPassword.js';
 import DashBoard from './pages/dashboardmain/Dashboard.js';
+import SignupModal from './pages/Auth/Signup/SignupModal.js';
 
 // App component
 function App() {
@@ -45,6 +46,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/kyc-verification" element={<Kyc />} />
               <Route path="/signup" element={<Signup />} />
+              <Route path="/SignupModal" element={<SignupModal />} />
             </Routes>
           </GlobalProvider>
         </Router>

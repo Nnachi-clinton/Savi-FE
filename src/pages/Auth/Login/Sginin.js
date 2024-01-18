@@ -8,6 +8,8 @@ import CloseEye from './images/CloseEye.svg';
 import WhiteLogo from './images/WhiteLogo.svg';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 const isValidEmail = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -68,21 +70,21 @@ const Signin = () => {
         localStorage.setItem('authToken', token);
         navigate('/DashBoard');
 
-        // Swal.fire({
-        //   icon: 'success',
-        //   title: 'Login successful!',
-        //   showConfirmButton: false,
-        //   timer: 1500,
-        //   position: 'top-end',
-        // });
+        Swal.fire({
+          icon: 'success',
+          title: 'Login successful!',
+          showConfirmButton: false,
+          timer: 1000,
+          position: 'top-end',
+        });
       } else {
         console.error('Error:', response.data);
-        // Swal.fire({
-        //   icon: 'error',
-        //   title: 'Error',
-        //   text: `Error: ${response.data.message}`,
-        //   confirmButtonText: 'OK',
-        // });
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: `Error: ${response.data.message}`,
+          confirmButtonText: 'OK',
+        });
       }
     } catch (error) {
       // Handle errors (e.g., show error message)
@@ -91,30 +93,30 @@ const Signin = () => {
         console.error('Server Error:', error.response.status);
         console.error('Error Message:', error.response.data.message);
 
-        // Swal.fire({
-        //   icon: 'error',
-        //   title: 'Error',
-        //   text: 'An unexpected error occurred: ' + error.message,
-        //   confirmButtonText: 'OK',
-        // });
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'An unexpected error occurred: ' + error.message,
+          confirmButtonText: 'OK',
+        });
       } else if (error.request) {
         console.error('No Response from Server');
 
-        // Swal.fire({
-        //   icon: 'error',
-        //   title: 'No Response from Server',
-        //   text: 'No response from the server. Please try again.',
-        //   confirmButtonText: 'OK',
-        // });
+        Swal.fire({
+          icon: 'error',
+          title: 'No Response from Server',
+          text: 'No response from the server. Please try again.',
+          confirmButtonText: 'OK',
+        });
       } else {
         console.error('Unexpected Error:', error.message);
 
-        // Swal.fire({
-        //   icon: 'error',
-        //   title: 'Error during login.',
-        //   text: 'An unexpected error occurred during login.',
-        //   confirmButtonText: 'OK',
-        // });
+        Swal.fire({
+          icon: 'error',
+          title: 'Error during login.',
+          text: 'An unexpected error occurred during login.',
+          confirmButtonText: 'OK',
+        });
       }
     }
   };
