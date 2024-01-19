@@ -1,34 +1,57 @@
 import * as React from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
-function SignupModal(props) {
+function EmailVerifiedModal(props) {
   const navigate = useNavigate();
+  const [verificationStatus, setVerificationStatus] = useState('Verifying...');
+  const [redirectMessage, setRedirectMessage] = useState('');
 
-  const storedEmail = localStorage.getItem('userEmail') || '';
-  console.log(storedEmail);
-  const maskedEmail = maskEmailWithInitial(storedEmail);
-  console.log(maskedEmail);
-  const handleImageClick = () => {
-    navigate('/signin');
-  };
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('userId');
+    const token = urlParams.get('token');
+    console.log(userId, token);
+
+    axios
+      .get(
+        `https://localhost:7240/api/Authentication/ConfirmEmail?userId=${userId}&token=${token}`
+      )
+      .then((response) => {
+        if (response.data.statusCode === 200) {
+          setVerificationStatus('Email verified successfully');
+          setRedirectMessage('Hold on! while we Redirecting you to login...');
+          console.log(response.data);
+          console.log(response.data.statusCode);
+          setTimeout(() => {
+            navigate('/login');
+          }, 4000);
+        } else {
+          setVerificationStatus(response.data.message);
+          setRedirectMessage('Unable to verify your email...');
+          console.log(response.data);
+          console.log(response.data.statusCode);
+        }
+      })
+      .catch((error) => {
+        setVerificationStatus('Email verification failed');
+      });
+  }, [navigate]);
   return (
     <Container>
       <Main>
         <Img
           loading="lazy"
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/3f693738bf88e5205f55c409ec99d53f81fc7cafcdf2fbf6a3b7e184935cf242?apiKey=fdd3b98f4931492c8e932a5e6619fb3c&"
-          onClick={handleImageClick}
         />
         <Img2
           loading="lazy"
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/10c75299a2e9e7b2c37b26c6e9f167e12b7715ed840f3fb8fdcf1efd5786114e?apiKey=fdd3b98f4931492c8e932a5e6619fb3c&"
         />
-        <Div>Registration Successful!</Div>
-        <Div2>
-          Almost there! We've sent a verification email to <br />
-          {maskedEmail}
-        </Div2>
+        <Div>{verificationStatus}</Div>
+        <Div2>{redirectMessage}</Div2>
       </Main>
     </Container>
   );
@@ -90,14 +113,4 @@ const Container = styled.div`
   height: auto;
   overflow: hidden;
 `;
-export default SignupModal;
-
-function maskEmailWithInitial(email) {
-  const atIndex = email.indexOf('@');
-  if (atIndex !== -1) {
-    const firstLetter = email[0];
-    const maskedPart = '*'.repeat(atIndex - 1);
-    return firstLetter + maskedPart + email.slice(atIndex);
-  }
-  return email;
-}
+export default EmailVerifiedModal;

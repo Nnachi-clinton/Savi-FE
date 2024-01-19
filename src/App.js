@@ -21,6 +21,7 @@ import { ResetPassword } from './pages/Auth/ResetPassword.js';
 import { ForgotPassword } from './pages/Auth/ForgotPassword.js';
 import DashBoard from './pages/dashboardmain/Dashboard.js';
 import SignupModal from './pages/Auth/Signup/SignupModal.js';
+import EmailVerifiedModal from './pages/Auth/Signup/EmailVerifiedModal.js';
 
 // App component
 function App() {
@@ -47,6 +48,10 @@ function App() {
               <Route path="/kyc-verification" element={<Kyc />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/SignupModal" element={<SignupModal />} />
+              <Route
+                path="/EmailVerifiedModal"
+                element={<EmailVerifiedModal />}
+              />
             </Routes>
           </GlobalProvider>
         </Router>

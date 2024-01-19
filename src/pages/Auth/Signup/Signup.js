@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Pix from '../SaviImage.png';
 import Icon from './images/Google.svg';
 import Divider from './images/Divider.svg';
@@ -33,6 +33,10 @@ const Signup = () => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    localStorage.setItem('userEmail', email);
+  }, [email]);
 
   const handleEmailChange = (value) => {
     setEmail(value);
