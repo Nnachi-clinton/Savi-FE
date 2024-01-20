@@ -22,6 +22,7 @@ import { ForgotPassword } from './pages/Auth/ForgotPassword.js';
 import DashBoard from './pages/dashboardmain/Dashboard.js';
 import SignupModal from './pages/Auth/Signup/SignupModal.js';
 import EmailVerifiedModal from './pages/Auth/Signup/EmailVerifiedModal.js';
+import CreditModal from './components/dashboard/CreditModal.js';
 
 // App component
 function App() {
@@ -52,6 +53,7 @@ function App() {
                 path="/EmailVerifiedModal"
                 element={<EmailVerifiedModal />}
               />
+              <Route path="/CreditModal" element={<CreditModal />} />
             </Routes>
           </GlobalProvider>
         </Router>
