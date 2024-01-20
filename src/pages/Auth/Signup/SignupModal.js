@@ -46,7 +46,6 @@ const Main = styled.div`
   justify-content: center;
   margin-top: 10em;
 `;
-
 const Img = styled.img`
   aspect-ratio: 1;
   object-fit: contain;
@@ -57,7 +56,6 @@ const Img = styled.img`
   max-width: 100%;
   cursor: pointer;
 `;
-
 const Img2 = styled.img`
   aspect-ratio: 1;
   object-fit: contain;
@@ -68,7 +66,6 @@ const Img2 = styled.img`
   margin-top: 21px;
   max-width: 100%;
 `;
-
 const Div = styled.div`
   color: var(--Main-Text, #101828);
   align-self: center;
@@ -76,7 +73,6 @@ const Div = styled.div`
   white-space: nowrap;
   font: 500 24px/140% Inter, sans-serif;
 `;
-
 const Div2 = styled.div`
   color: var(--Main-Text, #101828);
   text-align: center;
