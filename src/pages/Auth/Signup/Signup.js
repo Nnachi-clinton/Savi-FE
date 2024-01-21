@@ -8,6 +8,7 @@ import CloseEye from './images/CloseEye.svg';
 import WhiteLogo from './images/WhiteLogo.svg';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import { GoogleLogin } from 'react-google-login';
 
 const isValidEmail = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -31,6 +32,8 @@ const Signup = () => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate();
+  const [signInAttempted, setSignInAttempted] = useState(false);
+  const [loginError, setLoginError] = useState('');
 
   const handleEmailChange = (value) => {
     setEmail(value);
@@ -51,6 +54,25 @@ const Signup = () => {
     if (isValidPassword(value)) {
       setPasswordError('');
     }
+  };
+
+  const responseGoogleSuccess = async (response) => {
+    console.log(response);
+    setSignInAttempted(true); 
+    axios.post('https://localhost:7240/api/Authentication/google-callback',
+    {
+      idToken: response.tokenId
+    })
+    .then((backendResponse) => {
+      console.log(backendResponse.data);
+    })
+    .catch((error) => {
+      console.error(error);
+    })
+  }
+  const responseGoogleFailure = (error) => {
+    setSignInAttempted(true);
+    setLoginError("Google Sign-In failed. Please try again.");
   };
 
   const handleSignIn = async () => {
@@ -157,10 +179,20 @@ const Signup = () => {
         <CenterRight>
           <Text1>Savi</Text1>
           <Text2>Welcome back to Savi.</Text2>
-          <Google>
+          <GoogleContainer>
+            <GoogleLogin
+              clientId="466917940325-fv436kkolat896c0n7di6f3v5d2h4i4n.apps.googleusercontent.com"
+              buttonText="Sign in with Google"
+              onSuccess={responseGoogleSuccess}
+              onFailure={responseGoogleFailure}
+              cookiePolicy={'single_host_origin'}
+            />
+            {/* {signInAttempted && loginError ? (<p style={{ color: 'red' }}>{loginError}</p> ) : ''}           */}
+          </GoogleContainer>
+          {/* <Google>
             <GoogleIcon src={Icon} alt="Google Icon" />
             Sign up with Google
-          </Google>
+          </Google> */}
           <Divid>
             <Divi src={Divider} alt="Divider 1" />
             <OrText>OR</OrText>
@@ -252,7 +284,7 @@ const Signup = () => {
           <Button onClick={handleSignIn}>Sign up</Button>
           <Div2>
             Already have an account?
-            <Link to="/Singin">
+            <Link to="/signin">
               <Click> Sign in here</Click>
             </Link>
           </Div2>
@@ -483,4 +515,8 @@ const Logo = styled.div`
 const ErrorMessage = styled.div`
   color: red;
   margin-top: 4px;
+`;
+const GoogleContainer = styled.div`
+  margin: auto;
+  text-align: center;
 `;
