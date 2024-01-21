@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const Savi = styled.div`
   position: relative;
@@ -19,6 +20,7 @@ const HeaderCtaBlock = styled.div`
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
+  cursor: pointer;
 `;
 const LeftNest = styled.div`
   display: flex;
@@ -115,6 +117,7 @@ const LearnMore = styled.div`
   position: relative;
   letter-spacing: 0.15px;
   line-height: 140%;
+  cursor: pointer;
 `;
 const Buttondefault = styled.div`
   border-radius: var(--br-5xs);
@@ -132,6 +135,8 @@ const Buttondefault = styled.div`
   padding: var(--padding-xs) var(--padding-base);
   gap: var(--gap-5xs);
   color: var(--white);
+  margin-top: 4px;
+  cursor: pointer;
 `;
 const AchieveFinancialSuccessWithParent = styled.div`
   display: flex;
@@ -740,6 +745,7 @@ const SocialIconsWhiteInstagr1 = styled.img`
   width: 24px;
   height: 24px;
   object-fit: cover;
+  cursor: pointer;
 `;
 const SocialLinks = styled.div`
   overflow: hidden;
@@ -790,6 +796,10 @@ const LandingPageRoot = styled.div`
 `;
 
 const LandingPage = () => {
+  const navigate = useNavigate();
+  const HandleClick = (e) => {
+    navigate('/signin');
+  };
   return (
     <LandingPageRoot>
       <MainHeader>
@@ -804,7 +814,7 @@ const LandingPage = () => {
           <Faqs>FAQs</Faqs>
           <RightNest>
             <HeaderCtaBlock>
-              <Button>
+              <Button onClick={HandleClick}>
                 <Apply>Get Started</Apply>
               </Button>
             </HeaderCtaBlock>
@@ -825,9 +835,9 @@ const LandingPage = () => {
             savings plans with Savi. Take control of your finances and unlock a
             brighter financial future.
           </ExperienceTheConvenience1>
-          <Buttondefault>
+          <Buttondefault onClick={HandleClick}>
             <Iconadd1 alt="" />
-            <LearnMore>Get Started</LearnMore>
+            <LearnMore style={{ color: '#fff' }}>Get Started</LearnMore>
             <Iconadd1 alt="" />
           </Buttondefault>
         </AchieveFinancialSuccessWithParent>

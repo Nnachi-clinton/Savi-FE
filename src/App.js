@@ -23,6 +23,7 @@ import DashBoard from './pages/dashboardmain/Dashboard.js';
 import SignupModal from './pages/Auth/Signup/SignupModal.js';
 import EmailVerifiedModal from './pages/Auth/Signup/EmailVerifiedModal.js';
 import CreditModal from './components/dashboard/CreditModal.js';
+import CreditSuccessfulModal from './components/dashboard/CreditSuccessfulModal.js';
 
 // App component
 function App() {
@@ -54,6 +55,10 @@ function App() {
                 element={<EmailVerifiedModal />}
               />
               <Route path="/CreditModal" element={<CreditModal />} />
+              <Route
+                path="/CreditSuccessfulModal"
+                element={<CreditSuccessfulModal />}
+              />
             </Routes>
           </GlobalProvider>
         </Router>
