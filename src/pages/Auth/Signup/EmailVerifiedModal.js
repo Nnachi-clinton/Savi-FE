@@ -27,7 +27,7 @@ function EmailVerifiedModal(props) {
           console.log(response.data);
           console.log(response.data.statusCode);
           setTimeout(() => {
-            navigate('/login');
+            navigate('/signin');
           }, 5000);
         } else {
           setVerificationStatus(response.data.message);

@@ -74,7 +74,7 @@ const Signin = () => {
           icon: 'success',
           title: 'Login successful!',
           showConfirmButton: false,
-          timer: 1000,
+          timer: 1500,
           position: 'top-end',
         });
       } else {
@@ -188,7 +188,7 @@ const Signin = () => {
           <Button onClick={handleSignIn}>Login</Button>
           <Div2>
             Don't have an account?
-            <Link to="/Singup">
+            <Link to="/Signup">
               <Click> Sign Up here</Click>
             </Link>
           </Div2>

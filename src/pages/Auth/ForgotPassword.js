@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {useState} from "react";
-import axios from "axios";
+import { useState } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -17,56 +17,56 @@ export const ForgotPassword = () => {
     e.preventDefault();
 
     try {
-        const result = await axios.post('https://localhost:7240/api/Authentication/forgot-password', formData);
-        
-        // Handle success (redirect, show message, etc.)
-        console.log(result.data);
-  
-      } catch (error) {
-        // Handle error (display error message, log, etc.)
-        console.error('Password reset failed:', error.message);
-      }
+      const result = await axios.post(
+        'https://localhost:7240/api/Authentication/forgot-password',
+        formData
+      );
+
+      // Handle success (redirect, show message, etc.)
+      console.log(result.data);
+    } catch (error) {
+      // Handle error (display error message, log, etc.)
+      console.error('Password reset failed:', error.message);
     }
+  };
 
   return (
     <>
-    <GlobalDiv>
-    <Header>Savi.</Header>
-    <Div>
-      <Span>
-      <form onSubmit={handleSubmit}>
-          <Div2>Forgot your password</Div2>
-          <Div3>
-            Enter your email below and we’ll send you
-            <br />
-            instructions on how to reset your password.
-          </Div3>
-          <Div4>Email Address</Div4>
-          <StyledInput
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            id="email"
-            placeholder="Enter your email"
-          />
-          <StyledButton type="submit">
-            Send reset instructions
-          </StyledButton>
-          <Div5>
-            Go back to{' '}
-            <span>
-              <StyledLink to={'/login'}>Sign in here</StyledLink>
-            </span>
-          </Div5>
-        </form>
-      </Span>
-      <Span4>
-        <Div6>Privacy Policy</Div6>
-        <Div6>Copyright 2024</Div6>
-      </Span4>
-    </Div>
-    </GlobalDiv>
+      <GlobalDiv>
+        <Header>Savi.</Header>
+        <Div>
+          <Span>
+            <form onSubmit={handleSubmit}>
+              <Div2>Forgot your password</Div2>
+              <Div3>
+                Enter your email below and we’ll send you
+                <br />
+                instructions on how to reset your password.
+              </Div3>
+              <Div4>Email Address</Div4>
+              <StyledInput
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                id="email"
+                placeholder="Enter your email"
+              />
+              <StyledButton type="submit">Send reset instructions</StyledButton>
+              <Div5>
+                Go back to{' '}
+                <span>
+                  <StyledLink to={'/signin'}>Sign in here</StyledLink>
+                </span>
+              </Div5>
+            </form>
+          </Span>
+          <Span4>
+            <Div6>Privacy Policy</Div6>
+            <Div6>Copyright 2024</Div6>
+          </Span4>
+        </Div>
+      </GlobalDiv>
     </>
   );
 };
@@ -83,7 +83,7 @@ const GlobalDiv = styled.div`
   padding-right: 342px;
   align-items: flex-start;
   gap: 189px;
-  background: var(--White, #FFF);
+  background: var(--White, #fff);
   @media (max-width: 991px) {
     padding: 0 20px;
   }
@@ -196,7 +196,7 @@ const StyledButton = styled.button`
 
   &:hover {
     background-color: #8c0c74;
-  }    
+  }
 
   @media (max-width: 991px) {
     white-space: initial;
@@ -231,7 +231,7 @@ const Span4 = styled.span`
   display: flex;
   gap: 20px;
   margin: 50px 0;
-//   margin: 476px 0 30px;
+  //   margin: 476px 0 30px;
   @media (max-width: 991px) {
     max-width: 100%;
     margin-top: 40px;

@@ -31,6 +31,7 @@ const Signup = () => {
   const [confirmPassword, setconfirmPassword] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [emailError, setEmailError] = useState('');
+  const [phoneError, setPhoneNumberError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate();
 
@@ -42,6 +43,14 @@ const Signup = () => {
     setEmail(value);
     if (isValidEmail(value)) {
       setEmailError('');
+    }
+  };
+  const handlePhoneNumberChange = (value) => {
+    setPhoneNumber(value);
+    if (value.length === 11) {
+      setPhoneNumberError('');
+    } else {
+      setPhoneNumberError('Phone number must be 11 digits');
     }
   };
 
@@ -69,12 +78,17 @@ const Signup = () => {
       setEmailError('Invalid email address');
       return;
     }
+    // if (phoneNumber.length !== 11) {
+    //   setPhoneNumberError('Phone number must be 11 digits');
+    //   return;
+    // }
     if (!isValidPassword(password)) {
       setPasswordError('Invalid password');
       return;
     }
     setEmailError('');
     setPasswordError('');
+    setPhoneNumberError('');
     try {
       const response = await axios.post(
         'https://localhost:7240/api/Authentication/Register',
@@ -214,8 +228,9 @@ const Signup = () => {
               name="PhoneNumber"
               placeholder="Enter your phone number"
               value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
+              onChange={(e) => handlePhoneNumberChange(e.target.value)}
             />
+            {phoneError && <ErrorMessage>{phoneError}</ErrorMessage>}
           </Div1>
           <Div22>
             <Label htmlFor="password">Password:</Label>

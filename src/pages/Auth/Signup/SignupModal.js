@@ -27,6 +27,8 @@ function SignupModal(props) {
         <Div>Registration Successful!</Div>
         <Div2>
           Almost there! We've sent a verification email to <br />
+          <br />
+          <br />
           {maskedEmail}
         </Div2>
       </Main>
@@ -90,10 +92,29 @@ export default SignupModal;
 
 function maskEmailWithInitial(email) {
   const atIndex = email.indexOf('@');
+  console.log(atIndex);
+  const index = email.indexOf('.');
+  console.log(index);
+  const index2 = index - atIndex;
+  console.log(index2);
   if (atIndex !== -1) {
-    const firstLetter = email[0];
-    const maskedPart = '*'.repeat(atIndex - 1);
-    return firstLetter + maskedPart + email.slice(atIndex);
+    const firstLetter = email.slice(0, 2);
+    const lastThreeChars = email.slice(atIndex - 3, atIndex);
+    const maskedPart = '*'.repeat(atIndex - 4);
+    const masked = email.slice(index - 5, index);
+    const masked2 = '*'.repeat(masked.length);
+    const at = email[atIndex];
+    console.log(at);
+    console.log(masked2);
+    console.log(email.slice(index));
+    return (
+      firstLetter +
+      maskedPart +
+      lastThreeChars +
+      at +
+      masked2 +
+      email.slice(index)
+    );
   }
   return email;
 }

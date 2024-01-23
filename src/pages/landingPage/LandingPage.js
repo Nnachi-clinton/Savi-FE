@@ -798,7 +798,7 @@ const LandingPageRoot = styled.div`
 const LandingPage = () => {
   const navigate = useNavigate();
   const HandleClick = (e) => {
-    navigate('/signin');
+    navigate('/signup');
   };
   return (
     <LandingPageRoot>
