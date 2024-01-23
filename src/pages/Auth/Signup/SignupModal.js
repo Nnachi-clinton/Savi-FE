@@ -101,7 +101,7 @@ function maskEmailWithInitial(email) {
     const firstLetter = email.slice(0, 2);
     const lastThreeChars = email.slice(atIndex - 3, atIndex);
     const maskedPart = '*'.repeat(atIndex - 4);
-    const masked = email.slice(index - 5, index);
+    const masked = email.slice(index - (index2 - 1), index);
     const masked2 = '*'.repeat(masked.length);
     const at = email[atIndex];
     console.log(at);
