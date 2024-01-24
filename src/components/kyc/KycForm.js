@@ -126,6 +126,16 @@ const KycForm = () => {
     const [genderDropdownClicked, setGenderDropdownClicked] = useState(false);
     const [occupationDropdownClicked, setOccupationDropdownClicked] = useState(false);
     const [identificationTypeDropdownClicked, setIdentificationTypeDropdownClicked] = useState(false);
+    const [bvnLengthError, setBvnLengthError] = useState(false);
+
+    const validateBvn = (value) => {
+        if (value.length !== 11) {
+            setBvnLengthError(true);
+        }
+        else {
+            setBvnLengthError(false);
+        }
+    }
 
     const handleChange = (event) => {
         const {name, value, files} = event.target;
@@ -156,6 +166,11 @@ const KycForm = () => {
         if (event.target.tagName === 'SELECT') {
             event.target.style.color = '#000'; 
         }
+
+        if (name === 'bvn' && !event.relatedTarget) {
+            // Validate BVN length using the separate function
+            validateBvn(value);
+        }
     };
     
     const handleGenderDropdownClick = () => {
@@ -174,7 +189,7 @@ const KycForm = () => {
             data.dateOfBirth &&
             data.occupation !== '' &&
             data.identificationType !== '' &&
-            data.bvn &&
+            data.bvn.length == 11 &&
             data.address &&
             data.identificationNumber &&
             data.identificationDocument &&
@@ -231,7 +246,7 @@ const KycForm = () => {
         const file = event.dataTransfer.items[0].getAsFile();
         if (file && file.size > 50 * 1024 * 1024) {
             console.error('File size exceeds 50MB limit.');
-            event.dataTransfer.dropEffect = 'none';  // Prevent the drop
+            event.dataTransfer.dropEffect = 'none';  
         } else {
             event.dataTransfer.dropEffect = 'copy';
         }
@@ -401,8 +416,14 @@ const KycForm = () => {
                                 placeholder="Input your BVN"
                                 value={formData.bvn}
                                 onChange={handleChange}
+                                onBlur={(e) => validateBvn(e.target.value)}
                                 name="bvn"
                             />
+                            {bvnLengthError && (
+                                <div style={{ color: 'red', fontSize: '12px', marginTop: '4px' }}>
+                                    BVN must be 11 characters long.
+                                </div>
+                            )}
                         </div>
 
                         <div>
