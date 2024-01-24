@@ -55,7 +55,6 @@ const Select = styled.select`
     option {
         color: black; 
     }
-    
     &:checked {
         color: black; /* Set the color for the selected option */
     }
@@ -67,14 +66,6 @@ const Document = styled.label`
     width: 100%;
     display: block;
     cursor: pointer;
-    text-align: center;
-    // &::before {
-    //     content: "Drop your files here or browse";
-    //     display: inline;
-    //     font-size: 11px;
-    //     color: #555;
-    //     font-weight: bold;
-    // } 
     &::after {
         content: "Maximum size: 50MB";
         color: #9CA3AF;

@@ -8,7 +8,7 @@ import CloseEye from './images/CloseEye.svg';
 import WhiteLogo from './images/WhiteLogo.svg';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
-import { GoogleLogin } from 'react-google-login';
+import { GoogleLogin } from '@react-oauth/google';
 
 const isValidEmail = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -48,12 +48,15 @@ const Signin = () => {
   const responseGoogleSuccess = async (response) => {
     console.log(response);
     setSignInAttempted(true); 
-    axios.post('https://localhost:7240/api/Authentication/google-callback',
-    {
-      idToken: response.tokenId
-    })
+    axios.post(`https://localhost:7240/api/Authentication/signin-google/${response.credential}`)
     .then((backendResponse) => {
       console.log(backendResponse.data);
+      if (backendResponse.data.statusCode == 200) {
+        const token = backendResponse.data.data;
+        console.log('token:', token);
+        localStorage.setItem('authToken', token);
+        navigate('/DashBoard');
+      }
     })
     .catch((error) => {
       console.error(error);
@@ -62,6 +65,7 @@ const Signin = () => {
   const responseGoogleFailure = (error) => {
     setSignInAttempted(true);
     setLoginError("Google Sign-In failed. Please try again.");
+    console.error("Google Sign-In Failure:", error);
   };
 
   const handleSignIn = async () => {
@@ -164,11 +168,8 @@ const Signin = () => {
           <Text2>Welcome back to Savi.</Text2>
           <GoogleContainer>
             <GoogleLogin
-              clientId="466917940325-fv436kkolat896c0n7di6f3v5d2h4i4n.apps.googleusercontent.com"
-              buttonText="Sign in with Google"
               onSuccess={responseGoogleSuccess}
-              onFailure={responseGoogleFailure}
-              cookiePolicy={'single_host_origin'}
+              onError={responseGoogleFailure}
             />
             {/* {signInAttempted && loginError ? (<p style={{ color: 'red' }}>{loginError}</p> ) : ''}           */}
           </GoogleContainer>
@@ -452,5 +453,5 @@ const ErrorMessage = styled.div`
 `;
 const GoogleContainer = styled.div`
   margin: auto;
-  text-align: center;
+  width: 80%;
 `;
