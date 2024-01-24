@@ -3,8 +3,8 @@
 import styled from 'styled-components';
 import SaviLogo from "../../../assets/SaviLogo.svg";
 import SearchIcon from "../../../assets/SearchIcon.svg";
-// import PicName from "../../../assets/PicName.svg";
-import React, { useState, useEffect } from 'react';
+import EmptyImage from "./EmptyImage.png";
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const StyledNavbar = styled.div`
@@ -19,6 +19,8 @@ const StyledNavbar = styled.div`
   box-sizing: border-box;
   box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.04);
 `;
+
+
 const Text = styled.h1`
 //styleName: Body Text Normal -16;
 font-family: Inter;
@@ -27,7 +29,13 @@ font-weight: 400;
 line-height: 22px;
 letter-spacing: 0.15000000596046448px;
 text-align: left;
+`;
 
+const EmptyImg = styled.img`
+  width: 32px;
+  height: 32px;
+  background-color: #ccc;
+  border-radius: 50%;
 `;
 
 const Logo = styled.img`
@@ -80,6 +88,8 @@ const Display = styled.div`
 
 function Navbar() {
   const [userData, setUserData] = useState({});
+  const isLoggedIn = false;
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -103,9 +113,13 @@ function Navbar() {
         <SearchInput type="text" placeholder="Search..." />
       </Searchbox>
       <Display>
-        <img src={userData.imageUrl} alt="" />
+      {isLoggedIn ? (
+          <img src={userData.imageUrl} alt='' />
+        ) : (
+          <EmptyImg src={EmptyImage} alt='' />
+        )}
         <Text>
-          {userData.firstName}
+          {isLoggedIn ? userData.firstName : 'Guest'}
         </Text>
       </Display>
     </StyledNavbar>

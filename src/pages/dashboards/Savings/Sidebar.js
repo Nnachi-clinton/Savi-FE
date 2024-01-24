@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { SidebarData } from './Sidebardata';
-import Navbar from './Navbar';
+import Navbar from '../../dashboards/Savings/Navbar';
 
 const Container = styled.div`
   display: flex;
