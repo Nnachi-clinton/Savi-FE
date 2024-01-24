@@ -1,5 +1,4 @@
 import { useMemo, useCallback, useState, useRef, useEffect } from 'react';
-
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 
@@ -8,6 +7,15 @@ const PortalOverlay = styled.div`
   flex-direction: column;
   position: fixed;
   inset: 0;
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+  z-index: 1000; /* Ensure a high z-index to appear above other elements */
+`;
+
+const PopupContent = styled.div`
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: Add a box shadow for depth */
 `;
 
 const PortalPopup = ({
@@ -26,13 +34,12 @@ const PortalPopup = ({
   const [relativeStyle, setRelativeStyle] = useState({
     opacity: 0,
   });
-  const popupStyle = useMemo(() => {
-    const style = {};
-    style.zIndex = zIndex;
 
-    if (overlayColor) {
-      style.backgroundColor = overlayColor;
-    }
+  const popupStyle = useMemo(() => {
+    const style = {
+      zIndex: zIndex,
+    };
+
     if (!relativeLayerRef?.current) {
       switch (placement) {
         case 'Centered':
@@ -64,7 +71,7 @@ const PortalPopup = ({
     }
     style.opacity = 1;
     return style;
-  }, [placement, overlayColor, zIndex, relativeLayerRef?.current]);
+  }, [placement, zIndex, relativeLayerRef?.current]);
 
   const setPosition = useCallback(() => {
     const relativeItem = relativeLayerRef?.current?.getBoundingClientRect();
@@ -143,15 +150,15 @@ const PortalPopup = ({
         style={popupStyle}
         onClick={onOverlayClick}
       >
-        <div ref={relContainerRef} style={relativeStyle}>
+        <PopupContent ref={relContainerRef} style={relativeStyle}>
           {children}
-        </div>
+        </PopupContent>
       </PortalOverlay>
     </Portal>
   );
 };
 
-export const Portal = ({ children, containerId = 'portals' }) => {
+const Portal = ({ children, containerId = 'portals' }) => {
   let portalsDiv = document.getElementById(containerId);
   if (!portalsDiv) {
     portalsDiv = document.createElement('div');
@@ -161,4 +168,5 @@ export const Portal = ({ children, containerId = 'portals' }) => {
 
   return createPortal(children, portalsDiv);
 };
+
 export default PortalPopup;
