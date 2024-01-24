@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import Button from '../../components/Button'
+import { useNavigate } from 'react-router-dom';
 
 const Savi = styled.div`
   position: relative;
@@ -30,21 +32,6 @@ const Faqs = styled.div`
   position: relative;
   line-height: 20px;
   display: none;
-`;
-const Apply = styled.div`
-  position: relative;
-  letter-spacing: 0.15px;
-  line-height: 140%;
-  font-weight: 600;
-`;
-const Button = styled.div`
-  border-radius: 5px;
-  background-color: var(--primary-color);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding: var(--padding-xs) 18px;
 `;
 const RightNest = styled.div`
   border-radius: var(--br-5xs);
@@ -93,6 +80,14 @@ const AchieveFinancialSuccessContainer = styled.div`
   font-weight: 800;
   display: inline-block;
   width: 639px;
+  font-family: Inter;
+
+  // font-family: Inter;
+  // font-size: 48px;
+  // font-weight: 800;
+  // line-height: 67px;
+  // letter-spacing: 0.25px;
+  // text-align: left;
 `;
 const ExperienceTheConvenience1 = styled.div`
   position: relative;
@@ -100,44 +95,21 @@ const ExperienceTheConvenience1 = styled.div`
   line-height: 140%;
   display: inline-block;
   width: 551px;
-`;
-const Iconadd1 = styled.img`
-  position: relative;
-  width: 20px;
-  height: 20px;
-  overflow: hidden;
-  flex-shrink: 0;
-  object-fit: cover;
-  display: none;
+  margine-bottom: 100px;
 `;
 const LearnMore = styled.div`
   position: relative;
   letter-spacing: 0.15px;
   line-height: 140%;
 `;
-const Buttondefault = styled.div`
-  border-radius: var(--br-5xs);
-  background-color: var(--primary-color);
-  border: 1px solid var(--primary-color);
-  box-sizing: border-box;
-  width: 161px;
-  height: 44px;
-  overflow: hidden;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding: var(--padding-xs) var(--padding-base);
-  gap: var(--gap-5xs);
-  color: var(--white);
-`;
+
 const AchieveFinancialSuccessWithParent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   gap: var(--gap-5xl);
+  font-family: Inter;
 `;
 const FrameChild = styled.img`
   position: relative;
@@ -789,6 +761,13 @@ const LandingPageRoot = styled.div`
 `;
 
 const LandingPage = () => {
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    // Redirect to the signup page
+    navigate('/signup');
+  };
+
   return (
     <LandingPageRoot>
       <MainHeader>
@@ -803,9 +782,7 @@ const LandingPage = () => {
           <Faqs>FAQs</Faqs>
           <RightNest>
             <HeaderCtaBlock>
-              <Button>
-                <Apply>Get Started</Apply>
-              </Button>
+              <Button onClick={handleButtonClick}>Get Started</Button>
             </HeaderCtaBlock>
           </RightNest>
         </FaqsParent>
@@ -824,11 +801,9 @@ const LandingPage = () => {
             savings plans with Savi. Take control of your finances and unlock a
             brighter financial future.
           </ExperienceTheConvenience1>
-          <Buttondefault>
-            <Iconadd1 alt="" />
-            <LearnMore>Get Started</LearnMore>
-            <Iconadd1 alt="" />
-          </Buttondefault>
+          <HeaderCtaBlock>
+            <Button onClick={handleButtonClick}>Get Started</Button>
+          </HeaderCtaBlock>
         </AchieveFinancialSuccessWithParent>
         <FrameChild alt="my picture" src="/frame-38813701@2x.png" />
       </FrameParent>
