@@ -1,9 +1,11 @@
 // StyledNavbar.js
-import React from 'react';
+// import React from 'react';
 import styled from 'styled-components';
 import SaviLogo from "../../../assets/SaviLogo.svg";
 import SearchIcon from "../../../assets/SearchIcon.svg";
-import PicName from "../../../assets/PicName.svg";
+// import PicName from "../../../assets/PicName.svg";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const StyledNavbar = styled.div`
   width: 100%;
@@ -16,6 +18,16 @@ const StyledNavbar = styled.div`
   padding: 0 24px;
   box-sizing: border-box;
   box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.04);
+`;
+const Text = styled.h1`
+//styleName: Body Text Normal -16;
+font-family: Inter;
+font-size: 16px;
+font-weight: 400;
+line-height: 22px;
+letter-spacing: 0.15000000596046448px;
+text-align: left;
+
 `;
 
 const Logo = styled.img`
@@ -30,7 +42,7 @@ const Logo = styled.img`
 `;
 
 const Searchbox = styled.div`
-  width: 300px;
+  width: 308px;
   height: 35px;
   border-radius: 100px;
   margin: 15px 0 0 250px;
@@ -67,6 +79,22 @@ const Display = styled.div`
 `;
 
 function Navbar() {
+  const [userData, setUserData] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://localhost:7240/api/User/55b6f5b4-8dfc-4f3d-9dba-58844b23f6bb');
+        setUserData(response.data);
+        console.log(response.data)
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchData();
+  }, []); // Empty dependency array ensures the effect runs only once on mount
+
   return (
     <StyledNavbar>
       <Logo src={SaviLogo} alt='Savi-Logo' />
@@ -75,7 +103,10 @@ function Navbar() {
         <SearchInput type="text" placeholder="Search..." />
       </Searchbox>
       <Display>
-        <img src={PicName} alt="PicDisplay" />
+        <img src={userData.imageUrl} alt="" />
+        <Text>
+          {userData.firstName}
+        </Text>
       </Display>
     </StyledNavbar>
   );
