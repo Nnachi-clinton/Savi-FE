@@ -10,7 +10,8 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
-import { GoogleLogin } from 'react-google-login';
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from 'jwt-decode';
 
 const isValidEmail = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -51,11 +52,25 @@ const Signin = () => {
     console.log(response);
     setSignInAttempted(true);
     axios
-      .post('https://localhost:7240/api/Authentication/google-callback', {
-        idToken: response.tokenId,
-      })
+      .post(
+        `https://localhost:7240/api/Authentication/signin-google/${response.credential}`
+      )
       .then((backendResponse) => {
         console.log(backendResponse.data);
+        if (backendResponse.data.statusCode == 200) {
+          const token = backendResponse.data.data;
+          console.log('token:', token);
+          localStorage.setItem('authToken', token);
+          const decodedToken = jwtDecode(token);
+          const userid = decodedToken['jti'];
+          const id = decodedToken['NameIdentifier'];
+
+          console.log('decoded token:', decodedToken);
+          console.log('userid:', userid);
+          console.log('useridd:', decodedToken['jti']);
+          console.log('Id:', id);
+          navigate('/sidebar');
+        }
       })
       .catch((error) => {
         console.error(error);
@@ -90,7 +105,22 @@ const Signin = () => {
         const token = response.data.data;
         console.log('token:', token);
         localStorage.setItem('authToken', token);
-        navigate('/DashBoard');
+        // localStorage.setItem('id', id);
+        console.log('token:', token);
+        localStorage.setItem('authToken', token);
+        const decodedToken = jwtDecode(token);
+        const userid = decodedToken['jti'];
+        const id =
+          decodedToken[
+            'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
+          ];
+
+        console.log('decoded token:', decodedToken);
+        console.log('userid:', userid);
+        console.log('useridd:', decodedToken['jti']);
+        console.log('Id:', id);
+        localStorage.setItem('Id', id);
+        navigate('/sidebar');
 
         Swal.fire({
           icon: 'success',
@@ -166,11 +196,9 @@ const Signin = () => {
           <Text2>Welcome back to Savi.</Text2>
           <GoogleContainer>
             <GoogleLogin
-              clientId="466917940325-fv436kkolat896c0n7di6f3v5d2h4i4n.apps.googleusercontent.com"
-              buttonText="Sign in with Google"
+              // buttonText="Sign in with Google"
               onSuccess={responseGoogleSuccess}
-              onFailure={responseGoogleFailure}
-              cookiePolicy={'single_host_origin'}
+              onError={responseGoogleFailure}
             />
             {/* {signInAttempted && loginError ? (<p style={{ color: 'red' }}>{loginError}</p> ) : ''}           */}
           </GoogleContainer>
@@ -454,5 +482,5 @@ const ErrorMessage = styled.div`
 `;
 const GoogleContainer = styled.div`
   margin: auto;
-  text-align: center;
+  width: 80% !important;
 `;

@@ -2,9 +2,6 @@ import { useState, useCallback } from 'react';
 import DepositFunds from '../../components/dashboard/DepositFunds';
 import PortalPopup from '../../components/dashboard/PortalPopup';
 import WithdrawFunds from '../../components/dashboard/WithdrawFunds';
-import MessagePopup from '../../components/dashboard/MessagePopup';
-import LogoutModal from '../../components/dashboard/LogoutModal';
-import Menu from '../../components/dashboard/Menu';
 import KYC from '../../components/dashboard/KYC';
 import styled from 'styled-components';
 
@@ -1739,160 +1736,6 @@ const VuesaxbulkmessageQuestionIcon1 = styled.img`
   object-fit: cover;
   cursor: pointer;
 `;
-const Savi1 = styled.b`
-  position: relative;
-  letter-spacing: 0.15px;
-  line-height: 140%;
-`;
-const VuesaxbulkhomeIcon1 = styled.img`
-  position: relative;
-  width: 1.5rem;
-  height: 1.5rem;
-  object-fit: cover;
-`;
-const Dashboard1 = styled.div`
-  position: relative;
-  letter-spacing: 0.15px;
-  line-height: 140%;
-  font-weight: 600;
-`;
-const Feature1 = styled.div`
-  border-radius: var(--br-5xs);
-  background-color: var(--primary-color);
-  width: 13.94rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  padding: var(--padding-3xk);
-  box-sizing: border-box;
-  gap: var(--gap-3xs);
-  color: var(--white);
-`;
-const Feature2 = styled.div`
-  border-radius: var(--br-5xs);
-  background-color: var(--white);
-  width: 13.94rem;
-  display: none;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  padding: var(--padding-3xk);
-  box-sizing: border-box;
-  gap: var(--gap-3xs);
-`;
-const Feature3 = styled.div`
-  border-radius: var(--br-5xs);
-  background-color: var(--white);
-  width: 13.94rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  padding: var(--padding-3xk);
-  box-sizing: border-box;
-  gap: var(--gap-3xs);
-  cursor: pointer;
-`;
-const Feature1Parent = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: var(--gap-5xk);
-  color: var(--main-text);
-`;
-const OverviewParent = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: var(--gap-5xm);
-`;
-const FrameParent31 = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: var(--gap-5xm);
-  text-align: left;
-  font-size: var(--text-md-medium-size);
-  color: var(--grey-400);
-  font-family: var(--text-md-medium);
-`;
-const SideBardefault = styled.div`
-  position: absolute;
-  top: 0rem;
-  left: 0rem;
-  background-color: var(--white);
-  height: 69.81rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: var(--padding-5xm);
-  box-sizing: border-box;
-  gap: var(--gap-5xm);
-  text-align: center;
-  font-size: 2rem;
-  color: var(--primary-color);
-  font-family: var(--font-bodoni-moda);
-`;
-const NavbardefaultTypeChild = styled.div`
-  position: absolute;
-  top: 0rem;
-  left: 0rem;
-  background-color: var(--white);
-  width: 73.06rem;
-  height: 4.5rem;
-`;
-const AvatardefaultIcon = styled.img`
-  position: relative;
-  border-radius: var(--br-181xl);
-  width: 2rem;
-  height: 2rem;
-  object-fit: cover;
-`;
-const AvatardefaultParent = styled.div`
-  position: absolute;
-  top: calc(50% - 16px);
-  left: 58.56rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  gap: var(--gap-5xk);
-  cursor: pointer;
-`;
-const SearchBar1 = styled.div`
-  border-radius: var(--br-81xl);
-  background-color: var(--white);
-  border: 1px solid var(--grey-300);
-  box-sizing: border-box;
-  width: 19.25rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  padding: var(--padding-3xk) var(--padding-5xm);
-`;
-const SearchBarWrapper = styled.div`
-  position: absolute;
-  top: 1.19rem;
-  left: 3.19rem;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  color: var(--grey-400);
-`;
-const NavbardefaultType = styled.div`
-  position: relative;
-  width: 73.44rem;
-  height: 4.5rem;
-  overflow: hidden;
-  flex-shrink: 0;
-`;
 const CompleteAccountSetup1 = styled.span`
   font-weight: 600;
   font-family: var(--text-md-medium);
@@ -1937,6 +1780,8 @@ const DashboardRoot = styled.div`
   font-size: var(--input-small-medium-size);
   color: var(--main-text);
   font-family: var(--text-md-medium);
+  margin-top: -29em;
+  margin-right: 12em;
 `;
 
 const DashBoard = () => {
@@ -1957,6 +1802,9 @@ const DashBoard = () => {
   const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isKYCOpen, setKYCOpen] = useState(false);
+  const user = { name: 'Kingsley Okafor' };
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const currentDate = new Date().toLocaleDateString('en-US', options);
 
   const openDepositFunds = useCallback(() => {
     setDepositFundsOpen(true);
@@ -2074,32 +1922,8 @@ const DashBoard = () => {
     setMessagePopupOpen(false);
   }, []);
 
-  const onFeature3ContainerClick = useCallback(() => {
-    // Please sync "Personal Saving" to the project
-  }, []);
-
-  const onFeature4ContainerClick = useCallback(() => {
-    // Please sync "Joined Group" to the project
-  }, []);
-
-  const onFeature5ContainerClick = useCallback(() => {
-    // Please sync "Transactions" to the project
-  }, []);
-
-  const onFeature4Container1Click = useCallback(() => {
-    // Please sync "Settings" to the project
-  }, []);
-
-  const openLogoutModal = useCallback(() => {
-    setLogoutModalOpen(true);
-  }, []);
-
   const closeLogoutModal = useCallback(() => {
     setLogoutModalOpen(false);
-  }, []);
-
-  const openMenu = useCallback(() => {
-    setMenuOpen(true);
   }, []);
 
   const closeMenu = useCallback(() => {
@@ -2119,10 +1943,10 @@ const DashBoard = () => {
       <DashboardRoot>
         <FrameParent>
           <WelcomeBackJohnDoeParent>
-            <WelcomeBackJohn1>Welcome back John Doe,</WelcomeBackJohn1>
+            <WelcomeBackJohn1>{`Welcome back ${user.name},`}</WelcomeBackJohn1>
             <EmojiParent>
               <EmojiIcon1 alt="" src="/emoji@2x.png" />
-              <Savi>May 28, 2023</Savi>
+              <Savi>{currentDate}.</Savi>
             </EmojiParent>
           </WelcomeBackJohnDoeParent>
           <FrameGroup>
@@ -2140,7 +1964,6 @@ const DashBoard = () => {
               </GlobalWalletParent>
               <FrameParent1>
                 <Parent1>
-                  <Div1>- 15%</Div1>
                   <ArrowIcon4 alt="" />
                 </Parent1>
                 <ThanLastMonth4>than last month</ThanLastMonth4>
@@ -2702,74 +2525,7 @@ const DashBoard = () => {
           src="/vuesaxbulkmessagequestion@2x.png"
           onClick={openMessagePopup}
         />
-        <SideBardefault>
-          <Savi1>Savi.</Savi1>
-          <FrameParent31>
-            <OverviewParent>
-              <Savi>Overview</Savi>
-              <Feature1Parent>
-                <Feature1>
-                  <VuesaxbulkhomeIcon1 alt="" src="/vuesaxbulkhome@2x.png" />
-                  <Dashboard1>Dashboard</Dashboard1>
-                </Feature1>
-                <Feature2>
-                  <VuesaxbulkhomeIcon1 alt="" />
-                  <Savi>Wallet</Savi>
-                </Feature2>
-                <Feature3 onClick={onFeature3ContainerClick}>
-                  <VuesaxbulkhomeIcon1
-                    alt=""
-                    src="/vuesaxbulksecuritycard@2x.png"
-                  />
-                  <Savi>Savings</Savi>
-                </Feature3>
-                <Feature3 onClick={onFeature4ContainerClick}>
-                  <VuesaxbulkhomeIcon1 alt="" src="/vuesaxbulkpeople@2x.png" />
-                  <Savi>Groups</Savi>
-                </Feature3>
-                <Feature3 onClick={onFeature5ContainerClick}>
-                  <VuesaxbulkhomeIcon1
-                    alt=""
-                    src="/vuesaxbulktranslate@2x.png"
-                  />
-                  <Savi>Transactions</Savi>
-                </Feature3>
-              </Feature1Parent>
-            </OverviewParent>
-            <OverviewParent>
-              <Savi>Others</Savi>
-              <Feature1Parent>
-                <Feature3 onClick={onFeature4Container1Click}>
-                  <VuesaxbulkhomeIcon1
-                    alt=""
-                    src="/vuesaxbulksetting2@2x.png"
-                  />
-                  <Savi>Settings</Savi>
-                </Feature3>
-                <Feature3 onClick={openLogoutModal}>
-                  <VuesaxbulkhomeIcon1 alt="" src="/vuesaxbulklogout@2x.png" />
-                  <Savi>Logout</Savi>
-                </Feature3>
-              </Feature1Parent>
-            </OverviewParent>
-          </FrameParent31>
-        </SideBardefault>
         <NavbardefaultTypeParent>
-          <NavbardefaultType>
-            <NavbardefaultTypeChild />
-            <AvatardefaultParent onClick={openMenu}>
-              <AvatardefaultIcon alt="" src="/avatardefault@2x.png" />
-              <Savi>Deborah</Savi>
-            </AvatardefaultParent>
-            <SearchBarWrapper>
-              <SearchBar1>
-                <AddParent>
-                  <ChevronDownIcon2 alt="" src="/searchalt@2x.png" />
-                  <Savi>Search</Savi>
-                </AddParent>
-              </SearchBar1>
-            </SearchBarWrapper>
-          </NavbardefaultType>
           <CompleteAccountSetupClickWrapper>
             <CompleteAccountSetupContainer onClick={openKYC}>
               <CompleteAccountSetup1>
@@ -2898,33 +2654,6 @@ const DashBoard = () => {
           onOutsideClick={closeWithdrawFunds4}
         >
           <WithdrawFunds onClose={closeWithdrawFunds4} />
-        </PortalPopup>
-      )}
-      {isMessagePopupOpen && (
-        <PortalPopup
-          overlayColor="rgba(113, 113, 113, 0.3)"
-          placement="Centered"
-          onOutsideClick={closeMessagePopup}
-        >
-          <MessagePopup onClose={closeMessagePopup} />
-        </PortalPopup>
-      )}
-      {isLogoutModalOpen && (
-        <PortalPopup
-          overlayColor="rgba(113, 113, 113, 0.3)"
-          placement="Centered"
-          onOutsideClick={closeLogoutModal}
-        >
-          <LogoutModal onClose={closeLogoutModal} />
-        </PortalPopup>
-      )}
-      {isMenuOpen && (
-        <PortalPopup
-          overlayColor="rgba(113, 113, 113, 0.3)"
-          placement="Centered"
-          onOutsideClick={closeMenu}
-        >
-          <Menu onClose={closeMenu} />
         </PortalPopup>
       )}
       {isKYCOpen && (

@@ -4,12 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyles from './components/organization/Global';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <GlobalStyles />
-    <App />
-  </React.StrictMode>,
+  <GoogleOAuthProvider clientId="466917940325-fv436kkolat896c0n7di6f3v5d2h4i4n.apps.googleusercontent.com">
+    <React.StrictMode>
+      <GlobalStyles />
+      <App />
+    </React.StrictMode>
+  </GoogleOAuthProvider>,
   document.getElementById('root')
 );
 

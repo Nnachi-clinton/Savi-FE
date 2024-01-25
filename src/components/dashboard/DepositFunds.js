@@ -1,4 +1,18 @@
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+
+
+const Button = styled.button`
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  border-radius: var(--br-5xs);
+  padding: var(--padding-xs) var(--padding-sm);
+  cursor: pointer;
+  font-size: var(--text-md-medium-size);
+  cursor: pointer;
+`;
 
 const Text5 = styled.b`
   position: relative;
@@ -60,19 +74,6 @@ const Text7 = styled.div`
   line-height: 140%;
   font-weight: 600;
 `;
-const Iconadd4 = styled.img`
-  position: relative;
-  width: 1.25rem;
-  height: 1.25rem;
-  overflow: hidden;
-  flex-shrink: 0;
-  object-fit: cover;
-  display: none;
-`;
-const Text8 = styled.div`
-  position: relative;
-  line-height: 1.25rem;
-`;
 const TextParent = styled.div`
   display: flex;
   flex-direction: column;
@@ -115,6 +116,24 @@ const DepositFundsRoot = styled.div`
 `;
 
 const DepositFunds = () => {
+  const [amount, setAmount] = useState('');
+
+  const handleAmountChange = (event) => {
+    setAmount(event.target.value);
+  };
+
+  const handleSubmit = () => {
+    // Make API request using Axios
+    axios.post('your-api-endpoint', { amount })
+      .then(response => {
+        // Handle success
+        console.log(response.data);
+      })
+      .catch(error => {
+        // Handle error
+        console.error(error);
+      });
+  };
   return (
     <DepositFundsRoot>
       <FrameParent>
@@ -131,12 +150,15 @@ const DepositFunds = () => {
       </FrameParent>
       <TextParent>
         <Text7>Amount to Deposit</Text7>
-        <Input type="text" placeholder="Type the amount" />
+        <Input
+          type="text"
+          placeholder="Type the amount"
+          value={amount}
+          onChange={handleAmountChange}
+        />
       </TextParent>
       <Ctadefault>
-        <Iconadd4 alt="" />
-        <Text7>Submit</Text7>
-        <Iconadd4 alt="" />
+        <Button onClick={handleSubmit}>Submit</Button>
       </Ctadefault>
     </DepositFundsRoot>
   );

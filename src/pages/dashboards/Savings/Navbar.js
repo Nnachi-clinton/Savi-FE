@@ -1,9 +1,11 @@
 // StyledNavbar.js
-import React from 'react';
+// import React from 'react';
 import styled from 'styled-components';
-import SaviLogo from "../../../assets/SaviLogo.svg";
-import SearchIcon from "../../../assets/SearchIcon.svg";
-import PicName from "../../../assets/PicName.svg";
+import SaviLogo from '../../../assets/SaviLogo.svg';
+import SearchIcon from '../../../assets/SearchIcon.svg';
+import EmptyImage from './EmptyImage.png';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const StyledNavbar = styled.div`
   width: 100%;
@@ -18,6 +20,23 @@ const StyledNavbar = styled.div`
   box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.04);
 `;
 
+const Text = styled.h1`
+  //styleName: Body Text Normal -16;
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0.15000000596046448px;
+  text-align: left;
+`;
+
+const EmptyImg = styled.img`
+  width: 32px;
+  height: 32px;
+  background-color: #ccc;
+  border-radius: 50%;
+`;
+
 const Logo = styled.img`
   font-family: Bodoni Moda;
   font-size: 32px;
@@ -30,7 +49,7 @@ const Logo = styled.img`
 `;
 
 const Searchbox = styled.div`
-  width: 300px;
+  width: 308px;
   height: 35px;
   border-radius: 100px;
   margin: 15px 0 0 250px;
@@ -45,7 +64,7 @@ const SearchInput = styled.input`
   border: none;
   flex: 1;
   margin-left: 10px;
-  
+
   &:focus {
     outline: none;
   }
@@ -67,15 +86,36 @@ const Display = styled.div`
 `;
 
 function Navbar() {
+  const [userData, setUserData] = useState({});
+
+  const Id = localStorage.getItem('Id');
+  console.log(Id);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://localhost:7240/api/User/${Id}`
+        );
+        setUserData(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchData();
+  }, []); // Empty dependency array ensures the effect runs only once on mount
+  console.log(userData.firstName);
   return (
     <StyledNavbar>
-      <Logo src={SaviLogo} alt='Savi-Logo' />
+      <Logo src={SaviLogo} alt="Savi-Logo" />
       <Searchbox>
         <MagnifyIcon src={SearchIcon} alt="SearchIcon" />
         <SearchInput type="text" placeholder="Search..." />
       </Searchbox>
       <Display>
-        <img src={PicName} alt="PicDisplay" />
+        {<img src={userData.imageUrl} alt="" />}
+        <Text>{userData.firstName}</Text>
       </Display>
     </StyledNavbar>
   );

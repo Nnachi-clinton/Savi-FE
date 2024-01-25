@@ -96,6 +96,14 @@ const AchieveFinancialSuccessContainer = styled.div`
   font-weight: 800;
   display: inline-block;
   width: 639px;
+  font-family: Inter;
+
+  // font-family: Inter;
+  // font-size: 48px;
+  // font-weight: 800;
+  // line-height: 67px;
+  // letter-spacing: 0.25px;
+  // text-align: left;
 `;
 const ExperienceTheConvenience1 = styled.div`
   position: relative;
@@ -103,15 +111,7 @@ const ExperienceTheConvenience1 = styled.div`
   line-height: 140%;
   display: inline-block;
   width: 551px;
-`;
-const Iconadd1 = styled.img`
-  position: relative;
-  width: 20px;
-  height: 20px;
-  overflow: hidden;
-  flex-shrink: 0;
-  object-fit: cover;
-  display: none;
+  margine-bottom: 100px;
 `;
 const LearnMore = styled.div`
   position: relative;
@@ -144,6 +144,7 @@ const AchieveFinancialSuccessWithParent = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   gap: var(--gap-5xl);
+  font-family: Inter;
 `;
 const FrameChild = styled.img`
   position: relative;
@@ -782,6 +783,15 @@ const Footer = styled.div`
   text-align: center;
   font-size: var(--paragraph-p3-regular-size);
   color: var(--neutral-gray-900);
+`;
+const Iconadd1 = styled.img`
+  position: relative;
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+  flex-shrink: 0;
+  object-fit: cover;
+  display: none;
 `;
 const LandingPageRoot = styled.div`
   position: relative;

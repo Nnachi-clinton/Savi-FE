@@ -10,6 +10,7 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import { GoogleLogin } from '@react-oauth/google';
 
 const isValidEmail = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -34,6 +35,8 @@ const Signup = () => {
   const [phoneError, setPhoneNumberError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate();
+  const [signInAttempted, setSignInAttempted] = useState(false);
+  const [loginError, setLoginError] = useState('');
 
   useEffect(() => {
     localStorage.setItem('userEmail', email);
@@ -66,6 +69,32 @@ const Signup = () => {
     if (isValidPassword(value)) {
       setPasswordError('');
     }
+  };
+
+  const responseGoogleSuccess = async (response) => {
+    console.log(response);
+    setSignInAttempted(true);
+    axios
+      .post(
+        `https://localhost:7240/api/Authentication/signin-google/${response.credential}`
+      )
+      .then((backendResponse) => {
+        console.log(backendResponse.data);
+        if (backendResponse.data.statusCode == 200) {
+          const token = backendResponse.data.data;
+          console.log('token:', token);
+          localStorage.setItem('authToken', token);
+          navigate('/DashBoard');
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+  const responseGoogleFailure = (error) => {
+    setSignInAttempted(true);
+    setLoginError('Google Sign-In failed. Please try again.');
+    console.error('Google Sign-In Failure:', error);
   };
 
   const handleSignIn = async () => {
@@ -177,10 +206,18 @@ const Signup = () => {
         <CenterRight>
           <Text1>Savi</Text1>
           <Text2>Welcome back to Savi.</Text2>
-          <Google>
+          {/* <Google>
             <GoogleIcon src={Icon} alt="Google Icon" />
             Sign up with Google
-          </Google>
+          </Google> */}
+          <GoogleContainer>
+            <GoogleLogin
+              // buttonText="Sign in with Google"
+              onSuccess={responseGoogleSuccess}
+              onError={responseGoogleFailure}
+            />
+            {/* {signInAttempted && loginError ? (<p style={{ color: 'red' }}>{loginError}</p> ) : ''}           */}
+          </GoogleContainer>
           <Divid>
             <Divi src={Divider} alt="Divider 1" />
             <OrText>OR</OrText>
@@ -504,4 +541,8 @@ const Logo = styled.div`
 const ErrorMessage = styled.div`
   color: red;
   margin-top: 4px;
+`;
+const GoogleContainer = styled.div`
+  margin: auto;
+  width: 80%;
 `;
