@@ -98,6 +98,8 @@ function Navbar() {
         );
         setUserData(response.data);
         console.log(response.data);
+        const email = response.data.email;
+        localStorage.setItem('Email', email);
       } catch (error) {
         console.error('Error fetching user data:', error);
       }

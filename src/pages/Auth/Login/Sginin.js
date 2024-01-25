@@ -11,7 +11,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import { GoogleLogin } from '@react-oauth/google';
-import { jwtDecode } from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 
 const isValidEmail = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -63,12 +63,16 @@ const Signin = () => {
           localStorage.setItem('authToken', token);
           const decodedToken = jwtDecode(token);
           const userid = decodedToken['jti'];
-          const id = decodedToken['NameIdentifier'];
+          const id =
+          decodedToken[
+            'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
+          ];
 
           console.log('decoded token:', decodedToken);
           console.log('userid:', userid);
           console.log('useridd:', decodedToken['jti']);
           console.log('Id:', id);
+          localStorage.setItem('Id', id);
           navigate('/sidebar');
         }
       })
@@ -196,7 +200,6 @@ const Signin = () => {
           <Text2>Welcome back to Savi.</Text2>
           <GoogleContainer>
             <GoogleLogin
-              // buttonText="Sign in with Google"
               onSuccess={responseGoogleSuccess}
               onError={responseGoogleFailure}
             />

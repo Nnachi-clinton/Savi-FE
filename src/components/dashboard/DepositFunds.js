@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import axios from 'axios';
-
+import { PaystackButton } from 'react-paystack';
 
 const Button = styled.button`
   background-color: var(--primary-color);
@@ -114,6 +114,11 @@ const DepositFundsRoot = styled.div`
   color: var(--main-text);
   font-family: var(--text-md-medium);
 `;
+const StyledPaystackButton = styled(PaystackButton)`
+  border: none;
+  background-color: inherit; /* Set your desired background color */
+  color: #fff;
+`;
 
 const DepositFunds = () => {
   const [amount, setAmount] = useState('');
@@ -122,18 +127,40 @@ const DepositFunds = () => {
     setAmount(event.target.value);
   };
 
-  const handleSubmit = () => {
-    // Make API request using Axios
-    axios.post('your-api-endpoint', { amount })
-      .then(response => {
-        // Handle success
-        console.log(response.data);
-      })
-      .catch(error => {
-        // Handle error
-        console.error(error);
-      });
+  const email = localStorage.getItem('Email')
+
+  const handlePaystackSuccessAction = (response) => {
+    // Implementation for whatever you want to do with reference and after success call.
+    console.log(response);
+    const userId = localStorage.getItem('Id');
+    if (userId) {
+      axios.post(`https://localhost:7240/api/Wallet/api/paystack/verify/${response.reference}/${userId}`)
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    } else {
+      console.error('User ID not found in local storage');
+    }
   };
+
+  const handlePaystackClose = () => {
+      // implementation for  whatever you want to do when the Paystack dialog closed.
+      console.log('closed')
+  }
+
+  const componentProps = {
+    reference: (new Date()).getTime().toString(),
+    email: email,
+    amount: Number(amount) * 100, 
+    publicKey: 'pk_test_521d89aa0fcf83e56190c164c164de74810eb110',
+    text: 'Submit',
+    onSuccess: (reference) => handlePaystackSuccessAction(reference),
+    onClose: handlePaystackClose,
+  };
+
   return (
     <DepositFundsRoot>
       <FrameParent>
@@ -158,7 +185,7 @@ const DepositFunds = () => {
         />
       </TextParent>
       <Ctadefault>
-        <Button onClick={handleSubmit}>Submit</Button>
+      <StyledPaystackButton {...componentProps} className="payButton" />
       </Ctadefault>
     </DepositFundsRoot>
   );
