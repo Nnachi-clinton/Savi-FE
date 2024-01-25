@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Pix from '../SaviImage.png';
 import Icon from './images/Google.svg';
 import Divider from './images/Divider.svg';
@@ -8,6 +8,8 @@ import CloseEye from './images/CloseEye.svg';
 import WhiteLogo from './images/WhiteLogo.svg';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 import { GoogleLogin } from '@react-oauth/google';
 
 const isValidEmail = (email) => {
@@ -30,15 +32,28 @@ const Signup = () => {
   const [confirmPassword, setconfirmPassword] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [emailError, setEmailError] = useState('');
+  const [phoneError, setPhoneNumberError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate();
   const [signInAttempted, setSignInAttempted] = useState(false);
   const [loginError, setLoginError] = useState('');
 
+  useEffect(() => {
+    localStorage.setItem('userEmail', email);
+  }, [email]);
+
   const handleEmailChange = (value) => {
     setEmail(value);
     if (isValidEmail(value)) {
       setEmailError('');
+    }
+  };
+  const handlePhoneNumberChange = (value) => {
+    setPhoneNumber(value);
+    if (value.length === 11) {
+      setPhoneNumberError('');
+    } else {
+      setPhoneNumberError('Phone number must be 11 digits');
     }
   };
 
@@ -58,25 +73,28 @@ const Signup = () => {
 
   const responseGoogleSuccess = async (response) => {
     console.log(response);
-    setSignInAttempted(true); 
-    axios.post(`https://localhost:7240/api/Authentication/signin-google/${response.credential}`)
-    .then((backendResponse) => {
-      console.log(backendResponse.data);
-      if (backendResponse.data.statusCode == 200) {
-        const token = backendResponse.data.data;
-        console.log('token:', token);
-        localStorage.setItem('authToken', token);
-        navigate('/DashBoard');
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-    })
-  }
+    setSignInAttempted(true);
+    axios
+      .post(
+        `https://localhost:7240/api/Authentication/signin-google/${response.credential}`
+      )
+      .then((backendResponse) => {
+        console.log(backendResponse.data);
+        if (backendResponse.data.statusCode == 200) {
+          const token = backendResponse.data.data;
+          console.log('token:', token);
+          localStorage.setItem('authToken', token);
+          navigate('/DashBoard');
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   const responseGoogleFailure = (error) => {
     setSignInAttempted(true);
-    setLoginError("Google Sign-In failed. Please try again.");
-    console.error("Google Sign-In Failure:", error);
+    setLoginError('Google Sign-In failed. Please try again.');
+    console.error('Google Sign-In Failure:', error);
   };
 
   const handleSignIn = async () => {
@@ -89,12 +107,17 @@ const Signup = () => {
       setEmailError('Invalid email address');
       return;
     }
+    // if (phoneNumber.length !== 11) {
+    //   setPhoneNumberError('Phone number must be 11 digits');
+    //   return;
+    // }
     if (!isValidPassword(password)) {
       setPasswordError('Invalid password');
       return;
     }
     setEmailError('');
     setPasswordError('');
+    setPhoneNumberError('');
     try {
       const response = await axios.post(
         'https://localhost:7240/api/Authentication/Register',
@@ -109,23 +132,23 @@ const Signup = () => {
       );
       console.log(response.data);
       if (response.data.statusCode === 200) {
-        navigate('/signin');
+        navigate('/SignupModal');
 
-        // Swal.fire({
-        //   icon: 'success',
-        //   title: 'Login successful!',
-        //   showConfirmButton: false,
-        //   timer: 1500,
-        //   position: 'top-end',
-        // });
+        Swal.fire({
+          icon: 'success',
+          title: 'Registration successful!',
+          showConfirmButton: false,
+          timer: 1000,
+          position: 'top-end',
+        });
       } else {
         console.error('Error:', response.data);
-        // Swal.fire({
-        //   icon: 'error',
-        //   title: 'Error',
-        //   text: `Error: ${response.data.message}`,
-        //   confirmButtonText: 'OK',
-        // });
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: `Error: ${response.data.message}`,
+          confirmButtonText: 'OK',
+        });
       }
     } catch (error) {
       // Handle errors (e.g., show error message)
@@ -134,30 +157,30 @@ const Signup = () => {
         console.error('Server Error:', error.response.status);
         console.error('Error Message:', error.response.data.message);
 
-        // Swal.fire({
-        //   icon: 'error',
-        //   title: 'Error',
-        //   text: 'An unexpected error occurred: ' + error.message,
-        //   confirmButtonText: 'OK',
-        // });
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'An unexpected error occurred: ' + error.message,
+          confirmButtonText: 'OK',
+        });
       } else if (error.request) {
         console.error('No Response from Server');
 
-        // Swal.fire({
-        //   icon: 'error',
-        //   title: 'No Response from Server',
-        //   text: 'No response from the server. Please try again.',
-        //   confirmButtonText: 'OK',
-        // });
+        Swal.fire({
+          icon: 'error',
+          title: 'No Response from Server',
+          text: 'No response from the server. Please try again.',
+          confirmButtonText: 'OK',
+        });
       } else {
         console.error('Unexpected Error:', error.message);
 
-        // Swal.fire({
-        //   icon: 'error',
-        //   title: 'Error during login.',
-        //   text: 'An unexpected error occurred during login.',
-        //   confirmButtonText: 'OK',
-        // });
+        Swal.fire({
+          icon: 'error',
+          title: 'Error during login.',
+          text: 'An unexpected error occurred during login.',
+          confirmButtonText: 'OK',
+        });
       }
     }
   };
@@ -183,6 +206,10 @@ const Signup = () => {
         <CenterRight>
           <Text1>Savi</Text1>
           <Text2>Welcome back to Savi.</Text2>
+          {/* <Google>
+            <GoogleIcon src={Icon} alt="Google Icon" />
+            Sign up with Google
+          </Google> */}
           <GoogleContainer>
             <GoogleLogin
               // buttonText="Sign in with Google"
@@ -191,10 +218,6 @@ const Signup = () => {
             />
             {/* {signInAttempted && loginError ? (<p style={{ color: 'red' }}>{loginError}</p> ) : ''}           */}
           </GoogleContainer>
-          {/* <Google>
-            <GoogleIcon src={Icon} alt="Google Icon" />
-            Sign up with Google
-          </Google> */}
           <Divid>
             <Divi src={Divider} alt="Divider 1" />
             <OrText>OR</OrText>
@@ -242,8 +265,9 @@ const Signup = () => {
               name="PhoneNumber"
               placeholder="Enter your phone number"
               value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
+              onChange={(e) => handlePhoneNumberChange(e.target.value)}
             />
+            {phoneError && <ErrorMessage>{phoneError}</ErrorMessage>}
           </Div1>
           <Div22>
             <Label htmlFor="password">Password:</Label>
@@ -286,7 +310,7 @@ const Signup = () => {
           <Button onClick={handleSignIn}>Sign up</Button>
           <Div2>
             Already have an account?
-            <Link to="/signin">
+            <Link to="/Signin">
               <Click> Sign in here</Click>
             </Link>
           </Div2>

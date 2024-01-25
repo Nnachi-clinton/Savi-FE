@@ -1780,6 +1780,8 @@ const DashboardRoot = styled.div`
   font-size: var(--input-small-medium-size);
   color: var(--main-text);
   font-family: var(--text-md-medium);
+  margin-top: -29em;
+  margin-right: 12em;
 `;
 
 const DashBoard = () => {
@@ -1800,9 +1802,9 @@ const DashBoard = () => {
   const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isKYCOpen, setKYCOpen] = useState(false);
-  const user = { name: "Kingsley Okafor" };
+  const user = { name: 'Kingsley Okafor' };
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
-  const currentDate = new Date().toLocaleDateString('en-US', options);  
+  const currentDate = new Date().toLocaleDateString('en-US', options);
 
   const openDepositFunds = useCallback(() => {
     setDepositFundsOpen(true);

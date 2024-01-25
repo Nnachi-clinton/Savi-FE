@@ -1,9 +1,9 @@
 // StyledNavbar.js
 // import React from 'react';
 import styled from 'styled-components';
-import SaviLogo from "../../../assets/SaviLogo.svg";
-import SearchIcon from "../../../assets/SearchIcon.svg";
-import EmptyImage from "./EmptyImage.png";
+import SaviLogo from '../../../assets/SaviLogo.svg';
+import SearchIcon from '../../../assets/SearchIcon.svg';
+import EmptyImage from './EmptyImage.png';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -20,15 +20,14 @@ const StyledNavbar = styled.div`
   box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.04);
 `;
 
-
 const Text = styled.h1`
-//styleName: Body Text Normal -16;
-font-family: Inter;
-font-size: 16px;
-font-weight: 400;
-line-height: 22px;
-letter-spacing: 0.15000000596046448px;
-text-align: left;
+  //styleName: Body Text Normal -16;
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0.15000000596046448px;
+  text-align: left;
 `;
 
 const EmptyImg = styled.img`
@@ -65,7 +64,7 @@ const SearchInput = styled.input`
   border: none;
   flex: 1;
   margin-left: 10px;
-  
+
   &:focus {
     outline: none;
   }
@@ -88,15 +87,17 @@ const Display = styled.div`
 
 function Navbar() {
   const [userData, setUserData] = useState({});
-  const isLoggedIn = false;
 
-
+  const Id = localStorage.getItem('Id');
+  console.log(Id);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://localhost:7240/api/User/55b6f5b4-8dfc-4f3d-9dba-58844b23f6bb');
+        const response = await axios.get(
+          `https://localhost:7240/api/User/${Id}`
+        );
         setUserData(response.data);
-        console.log(response.data)
+        console.log(response.data);
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
@@ -104,23 +105,17 @@ function Navbar() {
 
     fetchData();
   }, []); // Empty dependency array ensures the effect runs only once on mount
-
+  console.log(userData.firstName);
   return (
     <StyledNavbar>
-      <Logo src={SaviLogo} alt='Savi-Logo' />
+      <Logo src={SaviLogo} alt="Savi-Logo" />
       <Searchbox>
         <MagnifyIcon src={SearchIcon} alt="SearchIcon" />
         <SearchInput type="text" placeholder="Search..." />
       </Searchbox>
       <Display>
-      {isLoggedIn ? (
-          <img src={userData.imageUrl} alt='' />
-        ) : (
-          <EmptyImg src={EmptyImage} alt='' />
-        )}
-        <Text>
-          {isLoggedIn ? userData.firstName : 'Guest'}
-        </Text>
+        {<img src={userData.imageUrl} alt="" />}
+        <Text>{userData.firstName}</Text>
       </Display>
     </StyledNavbar>
   );

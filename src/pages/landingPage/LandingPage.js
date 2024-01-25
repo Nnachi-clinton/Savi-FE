@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Button from '../../components/Button'
 import { useNavigate } from 'react-router-dom';
 
 const Savi = styled.div`
@@ -21,6 +20,7 @@ const HeaderCtaBlock = styled.div`
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
+  cursor: pointer;
 `;
 const LeftNest = styled.div`
   display: flex;
@@ -32,6 +32,22 @@ const Faqs = styled.div`
   position: relative;
   line-height: 20px;
   display: none;
+`;
+const Apply = styled.div`
+  position: relative;
+  letter-spacing: 0.15px;
+  line-height: 140%;
+  font-weight: 600;
+  cursor: pointer;
+`;
+const Button = styled.div`
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-xs) 18px;
 `;
 const RightNest = styled.div`
   border-radius: var(--br-5xs);
@@ -101,8 +117,27 @@ const LearnMore = styled.div`
   position: relative;
   letter-spacing: 0.15px;
   line-height: 140%;
+  cursor: pointer;
 `;
-
+const Buttondefault = styled.div`
+  border-radius: var(--br-5xs);
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  box-sizing: border-box;
+  width: 161px;
+  height: 44px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-xs) var(--padding-base);
+  gap: var(--gap-5xs);
+  color: var(--white);
+  margin-top: 4px;
+  cursor: pointer;
+`;
 const AchieveFinancialSuccessWithParent = styled.div`
   display: flex;
   flex-direction: column;
@@ -711,6 +746,7 @@ const SocialIconsWhiteInstagr1 = styled.img`
   width: 24px;
   height: 24px;
   object-fit: cover;
+  cursor: pointer;
 `;
 const SocialLinks = styled.div`
   overflow: hidden;
@@ -748,6 +784,15 @@ const Footer = styled.div`
   font-size: var(--paragraph-p3-regular-size);
   color: var(--neutral-gray-900);
 `;
+const Iconadd1 = styled.img`
+  position: relative;
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+  flex-shrink: 0;
+  object-fit: cover;
+  display: none;
+`;
 const LandingPageRoot = styled.div`
   position: relative;
   background-color: var(--white);
@@ -762,12 +807,9 @@ const LandingPageRoot = styled.div`
 
 const LandingPage = () => {
   const navigate = useNavigate();
-
-  const handleButtonClick = () => {
-    // Redirect to the signup page
+  const HandleClick = (e) => {
     navigate('/signup');
   };
-
   return (
     <LandingPageRoot>
       <MainHeader>
@@ -782,7 +824,9 @@ const LandingPage = () => {
           <Faqs>FAQs</Faqs>
           <RightNest>
             <HeaderCtaBlock>
-              <Button onClick={handleButtonClick}>Get Started</Button>
+              <Button onClick={HandleClick}>
+                <Apply>Get Started</Apply>
+              </Button>
             </HeaderCtaBlock>
           </RightNest>
         </FaqsParent>
@@ -801,9 +845,11 @@ const LandingPage = () => {
             savings plans with Savi. Take control of your finances and unlock a
             brighter financial future.
           </ExperienceTheConvenience1>
-          <HeaderCtaBlock>
-            <Button onClick={handleButtonClick}>Get Started</Button>
-          </HeaderCtaBlock>
+          <Buttondefault onClick={HandleClick}>
+            <Iconadd1 alt="" />
+            <LearnMore style={{ color: '#fff' }}>Get Started</LearnMore>
+            <Iconadd1 alt="" />
+          </Buttondefault>
         </AchieveFinancialSuccessWithParent>
         <FrameChild alt="my picture" src="/frame-38813701@2x.png" />
       </FrameParent>

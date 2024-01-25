@@ -8,7 +8,10 @@ import CloseEye from './images/CloseEye.svg';
 import WhiteLogo from './images/WhiteLogo.svg';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from 'jwt-decode';
 
 const isValidEmail = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -47,25 +50,35 @@ const Signin = () => {
 
   const responseGoogleSuccess = async (response) => {
     console.log(response);
-    setSignInAttempted(true); 
-    axios.post(`https://localhost:7240/api/Authentication/signin-google/${response.credential}`)
-    .then((backendResponse) => {
-      console.log(backendResponse.data);
-      if (backendResponse.data.statusCode == 200) {
-        const token = backendResponse.data.data;
-        console.log('token:', token);
-        localStorage.setItem('authToken', token);
-        navigate('/DashBoard');
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-    })
-  }
+    setSignInAttempted(true);
+    axios
+      .post(
+        `https://localhost:7240/api/Authentication/signin-google/${response.credential}`
+      )
+      .then((backendResponse) => {
+        console.log(backendResponse.data);
+        if (backendResponse.data.statusCode == 200) {
+          const token = backendResponse.data.data;
+          console.log('token:', token);
+          localStorage.setItem('authToken', token);
+          const decodedToken = jwtDecode(token);
+          const userid = decodedToken['jti'];
+          const id = decodedToken['NameIdentifier'];
+
+          console.log('decoded token:', decodedToken);
+          console.log('userid:', userid);
+          console.log('useridd:', decodedToken['jti']);
+          console.log('Id:', id);
+          navigate('/sidebar');
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   const responseGoogleFailure = (error) => {
     setSignInAttempted(true);
-    setLoginError("Google Sign-In failed. Please try again.");
-    console.error("Google Sign-In Failure:", error);
+    setLoginError('Google Sign-In failed. Please try again.');
   };
 
   const handleSignIn = async () => {
@@ -92,23 +105,38 @@ const Signin = () => {
         const token = response.data.data;
         console.log('token:', token);
         localStorage.setItem('authToken', token);
-        navigate('/DashBoard');
+        // localStorage.setItem('id', id);
+        console.log('token:', token);
+        localStorage.setItem('authToken', token);
+        const decodedToken = jwtDecode(token);
+        const userid = decodedToken['jti'];
+        const id =
+          decodedToken[
+            'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
+          ];
 
-        // Swal.fire({
-        //   icon: 'success',
-        //   title: 'Login successful!',
-        //   showConfirmButton: false,
-        //   timer: 1500,
-        //   position: 'top-end',
-        // });
+        console.log('decoded token:', decodedToken);
+        console.log('userid:', userid);
+        console.log('useridd:', decodedToken['jti']);
+        console.log('Id:', id);
+        localStorage.setItem('Id', id);
+        navigate('/sidebar');
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Login successful!',
+          showConfirmButton: false,
+          timer: 1500,
+          position: 'top-end',
+        });
       } else {
         console.error('Error:', response.data);
-        // Swal.fire({
-        //   icon: 'error',
-        //   title: 'Error',
-        //   text: `Error: ${response.data.message}`,
-        //   confirmButtonText: 'OK',
-        // });
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: `Error: ${response.data.message}`,
+          confirmButtonText: 'OK',
+        });
       }
     } catch (error) {
       // Handle errors (e.g., show error message)
@@ -117,30 +145,30 @@ const Signin = () => {
         console.error('Server Error:', error.response.status);
         console.error('Error Message:', error.response.data.message);
 
-        // Swal.fire({
-        //   icon: 'error',
-        //   title: 'Error',
-        //   text: 'An unexpected error occurred: ' + error.message,
-        //   confirmButtonText: 'OK',
-        // });
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'An unexpected error occurred: ' + error.message,
+          confirmButtonText: 'OK',
+        });
       } else if (error.request) {
         console.error('No Response from Server');
 
-        // Swal.fire({
-        //   icon: 'error',
-        //   title: 'No Response from Server',
-        //   text: 'No response from the server. Please try again.',
-        //   confirmButtonText: 'OK',
-        // });
+        Swal.fire({
+          icon: 'error',
+          title: 'No Response from Server',
+          text: 'No response from the server. Please try again.',
+          confirmButtonText: 'OK',
+        });
       } else {
         console.error('Unexpected Error:', error.message);
 
-        // Swal.fire({
-        //   icon: 'error',
-        //   title: 'Error during login.',
-        //   text: 'An unexpected error occurred during login.',
-        //   confirmButtonText: 'OK',
-        // });
+        Swal.fire({
+          icon: 'error',
+          title: 'Error during login.',
+          text: 'An unexpected error occurred during login.',
+          confirmButtonText: 'OK',
+        });
       }
     }
   };
@@ -168,6 +196,7 @@ const Signin = () => {
           <Text2>Welcome back to Savi.</Text2>
           <GoogleContainer>
             <GoogleLogin
+              // buttonText="Sign in with Google"
               onSuccess={responseGoogleSuccess}
               onError={responseGoogleFailure}
             />
@@ -215,7 +244,7 @@ const Signin = () => {
           <Button onClick={handleSignIn}>Login</Button>
           <Div2>
             Don't have an account?
-            <Link to="/signup">
+            <Link to="/Signup">
               <Click> Sign Up here</Click>
             </Link>
           </Div2>
@@ -453,5 +482,5 @@ const ErrorMessage = styled.div`
 `;
 const GoogleContainer = styled.div`
   margin: auto;
-  width: 80%;
+  width: 80% !important;
 `;

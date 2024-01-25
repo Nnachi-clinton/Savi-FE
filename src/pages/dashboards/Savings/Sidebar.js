@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { SidebarData } from './Sidebardata';
 import Navbar from '../../dashboards/Savings/Navbar';
+import Dashboard from '../../../pages/dashboardmain/Dashboard.js';
 
 const Container = styled.div`
   display: flex;
@@ -59,39 +60,42 @@ const MenuLabel = styled.div`
 
 function Sidebar() {
   return (
-    <Container>
-      <SidebarContainer>
-        <SidebarList>
-        <MenuLabel>Overview</MenuLabel>
-          {SidebarData.slice(0, -2).map((val, key) => (
-            <SidebarListItem
-              key={key}
-              // className={`row ${key === 0 ? 'first-item-slice-1' : ''}`}
-              onClick={() => {
-                window.location.pathname = val.link;
-              }}
-            >
-              <div>{val.icon}</div>
-              <div>{val.title}</div>
-            </SidebarListItem>
-          ))}
-          <MenuLabel>Others</MenuLabel>
-          {SidebarData.slice(-2).map((val, key) => (
-            <SidebarListItem
-              key={key + SidebarData.length - 2}
-              // className={`row ${key === 0 ? 'first-item-slice-2' : ''}`}
-              onClick={() => {
-                window.location.pathname = val.link;
-              }}
-            >
-              <div>{val.icon}</div>
-              <div>{val.title}</div>
-            </SidebarListItem>
-          ))}
-        </SidebarList>
-      </SidebarContainer>
-      <Navbar />
-    </Container>
+    <>
+      <Container>
+        <SidebarContainer>
+          <SidebarList>
+            <MenuLabel>Overview</MenuLabel>
+            {SidebarData.slice(0, -2).map((val, key) => (
+              <SidebarListItem
+                key={key}
+                // className={`row ${key === 0 ? 'first-item-slice-1' : ''}`}
+                onClick={() => {
+                  window.location.pathname = val.link;
+                }}
+              >
+                <div>{val.icon}</div>
+                <div>{val.title}</div>
+              </SidebarListItem>
+            ))}
+            <MenuLabel>Others</MenuLabel>
+            {SidebarData.slice(-2).map((val, key) => (
+              <SidebarListItem
+                key={key + SidebarData.length - 2}
+                // className={`row ${key === 0 ? 'first-item-slice-2' : ''}`}
+                onClick={() => {
+                  window.location.pathname = val.link;
+                }}
+              >
+                <div>{val.icon}</div>
+                <div>{val.title}</div>
+              </SidebarListItem>
+            ))}
+          </SidebarList>
+          <Navbar />
+          <Dashboard />
+        </SidebarContainer>
+      </Container>
+    </>
   );
 }
 
