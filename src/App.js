@@ -25,6 +25,7 @@ import EmailVerifiedModal from './pages/Auth/Signup/EmailVerifiedModal.js';
 import CreditModal from './components/dashboard/CreditModal.js';
 import CreditSuccessfulModal from './components/dashboard/CreditSuccessfulModal.js';
 import Withdrawalform from './pages/dashboards/WithdrawalModal/Withdrawalform.js';
+import Paystack from './pages/Paystack.js';
 
 // App component
 function App() {
@@ -61,6 +62,7 @@ function App() {
                 element={<CreditSuccessfulModal />}
               />
               <Route path="/withdrawalform" element={<Withdrawalform />} />
+              <Route path="/paystack" element={<Paystack />} />
             </Routes>
           </GlobalProvider>
         </Router>

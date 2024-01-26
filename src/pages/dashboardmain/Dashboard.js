@@ -1,9 +1,10 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import DepositFunds from '../../components/dashboard/DepositFunds';
 import PortalPopup from '../../components/dashboard/PortalPopup';
 import WithdrawFunds from '../../components/dashboard/WithdrawFunds';
 import KYC from '../../components/dashboard/KYC';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const WelcomeBackJohn1 = styled.b`
   position: relative;
@@ -44,6 +45,7 @@ const AccountBalanceWalletIcon1 = styled.img`
   overflow: hidden;
   flex-shrink: 0;
   object-fit: cover;
+  margin-right: 45px;
 `;
 const DotsVerticalIcon4 = styled.img`
   position: relative;
@@ -59,7 +61,6 @@ const AccountBalanceWalletParent = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  gap: var(--gap-194xl);
 `;
 const GlobalWallet = styled.div`
   position: relative;
@@ -1783,6 +1784,14 @@ const DashboardRoot = styled.div`
   margin-top: -29em;
   margin-right: 12em;
 `;
+const BoldText = styled.span`
+  font-weight: bold;
+`;
+const Text = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-right: 8px;
+`;
 
 const DashBoard = () => {
   const [isDepositFundsOpen, setDepositFundsOpen] = useState(false);
@@ -1802,7 +1811,6 @@ const DashBoard = () => {
   const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isKYCOpen, setKYCOpen] = useState(false);
-  const user = { name: 'Kingsley Okafor' };
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   const currentDate = new Date().toLocaleDateString('en-US', options);
 
@@ -1937,13 +1945,55 @@ const DashBoard = () => {
   const closeKYC = useCallback(() => {
     setKYCOpen(false);
   }, []);
+  const [userData, setUserData] = useState({});
+  const [walletData, setWalletData] = useState({});
+
+  const Id = localStorage.getItem('Id');
+  console.log(Id);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://localhost:7240/api/User/${Id}`
+        );
+
+        setUserData(response.data);
+        console.log(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response2 = await axios.get(
+          `https://localhost:7240/api/Wallet/${Id}`
+        );
+        setWalletData(response2.data.result);
+        console.log(response2.data);
+        console.log(response2.data.result);
+        console.log(response2.data.result.balance);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  console.log(userData.firstName);
 
   return (
     <>
       <DashboardRoot>
         <FrameParent>
           <WelcomeBackJohnDoeParent>
-            <WelcomeBackJohn1>{`Welcome back ${user.name},`}</WelcomeBackJohn1>
+            <WelcomeBackJohn1>{`Welcome back ${userData.lastName} ${userData.firstName},`}</WelcomeBackJohn1>
             <EmojiParent>
               <EmojiIcon1 alt="" src="/emoji@2x.png" />
               <Savi>{currentDate}.</Savi>
@@ -1956,11 +2006,15 @@ const DashBoard = () => {
                   alt=""
                   src="/account-balance-wallet@2x.png"
                 />
+                <Text>
+                  Savi Account Number
+                  <BoldText>{`${walletData.walletNumber}`}</BoldText>
+                </Text>
                 <DotsVerticalIcon4 alt="" />
               </AccountBalanceWalletParent>
               <GlobalWalletParent>
                 <GlobalWallet>Global Wallet</GlobalWallet>
-                <Div>₦ 5,005,000.00</Div>
+                <Div>{`₦ ${walletData.balance}`}</Div>
               </GlobalWalletParent>
               <FrameParent1>
                 <Parent1>
@@ -1998,7 +2052,7 @@ const DashBoard = () => {
               </AccountBalanceWalletParent>
               <GlobalWalletParent>
                 <SafeLock>{`Total Group Savings `}</SafeLock>
-                <Div>₦ 500,000.00</Div>
+                <Div>₦ 0.00</Div>
               </GlobalWalletParent>
               <AddContainer>
                 <AddIcon8
@@ -2027,7 +2081,7 @@ const DashBoard = () => {
               </AccountBalanceWalletParent>
               <GlobalWalletParent>
                 <SafeLock>Total Personal Savings</SafeLock>
-                <Div>₦ 105,345.00</Div>
+                <Div>₦ 0.00</Div>
               </GlobalWalletParent>
               <AddContainer>
                 <AddIcon8
