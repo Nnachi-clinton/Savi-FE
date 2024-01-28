@@ -90,16 +90,17 @@ function Navbar() {
 
   const Id = localStorage.getItem('Id');
   console.log(Id);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
           `https://localhost:7240/api/User/${Id}`
         );
+
         setUserData(response.data);
         console.log(response.data);
-        const email = response.data.email;
-        localStorage.setItem('Email', email);
+        console.log(response.data);
       } catch (error) {
         console.error('Error fetching user data:', error);
       }

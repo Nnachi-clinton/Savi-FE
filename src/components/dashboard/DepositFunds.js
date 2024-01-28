@@ -127,18 +127,22 @@ const DepositFunds = () => {
     setAmount(event.target.value);
   };
 
-  const email = localStorage.getItem('Email')
+  const email = localStorage.getItem('Email');
 
   const handlePaystackSuccessAction = (response) => {
     // Implementation for whatever you want to do with reference and after success call.
     console.log(response);
     const userId = localStorage.getItem('Id');
+    console.log(userId);
     if (userId) {
-      axios.post(`https://localhost:7240/api/Wallet/api/paystack/verify/${response.reference}/${userId}`)
-        .then(response => {
+      axios
+        .get(
+          `https://localhost:7240/api/Wallet/api/paystack/verify/${response.reference}/${userId}`
+        )
+        .then((response) => {
           console.log(response.data);
         })
-        .catch(error => {
+        .catch((error) => {
           console.error(error);
         });
     } else {
@@ -147,15 +151,15 @@ const DepositFunds = () => {
   };
 
   const handlePaystackClose = () => {
-      // implementation for  whatever you want to do when the Paystack dialog closed.
-      console.log('closed')
-  }
+    // implementation for  whatever you want to do when the Paystack dialog closed.
+    console.log('closed');
+  };
 
   const componentProps = {
-    reference: (new Date()).getTime().toString(),
+    reference: new Date().getTime().toString(),
     email: email,
-    amount: Number(amount) * 100, 
-    publicKey: 'pk_test_521d89aa0fcf83e56190c164c164de74810eb110',
+    amount: Number(amount) * 100,
+    publicKey: 'pk_test_446ea5c4c8cbaa84bea941f3fabc2983062a1df2',
     text: 'Submit',
     onSuccess: (reference) => handlePaystackSuccessAction(reference),
     onClose: handlePaystackClose,
@@ -185,7 +189,7 @@ const DepositFunds = () => {
         />
       </TextParent>
       <Ctadefault>
-      <StyledPaystackButton {...componentProps} className="payButton" />
+        <StyledPaystackButton {...componentProps} className="payButton" />
       </Ctadefault>
     </DepositFundsRoot>
   );

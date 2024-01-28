@@ -11,7 +11,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import { GoogleLogin } from '@react-oauth/google';
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 const isValidEmail = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -64,9 +64,9 @@ const Signin = () => {
           const decodedToken = jwtDecode(token);
           const userid = decodedToken['jti'];
           const id =
-          decodedToken[
-            'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
-          ];
+            decodedToken[
+              'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
+            ];
 
           console.log('decoded token:', decodedToken);
           console.log('userid:', userid);
@@ -123,6 +123,12 @@ const Signin = () => {
         console.log('userid:', userid);
         console.log('useridd:', decodedToken['jti']);
         console.log('Id:', id);
+        const emailDecode =
+          decodedToken[
+            'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'
+          ];
+        console.log('email:', emailDecode);
+        localStorage.setItem('Email', emailDecode);
         localStorage.setItem('Id', id);
         navigate('/sidebar');
 
@@ -135,6 +141,12 @@ const Signin = () => {
         });
       } else {
         console.error('Error:', response.data);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: `Error: ${response.data.message}`,
+          confirmButtonText: 'OK',
+        });
         Swal.fire({
           icon: 'error',
           title: 'Error',
@@ -155,6 +167,12 @@ const Signin = () => {
           text: 'An unexpected error occurred: ' + error.message,
           confirmButtonText: 'OK',
         });
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'An unexpected error occurred: ' + error.message,
+          confirmButtonText: 'OK',
+        });
       } else if (error.request) {
         console.error('No Response from Server');
 
@@ -164,9 +182,21 @@ const Signin = () => {
           text: 'No response from the server. Please try again.',
           confirmButtonText: 'OK',
         });
+        Swal.fire({
+          icon: 'error',
+          title: 'No Response from Server',
+          text: 'No response from the server. Please try again.',
+          confirmButtonText: 'OK',
+        });
       } else {
         console.error('Unexpected Error:', error.message);
 
+        Swal.fire({
+          icon: 'error',
+          title: 'Error during login.',
+          text: 'An unexpected error occurred during login.',
+          confirmButtonText: 'OK',
+        });
         Swal.fire({
           icon: 'error',
           title: 'Error during login.',
@@ -200,6 +230,7 @@ const Signin = () => {
           <Text2>Welcome back to Savi.</Text2>
           <GoogleContainer>
             <GoogleLogin
+              // buttonText="Sign in with Google"
               onSuccess={responseGoogleSuccess}
               onError={responseGoogleFailure}
             />
@@ -485,5 +516,6 @@ const ErrorMessage = styled.div`
 `;
 const GoogleContainer = styled.div`
   margin: auto;
+  width: 80% !important;
   width: 80% !important;
 `;
