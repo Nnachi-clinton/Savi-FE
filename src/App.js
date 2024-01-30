@@ -26,6 +26,7 @@ import CreditModal from './components/dashboard/CreditModal.js';
 import CreditSuccessfulModal from './components/dashboard/CreditSuccessfulModal.js';
 import Withdrawalform from './pages/dashboards/WithdrawalModal/Withdrawalform.js';
 import Paystack from './pages/Paystack.js';
+import Successfulwithdrawal from './pages/dashboards/WithdrawalModal/Successfulwithdrawal.js';
 
 // App component
 function App() {
@@ -63,6 +64,7 @@ function App() {
               />
               <Route path="/withdrawalform" element={<Withdrawalform />} />
               <Route path="/paystack" element={<Paystack />} />
+              <Route path="/successfulwithdrawal" element={<Successfulwithdrawal />} />
             </Routes>
           </GlobalProvider>
         </Router>

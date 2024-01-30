@@ -87,6 +87,8 @@ const Display = styled.div`
 
 function Navbar() {
   const [userData, setUserData] = useState({});
+  const isLoggedIn = false;
+
 
   const Id = localStorage.getItem('Id');
   console.log(Id);
