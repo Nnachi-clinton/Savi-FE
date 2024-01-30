@@ -73,7 +73,7 @@ const Signin = () => {
           console.log('useridd:', decodedToken['jti']);
           console.log('Id:', id);
           localStorage.setItem('Id', id);
-          navigate('/sidebar');
+          navigate('/dashboard');
         }
       })
       .catch((error) => {
@@ -130,7 +130,7 @@ const Signin = () => {
         console.log('email:', emailDecode);
         localStorage.setItem('Email', emailDecode);
         localStorage.setItem('Id', id);
-        navigate('/sidebar');
+        navigate('/dashboard');
 
         Swal.fire({
           icon: 'success',

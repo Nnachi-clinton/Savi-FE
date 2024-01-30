@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import Logo from './images/Logo.svg';
 
-function Personalsavings2(props) {
+function Personalsavings2({ selectstep }) {
   const [goals, setGoals] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [goalsPerPage] = useState(3);
@@ -43,7 +43,7 @@ function Personalsavings2(props) {
     <Div>
       <Span>
         <Div2>My Goals</Div2>
-        <Div3>Add New Goal</Div3>
+        <Div3 onClick={() => selectstep(7)}>Add New Goal</Div3>
       </Span>
       {Array.isArray(goals) && goals.length > 0 ? (
         goals
@@ -86,7 +86,7 @@ function Personalsavings2(props) {
       ) : (
         <SpanS>
           <Div44>You don’t have any active saving target, you can</Div44>
-          <Div55>create a new target</Div55>
+          <Div55 onClick={() => selectstep(7)}>create a new target</Div55>
         </SpanS>
       )}
       {/* <Pagination>

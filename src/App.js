@@ -26,6 +26,8 @@ import CreditModal from './components/dashboard/CreditModal.js';
 import CreditSuccessfulModal from './components/dashboard/CreditSuccessfulModal.js';
 import Withdrawalform from './pages/dashboards/WithdrawalModal/Withdrawalform.js';
 import Paystack from './pages/Paystack.js';
+import Navbar from './pages/dashboards/Savings/Navbar.js';
+import Dashboard2 from './components/Dashboard2.js';
 
 // App component
 function App() {
@@ -44,14 +46,16 @@ function App() {
               <Route path="/" element={<LandingPage />} />
               <Route path="signin" element={<Signin />} />
               <Route path="/sidebar" element={<Sidebar />} />
+              <Route path="/Navbar" element={<Navbar />} />
               <Route path="/LandingPage" element={<LandingPage />} />
               <Route path="/resetPassword" element={<ResetPassword />} />
               <Route path="/forgotPassword" element={<ForgotPassword />} />
-              <Route path="/dashboard" element={<DashBoard />} />
+              <Route path="/dashboard/*" element={<DashBoard />} />
               {/* <Route path="/login" element={<Login />} /> */}
               <Route path="/kyc-verification" element={<Kyc />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/SignupModal" element={<SignupModal />} />
+              <Route path="/dash" element={<Dashboard2 />} />
               <Route
                 path="/EmailVerifiedModal"
                 element={<EmailVerifiedModal />}

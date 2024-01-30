@@ -863,7 +863,7 @@ const KYC = () => {
       data.dateOfBirth &&
       data.occupation !== '' &&
       data.identificationType !== '' &&
-      data.bvn.length == 11 &&
+      data.bvn.length === 11 &&
       data.address &&
       data.identificationNumber &&
       data.identificationDocument &&
