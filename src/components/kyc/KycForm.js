@@ -265,9 +265,10 @@ const KycForm = () => {
                     formDataToSend.append(key, adaptedFormData[key]);
                 }
             }
+            const userId = localStorage.getItem("Id")
 
             const response = await axios.post(
-                `https://localhost:7240/api/Kyc/addKyc?userId=${'4efdabe3-8c84-43b5-9c59-539eb4215aff'}`,
+                `https://localhost:7240/api/Kyc/addKyc?userId=${userId}`,
                 formDataToSend,
                 {
                     headers: {

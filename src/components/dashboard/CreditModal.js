@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
-function CreditModal(props) {
+function CreditModal({onClose}) {
   const [amount, setAmount] = useState('');
   //   const [errorMessage, setErrorMessage] = useState('');
 
@@ -15,13 +17,57 @@ function CreditModal(props) {
       //   setErrorMessage('Please enter a valid amount greater than 0.');
     }
   };
-  const handleSubmit = () => {
+  const handleSubmit = async (e) => {
     // Handle the submission with the validated amount
-    console.log('Submitted amount:', amount);
+    e.preventDefault();
+    try {
+      console.log('Submitted amount:', amount);
+      const walletId = localStorage.getItem("");
+      const savingsId = localStorage.getItem("");
+      const response = await axios.post(
+        'https://localhost:7240/api/Funding/CreditPersonalTarget',
+        {
+          amount: amount,
+          walletId: '7db3858d-a9c5-48c3-b2df-425afa78db77',
+          savingsGoalId: '8bc4c361-c49a-4305-98f4-b092645433c4',
+        },
+      );
+      if (response.status === 200) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Successful!',
+          html: `A sum of &#8358;${amount} has been deposited into your saving.`,
+          showConfirmButton: false,
+          timer: 5000,
+        });
+      } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: `Error: ${response.data.message}`,
+            confirmButtonText: 'OK',
+          });
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+
+      Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'An unexpected error occurred: ' + error.message,
+          confirmButtonText: 'OK',
+        });
+    }
+    onClose();
   };
+
+  const handleModalClick = (event) => {
+    event.stopPropagation();
+  }
+
   return (
-    <Span>
-      <InnerWrapper>
+    <ModalOverlay onClick={onClose}>
+      <InnerWrapper onClick={handleModalClick}>
         <Text>Add to Your Savings</Text>
         <Text2 htmlFor="numberInput">Amount to Deposit</Text2>
         <Input
@@ -40,10 +86,22 @@ function CreditModal(props) {
         </Button>
         {/* {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>} */}
       </InnerWrapper>
-    </Span>
+    </ModalOverlay>
   );
 }
 
+const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Ensure the modal is on top of other elements */
+`;
 const Span = styled.span`
   background-color: black;
   height: 100vh; /* 100% of viewport height */
