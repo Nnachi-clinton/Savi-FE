@@ -9,6 +9,7 @@ import Sidebar from '../dashboards/Savings/Sidebar';
 import Personalsavings2 from '../savings/PersonalSavings2';
 import AddGoals from '../savings/AddGoals';
 import Modal from '../savings/SavingUpdateModal';
+import PersonalSavingDetailsPage from '../savings/PersonalSavingDetailsPage';
 
 const WelcomeBackJohn1 = styled.b`
   position: relative;
@@ -1786,10 +1787,6 @@ const DashboardRoot = styled.div`
   color: var(--main-text);
   font-family: var(--text-md-medium);
   margin-top: -76em;
-  // margin-right: -80em;
-  // margin-left: 10em;
-  // display: grid;
-  // grid-template-columns: 30% 70%;
 `;
 const BoldText = styled.span`
   font-weight: bold;
@@ -1991,6 +1988,9 @@ const DashBoard = () => {
         console.log(response2.data);
         console.log(response2.data.result);
         console.log(response2.data.result.balance);
+        const wallet = response2.data.result.id;
+        console.log(wallet);
+        localStorage.setItem('walletId', wallet);
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
@@ -2658,7 +2658,7 @@ const DashBoard = () => {
           )}
           {step === 1 && <Personalsavings2 selectstep={handleStep} />}
           {step === 7 && <AddGoals />}
-          {step === 8 && <Modal />}
+          {step === 8 && <PersonalSavingDetailsPage selectstep={handleStep} />}
         </>
       </DashboardRoot>
       {isDepositFundsOpen && (

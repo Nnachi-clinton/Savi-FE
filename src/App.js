@@ -28,6 +28,9 @@ import Withdrawalform from './pages/dashboards/WithdrawalModal/Withdrawalform.js
 import Paystack from './pages/Paystack.js';
 import Navbar from './pages/dashboards/Savings/Navbar.js';
 import Dashboard2 from './components/Dashboard2.js';
+import Successfulwithdrawal from './pages/dashboards/WithdrawalModal/Successfulwithdrawal.js';
+import PersonalSavingDetailsPage from './pages/savings/PersonalSavingDetailsPage.js';
+import WithdrawFunds from './components/dashboard/WithdrawFunds.js';
 
 // App component
 function App() {
@@ -67,6 +70,15 @@ function App() {
               />
               <Route path="/withdrawalform" element={<Withdrawalform />} />
               <Route path="/paystack" element={<Paystack />} />
+              <Route
+                path="/successfulwithdrawal"
+                element={<Successfulwithdrawal />}
+              />
+              <Route
+                path="/personal-saving-details"
+                element={<PersonalSavingDetailsPage />}
+              />
+              <Route path="/withdraw" element={<WithdrawFunds />} />
             </Routes>
           </GlobalProvider>
         </Router>
