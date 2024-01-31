@@ -6,9 +6,9 @@ import KYC from '../../components/dashboard/KYC';
 import styled from 'styled-components';
 import axios from 'axios';
 import Sidebar from '../dashboards/Savings/Sidebar';
-import { Routes, Route } from 'react-router-dom';
 import Personalsavings2 from '../savings/PersonalSavings2';
 import AddGoals from '../savings/AddGoals';
+import Modal from '../savings/SavingUpdateModal';
 
 const WelcomeBackJohn1 = styled.b`
   position: relative;
@@ -1958,6 +1958,7 @@ const DashBoard = () => {
   }, []);
   const [userData, setUserData] = useState({});
   const [walletData, setWalletData] = useState({});
+  const [walletData2, setWalletData2] = useState({});
 
   const Id = localStorage.getItem('Id');
   console.log(Id);
@@ -1998,6 +1999,24 @@ const DashBoard = () => {
     fetchData();
   }, []);
   console.log(userData.firstName);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response3 = await axios.get(
+          `https://localhost:7240/api/Savings/totalGoalAmount/${Id}`
+        );
+        setWalletData2(response3.data);
+        console.log(response3.data);
+        console.log(response3.data.result);
+        // console.log(response3.data.result.balance);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -2106,7 +2125,7 @@ const DashBoard = () => {
                       </AccountBalanceWalletParent>
                       <GlobalWalletParent>
                         <SafeLock>Total Personal Savings</SafeLock>
-                        <Div>₦ 0.00</Div>
+                        <Div>{`₦ ${walletData2?.result ?? 'loading...'}`}</Div>
                       </GlobalWalletParent>
                       <AddContainer>
                         <AddIcon8
@@ -2639,6 +2658,7 @@ const DashBoard = () => {
           )}
           {step === 1 && <Personalsavings2 selectstep={handleStep} />}
           {step === 7 && <AddGoals />}
+          {step === 8 && <Modal />}
         </>
       </DashboardRoot>
       {isDepositFundsOpen && (

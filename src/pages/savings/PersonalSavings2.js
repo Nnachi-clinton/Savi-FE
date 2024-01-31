@@ -6,13 +6,24 @@ import Logo from './images/Logo.svg';
 function Personalsavings2({ selectstep }) {
   const [goals, setGoals] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [goalsPerPage] = useState(3);
+  const [goalsPerPage] = useState(5);
+  const userId = localStorage.getItem('Id');
+  const handleGoalClick = (goalId) => {
+    localStorage.setItem('PersonalGoalId', goalId);
+    console.log(goalId);
+    selectstep(8);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          'https://localhost:7240/api/Savings/listAllGoals/34567098756323456'
+          `https://localhost:7240/api/Savings/listAllGoals/${userId}`,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
         );
         console.log(response.data);
 
@@ -49,15 +60,15 @@ function Personalsavings2({ selectstep }) {
         goals
           .slice((currentPage - 1) * goalsPerPage, currentPage * goalsPerPage)
           .map((currentGoal, index) => (
-            <Div4 key={index}>
+            <Div4 key={index} onClick={() => handleGoalClick(currentGoal.id)}>
               <Span2>
                 <Div5>
-                  <Img loading="lazy" src={Logo} />
+                  <Img loading="lazy" src={currentGoal.goalUrl} />
                   <Span3>
                     <Span4>{currentGoal.targetName}</Span4>
                     <Div6>{currentGoal.description}</Div6>
                     <Div7>
-                      {`₦ ${currentGoal.amountToAdd.toFixed(
+                      {`₦ ${currentGoal.amountSaved.toFixed(
                         2
                       )} / ₦ ${currentGoal.targetAmount.toFixed(2)}`}
                     </Div7>
@@ -65,7 +76,7 @@ function Personalsavings2({ selectstep }) {
                 </Div5>
                 <Div8>
                   {(
-                    (currentGoal.amountToAdd / currentGoal.targetAmount) *
+                    (currentGoal.amountSaved / currentGoal.targetAmount) *
                     100
                   ).toFixed(0)}
                   %
@@ -75,7 +86,7 @@ function Personalsavings2({ selectstep }) {
                 <Div10
                   style={{
                     width: `${(
-                      (currentGoal.amountToAdd / currentGoal.targetAmount) *
+                      (currentGoal.amountSaved / currentGoal.targetAmount) *
                       100
                     ).toFixed(0)}%`,
                   }}
@@ -148,7 +159,7 @@ const Div = styled.div`
   display: flex;
   flex-direction: column;
   width: 70%;
-  margin-top: 10em;
+  margin-top: 2em;
   overflow: hidden;
   margin-left: 25em;
 `;
@@ -181,6 +192,7 @@ const Div4 = styled.div`
   box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.04);
   background-color: var(--White, #fff);
   display: flex;
+  cursor: pointer;
   margin-top: 24px;
   width: 100%;
   flex-direction: column;

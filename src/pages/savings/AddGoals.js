@@ -29,10 +29,11 @@ function AddGoals({ handleStep }) {
   const handleFrequencyChange = (e) => {
     setFrequency(e.target.value);
   };
+  const userId = localStorage.getItem('Id');
   const handleSubmit = async () => {
     try {
       const response = await axios.post(
-        'https://localhost:7240/api/Savings/SetGoal/34567098756323456',
+        `https://localhost:7240/api/Savings/SetGoal/?id=${userId}`,
         {
           targetName: target,
           targetAmount: targetAmount,
@@ -40,6 +41,14 @@ function AddGoals({ handleStep }) {
           frequency: frequency,
           startDate: startDate,
           withdrawalDate: withdrawalDate,
+          userId: userId,
+          autosave: isChecked,
+          goalUrl: selectedFile,
+        },
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
         }
       );
       // Handle the response as needed (e.g., redirect, show success message)
