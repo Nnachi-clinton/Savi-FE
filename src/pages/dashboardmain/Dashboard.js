@@ -5,6 +5,11 @@ import WithdrawFunds from '../../components/dashboard/WithdrawFunds';
 import KYC from '../../components/dashboard/KYC';
 import styled from 'styled-components';
 import axios from 'axios';
+import Sidebar from '../dashboards/Savings/Sidebar';
+import Personalsavings2 from '../savings/PersonalSavings2';
+import AddGoals from '../savings/AddGoals';
+import Modal from '../savings/SavingUpdateModal';
+import PersonalSavingDetailsPage from '../savings/PersonalSavingDetailsPage';
 
 const WelcomeBackJohn1 = styled.b`
   position: relative;
@@ -1775,14 +1780,13 @@ const DashboardRoot = styled.div`
   position: relative;
   background-color: var(--grey-50);
   width: 1446px;
-  height: 69.81rem;
+  height: 69.81rem !important;
   overflow: hidden;
   text-align: left;
   font-size: var(--input-small-medium-size);
   color: var(--main-text);
   font-family: var(--text-md-medium);
-  margin-top: -29em;
-  margin-right: 12em;
+  margin-top: -76em;
 `;
 const BoldText = styled.span`
   font-weight: bold;
@@ -1813,6 +1817,10 @@ const DashBoard = () => {
   const [isKYCOpen, setKYCOpen] = useState(false);
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   const currentDate = new Date().toLocaleDateString('en-US', options);
+  const [step, setStep] = useState(0);
+  const handleStep = (step) => {
+    setStep(step);
+  };
 
   const openDepositFunds = useCallback(() => {
     setDepositFundsOpen(true);
@@ -1947,6 +1955,7 @@ const DashBoard = () => {
   }, []);
   const [userData, setUserData] = useState({});
   const [walletData, setWalletData] = useState({});
+  const [walletData2, setWalletData2] = useState({});
 
   const Id = localStorage.getItem('Id');
   console.log(Id);
@@ -1979,6 +1988,9 @@ const DashBoard = () => {
         console.log(response2.data);
         console.log(response2.data.result);
         console.log(response2.data.result.balance);
+        const wallet = response2.data.result.id;
+        console.log(wallet);
+        localStorage.setItem('walletId', wallet);
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
@@ -1988,610 +2000,666 @@ const DashBoard = () => {
   }, []);
   console.log(userData.firstName);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response3 = await axios.get(
+          `https://localhost:7240/api/Savings/totalGoalAmount/${Id}`
+        );
+        setWalletData2(response3.data);
+        console.log(response3.data);
+        console.log(response3.data.result);
+        // console.log(response3.data.result.balance);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
+      <Sidebar selectstep={handleStep} />
       <DashboardRoot>
-        <FrameParent>
-          <WelcomeBackJohnDoeParent>
-            <WelcomeBackJohn1>{`Welcome back ${userData.lastName} ${userData.firstName},`}</WelcomeBackJohn1>
-            <EmojiParent>
-              <EmojiIcon1 alt="" src="/emoji@2x.png" />
-              <Savi>{currentDate}.</Savi>
-            </EmojiParent>
-          </WelcomeBackJohnDoeParent>
-          <FrameGroup>
-            <FrameDiv>
-              <AccountBalanceWalletParent>
-                <AccountBalanceWalletIcon1
+        <>
+          {step === 0 && (
+            <>
+              <div style={{ marginTop: '6em' }}>
+                <FrameParent>
+                  <WelcomeBackJohnDoeParent>
+                    <WelcomeBackJohn1>{`Welcome back ${
+                      userData?.lastName ?? 'loading'
+                    } ${
+                      userData?.firstName ?? 'loading...'
+                    },`}</WelcomeBackJohn1>
+                    <EmojiParent>
+                      <EmojiIcon1 alt="" src="/emoji@2x.png" />
+                      <Savi>{currentDate}.</Savi>
+                    </EmojiParent>
+                  </WelcomeBackJohnDoeParent>
+                  <FrameGroup>
+                    <FrameDiv>
+                      <AccountBalanceWalletParent>
+                        <AccountBalanceWalletIcon1
+                          alt=""
+                          src="/account-balance-wallet@2x.png"
+                        />
+                        <Text>
+                          Savi Account Number
+                          <BoldText>
+                            {`${walletData?.walletNumber ?? 'loading...'}`}
+                          </BoldText>
+                        </Text>
+                        <DotsVerticalIcon4 alt="" />
+                      </AccountBalanceWalletParent>
+                      <GlobalWalletParent>
+                        <GlobalWallet>Global Wallet</GlobalWallet>
+                        <Div>{`₦ ${walletData?.balance ?? 'loading...'}`}</Div>
+                      </GlobalWalletParent>
+                      <FrameParent1>
+                        <Parent1>
+                          <ArrowIcon4 alt="" />
+                        </Parent1>
+                        <ThanLastMonth4>than last month</ThanLastMonth4>
+                        <AddParent>
+                          <AddIcon8 alt="" onClick={openDepositFunds} />
+                          <SendIcon5 alt="" onClick={openWithdrawFunds} />
+                        </AddParent>
+                      </FrameParent1>
+                      <FrameParent2>
+                        <AddGroup>
+                          <AddIcon8
+                            alt=""
+                            src="/add@2x.png"
+                            onClick={openDepositFunds1}
+                          />
+                          <Deposit>Deposit</Deposit>
+                        </AddGroup>
+                        <SendParent>
+                          <SendIcon5
+                            alt=""
+                            src="/send@2x.png"
+                            onClick={openWithdrawFunds1}
+                          />
+                          <Deposit>Withdraw</Deposit>
+                        </SendParent>
+                      </FrameParent2>
+                    </FrameDiv>
+                    <FrameParent3>
+                      <AccountBalanceWalletParent>
+                        <AccountBalanceWalletIcon1 alt="" src="/group@2x.png" />
+                        <DotsVerticalIcon4 alt="" />
+                      </AccountBalanceWalletParent>
+                      <GlobalWalletParent>
+                        <SafeLock>{`Total Group Savings `}</SafeLock>
+                        <Div>₦ 0.00</Div>
+                      </GlobalWalletParent>
+                      <AddContainer>
+                        <AddIcon8
+                          alt=""
+                          src="/add@2x.png"
+                          onClick={openDepositFunds2}
+                        />
+                        <Deposit>Add money</Deposit>
+                      </AddContainer>
+                      <FrameParent1>
+                        <Group>
+                          <Div1>- 15%</Div1>
+                          <ArrowIcon4 alt="" />
+                        </Group>
+                        <ThanLastMonth5>than last month</ThanLastMonth5>
+                        <DepositAndWithdraw3>
+                          <AddIcon8 alt="" onClick={openDepositFunds3} />
+                          <SendIcon5 alt="" onClick={openWithdrawFunds2} />
+                        </DepositAndWithdraw3>
+                      </FrameParent1>
+                    </FrameParent3>
+                    <FrameParent5>
+                      <AccountBalanceWalletParent>
+                        <AccountBalanceWalletIcon1
+                          alt=""
+                          src="/profile@2x.png"
+                        />
+                        <DotsVerticalIcon4 alt="" />
+                      </AccountBalanceWalletParent>
+                      <GlobalWalletParent>
+                        <SafeLock>Total Personal Savings</SafeLock>
+                        <Div>{`₦ ${walletData2?.result ?? 'loading...'}`}</Div>
+                      </GlobalWalletParent>
+                      <AddContainer>
+                        <AddIcon8
+                          alt=""
+                          src="/add@2x.png"
+                          onClick={openDepositFunds4}
+                        />
+                        <Deposit>Add money</Deposit>
+                      </AddContainer>
+                      <FrameParent6>
+                        <Group>
+                          <Div1>+ 15%</Div1>
+                          <ArrowIcon6 alt="" />
+                        </Group>
+                        <ThanLastMonth5>than last month</ThanLastMonth5>
+                        <DepositAndWithdraw3>
+                          <AddIcon8 alt="" onClick={openDepositFunds5} />
+                          <SendIcon5 alt="" onClick={openWithdrawFunds3} />
+                        </DepositAndWithdraw3>
+                      </FrameParent6>
+                    </FrameParent5>
+                    <FrameParent7>
+                      <AccountBalanceWalletParent>
+                        <AccountBalanceWalletIcon1 alt="" src="/hide@2x.png" />
+                        <DotsVerticalIcon4 alt="" />
+                      </AccountBalanceWalletParent>
+                      <GlobalWalletParent>
+                        <SafeLock>Safe Lock</SafeLock>
+                        <Div>₦ ****</Div>
+                      </GlobalWalletParent>
+                      <AddContainer>
+                        <AddIcon8
+                          alt=""
+                          src="/add@2x.png"
+                          onClick={openDepositFunds6}
+                        />
+                        <Deposit>Add money</Deposit>
+                      </AddContainer>
+                      <FrameParent6>
+                        <Group>
+                          <Div1>+ 15%</Div1>
+                          <ArrowIcon6 alt="" />
+                        </Group>
+                        <ThanLastMonth5>than last month</ThanLastMonth5>
+                        <DepositAndWithdraw3>
+                          <AddIcon8 alt="" onClick={openDepositFunds7} />
+                          <SendIcon5 alt="" onClick={openWithdrawFunds4} />
+                        </DepositAndWithdraw3>
+                      </FrameParent6>
+                    </FrameParent7>
+                  </FrameGroup>
+                  <FrameParent9>
+                    <FrameParent10>
+                      <FrameParent11>
+                        <TotalIncomeParent>
+                          <TotalIncome>{`Total Income `}</TotalIncome>
+                          <ChevronDownIcon2 alt="" src="/chevrondown@2x.png" />
+                        </TotalIncomeParent>
+                        <Last12MonthsParent>
+                          <Last12Months1>Last 12 Months</Last12Months1>
+                          <DotsVerticalIcon4 alt="" />
+                        </Last12MonthsParent>
+                      </FrameParent11>
+                      <LineChart>
+                        <LineChart1>
+                          <Inline>
+                            <YaxesLabels>
+                              <LineChartAxesLabel>
+                                <Div8>100</Div8>
+                              </LineChartAxesLabel>
+                              <LineChartAxesLabel>
+                                <Feb>80</Feb>
+                              </LineChartAxesLabel>
+                              <LineChartAxesLabel>
+                                <Feb>60</Feb>
+                              </LineChartAxesLabel>
+                              <LineChartAxesLabel>
+                                <Feb>40</Feb>
+                              </LineChartAxesLabel>
+                              <LineChartAxesLabel>
+                                <Feb>20</Feb>
+                              </LineChartAxesLabel>
+                              <LineChartAxesLabel>
+                                <Feb>0</Feb>
+                              </LineChartAxesLabel>
+                            </YaxesLabels>
+                            <ChartContent>
+                              <GridLine6 />
+                              <GridLine7 />
+                              <GridLine8 />
+                              <GridLine9 />
+                              <GridLine10 />
+                              <GridLine11 />
+                              <DefaultLineChart1
+                                alt=""
+                                src="/default-line-chart@2x.png"
+                              />
+                              <DefaultLineChartGradient1
+                                alt=""
+                                src="/default-line-chart-gradient@2x.png"
+                              />
+                              <PointerIcon46 alt="" />
+                              <PointerIcon47 alt="" />
+                              <PointerIcon48 alt="" />
+                              <PointerIcon49 alt="" />
+                              <PointerIcon50 alt="" />
+                              <PointerIcon51 alt="" />
+                              <PointerIcon52 alt="" />
+                              <PointerIcon53 alt="" />
+                              <PointerIcon54 alt="" />
+                              <PointerIcon55 alt="" />
+                              <PointerIcon56 alt="" />
+                              <PointerIcon57 alt="" />
+                              <SecondaryChartIcon alt="" />
+                              <SecondaryChartGradient1 alt="" />
+                              <PointerIcon58 alt="" />
+                              <PointerIcon59 alt="" />
+                              <PointerIcon60 alt="" />
+                              <PointerIcon61 alt="" />
+                              <PointerIcon62 alt="" />
+                              <PointerIcon63 alt="" />
+                              <PointerIcon64 alt="" />
+                              <PointerIcon65 alt="" />
+                              <PointerIcon66 alt="" />
+                              <PointerIcon67 alt="" />
+                              <PointerIcon68 alt="" />
+                              <PointerIcon69 alt="" />
+                              <Tooltips>
+                                <Tooltip1>
+                                  <Title>June 2022</Title>
+                                  <SecondaryContent>
+                                    Secondary text
+                                  </SecondaryContent>
+                                  <ShortcutHints>
+                                    <Shortcut>
+                                      <CommandIcon4 alt="" />
+                                    </Shortcut>
+                                    <Shortcut>
+                                      <CommandIcon4 alt="" />
+                                    </Shortcut>
+                                  </ShortcutHints>
+                                  <Indicator1>
+                                    <LegendIndicator8 />
+                                    <K>$88k</K>
+                                  </Indicator1>
+                                  <Indicator2>
+                                    <LegendIndicator9 />
+                                    <K>$77k</K>
+                                  </Indicator2>
+                                  <TopBeakIcon4 alt="" />
+                                  <RightBeakIcon4 alt="" />
+                                  <BottomBeakIcon4 alt="" />
+                                  <LeftBeakIcon4 alt="" />
+                                </Tooltip1>
+                              </Tooltips>
+                              <OnHoverIndicator1 />
+                              <Tooltips1>
+                                <Tooltip1>
+                                  <Title>June 2022</Title>
+                                  <SecondaryContent>
+                                    Secondary text
+                                  </SecondaryContent>
+                                  <ShortcutHints>
+                                    <Shortcut>
+                                      <CommandIcon4 alt="" />
+                                    </Shortcut>
+                                    <Shortcut>
+                                      <CommandIcon4 alt="" />
+                                    </Shortcut>
+                                  </ShortcutHints>
+                                  <Indicator1>
+                                    <LegendIndicator8 />
+                                    <K>$88k</K>
+                                  </Indicator1>
+                                  <Indicator2>
+                                    <LegendIndicator9 />
+                                    <K>$77k</K>
+                                  </Indicator2>
+                                  <TopBeakIcon5 alt="" />
+                                  <RightBeakIcon5 alt="" />
+                                  <BottomBeakIcon5 alt="" />
+                                  <LeftBeakIcon5 alt="" />
+                                </Tooltip1>
+                              </Tooltips1>
+                              <Tooltips2>
+                                <Tooltip1>
+                                  <Title2>6:08 PM, Jun 20</Title2>
+                                  <SecondaryContent>
+                                    Secondary text
+                                  </SecondaryContent>
+                                  <ShortcutHints>
+                                    <Shortcut>
+                                      <CommandIcon4 alt="" />
+                                    </Shortcut>
+                                    <Shortcut>
+                                      <CommandIcon4 alt="" />
+                                    </Shortcut>
+                                  </ShortcutHints>
+                                  <Indicator12>
+                                    <LegendIndicator12 />
+                                    <K4>
+                                      <B>₦</B>
+                                      <K5>88k</K5>
+                                    </K4>
+                                  </Indicator12>
+                                  <Indicator22>
+                                    <LegendIndicator9 />
+                                    <K>$77k</K>
+                                  </Indicator22>
+                                  <TopBeakIcon6 alt="" />
+                                  <RightBeakIcon6 alt="" />
+                                  <BottomBeakIcon6
+                                    alt=""
+                                    src="/bottom-beak@2x.png"
+                                  />
+                                  <LeftBeakIcon6 alt="" />
+                                </Tooltip1>
+                              </Tooltips2>
+                              <Tooltips3>
+                                <Tooltip1>
+                                  <Title3>6:08 PM, 2022</Title3>
+                                  <SecondaryContent3>$31</SecondaryContent3>
+                                  <ShortcutHints>
+                                    <Shortcut>
+                                      <CommandIcon4 alt="" />
+                                    </Shortcut>
+                                    <Shortcut>
+                                      <CommandIcon4 alt="" />
+                                    </Shortcut>
+                                  </ShortcutHints>
+                                  <Indicator13>
+                                    <LegendIndicator14 />
+                                    <K>$88k</K>
+                                  </Indicator13>
+                                  <Indicator22>
+                                    <LegendIndicator15 />
+                                    <K>$77k</K>
+                                  </Indicator22>
+                                  <TopBeakIcon7 alt="" />
+                                  <RightBeakIcon7 alt="" />
+                                  <BottomBeakIcon7 alt="" />
+                                  <LeftBeakIcon7 alt="" />
+                                </Tooltip1>
+                              </Tooltips3>
+                              <DefaultStrongLineChart1 alt="" />
+                              <PointerIcon70 alt="" />
+                              <PointerIcon71 alt="" />
+                              <PointerIcon72 alt="" />
+                              <PointerIcon73 alt="" />
+                              <PointerIcon74 alt="" />
+                              <PointerIcon75 alt="" />
+                              <PointerIcon76 alt="" />
+                              <PointerIcon77 alt="" />
+                              <PointerIcon78 alt="" />
+                              <PointerIcon79 alt="" />
+                              <PointerIcon80 alt="" />
+                              <PointerIcon81 alt="" />
+                              <PointerIcon82 alt="" />
+                              <PointerIcon83 alt="" />
+                              <PointerIcon84 alt="" />
+                              <PointerIcon85 alt="" />
+                              <PointerIcon86 alt="" />
+                              <PointerIcon87 alt="" />
+                              <PointerIcon88 alt="" />
+                              <PointerIcon89 alt="" />
+                              <PointerIcon90 alt="" />
+                              <PointerIcon91 alt="" />
+                              <SecondaryDashedLineChart1 alt="" />
+                            </ChartContent>
+                          </Inline>
+                          <XaxesLabels>
+                            <LineChartAxesLabel>
+                              <Jan>Jan</Jan>
+                            </LineChartAxesLabel>
+                            <LineChartAxesLabel>
+                              <Feb>Feb</Feb>
+                            </LineChartAxesLabel>
+                            <LineChartAxesLabel>
+                              <Feb>Mar</Feb>
+                            </LineChartAxesLabel>
+                            <LineChartAxesLabel>
+                              <Feb>Apr</Feb>
+                            </LineChartAxesLabel>
+                            <LineChartAxesLabel>
+                              <Feb>May</Feb>
+                            </LineChartAxesLabel>
+                            <LineChartAxesLabel>
+                              <Feb>Jun</Feb>
+                            </LineChartAxesLabel>
+                            <LineChartAxesLabel>
+                              <Feb>Jul</Feb>
+                            </LineChartAxesLabel>
+                            <LineChartAxesLabel>
+                              <Feb>Aug</Feb>
+                            </LineChartAxesLabel>
+                            <LineChartAxesLabel>
+                              <Feb>Sep</Feb>
+                            </LineChartAxesLabel>
+                            <LineChartAxesLabel>
+                              <Feb>Oct</Feb>
+                            </LineChartAxesLabel>
+                            <LineChartAxesLabel>
+                              <Feb>Nov</Feb>
+                            </LineChartAxesLabel>
+                            <LineChartAxesLabel>
+                              <Feb>Dec</Feb>
+                            </LineChartAxesLabel>
+                          </XaxesLabels>
+                        </LineChart1>
+                      </LineChart>
+                    </FrameParent10>
+                    <FrameParent12>
+                      <UpcomingActivitiesParent>
+                        <SafeLock>UPCOMING ACTIVITIES</SafeLock>
+                        <ViewAll>View all</ViewAll>
+                      </UpcomingActivitiesParent>
+                      <FrameParent13>
+                        <FrameParent14>
+                          <TotalIncomeParent>
+                            <FrameChild alt="" src="/frame-38813497@2x.png" />
+                            <ContributionToLagosCorpGroParent>
+                              <SafeLock>
+                                Contribution to Lagos Corp Group
+                              </SafeLock>
+                              <May2920233>May 29, 2023 at 11:30 AM</May2920233>
+                            </ContributionToLagosCorpGroParent>
+                          </TotalIncomeParent>
+                          <Div14>-₦5,000</Div14>
+                        </FrameParent14>
+                        <Divider7 />
+                        <FrameParent14>
+                          <TotalIncomeParent>
+                            <FrameChild alt="" src="/frame-38813497@2x.png" />
+                            <ContributionToLagosCorpGroParent>
+                              <SafeLock>
+                                Contribution to Lagos Corp Group
+                              </SafeLock>
+                              <May2920233>May 29, 2023 at 11:30 AM</May2920233>
+                            </ContributionToLagosCorpGroParent>
+                          </TotalIncomeParent>
+                          <Div15>+₦5,000</Div15>
+                        </FrameParent14>
+                        <Divider7 />
+                        <FrameParent14>
+                          <TotalIncomeParent>
+                            <FrameChild alt="" src="/frame-38813497@2x.png" />
+                            <ContributionToLagosCorpGroParent>
+                              <SafeLock>
+                                Contribution to Lagos Corp Group
+                              </SafeLock>
+                              <May2920233>May 29, 2023 at 11:30 AM</May2920233>
+                            </ContributionToLagosCorpGroParent>
+                          </TotalIncomeParent>
+                          <Div15>+₦5,000</Div15>
+                        </FrameParent14>
+                        <Divider7 />
+                      </FrameParent13>
+                    </FrameParent12>
+                  </FrameParent9>
+                  <FrameParent9>
+                    <FrameParent21>
+                      <TransactionHistoryParent>
+                        <TotalIncome>Transaction history</TotalIncome>
+                        <FrameParent22>
+                          <RecentlyWrapper>
+                            <SafeLock>Recently</SafeLock>
+                          </RecentlyWrapper>
+                          <SafeLock>Oldest</SafeLock>
+                          <SafeLock>More</SafeLock>
+                        </FrameParent22>
+                      </TransactionHistoryParent>
+                      <FrameParent23>
+                        <ReceiverParent>
+                          <SafeLock>Receiver</SafeLock>
+                          <TypeParent>
+                            <SafeLock>Type</SafeLock>
+                            <SafeLock>Date</SafeLock>
+                            <SafeLock>Amount</SafeLock>
+                          </TypeParent>
+                        </ReceiverParent>
+                        <BoladeAdegbeteParent>
+                          <SafeLock>Bolade Adegbete</SafeLock>
+                          <LagosCorpGroupParent>
+                            <SafeLock>Lagos Corp Group</SafeLock>
+                            <SafeLock>30 May 2023</SafeLock>
+                            <SafeLock>₦ 5,000</SafeLock>
+                          </LagosCorpGroupParent>
+                        </BoladeAdegbeteParent>
+                        <Divider10 />
+                        <BoladeAdegbeteParent>
+                          <SafeLock>Bolade Adegbete</SafeLock>
+                          <LagosCorpGroupParent>
+                            <SafeLock>Lagos Corp Group</SafeLock>
+                            <SafeLock>30 May 2023</SafeLock>
+                            <SafeLock>₦ 5,000</SafeLock>
+                          </LagosCorpGroupParent>
+                        </BoladeAdegbeteParent>
+                        <Divider10 />
+                        <BoladeAdegbeteParent>
+                          <SafeLock>Bolade Adegbete</SafeLock>
+                          <LagosCorpGroupParent>
+                            <SafeLock>Lagos Corp Group</SafeLock>
+                            <SafeLock>30 May 2023</SafeLock>
+                            <SafeLock>₦ 5,000</SafeLock>
+                          </LagosCorpGroupParent>
+                        </BoladeAdegbeteParent>
+                        <Divider10 />
+                        <BoladeAdegbeteParent>
+                          <SafeLock>Bolade Adegbete</SafeLock>
+                          <LagosCorpGroupParent>
+                            <SafeLock>Lagos Corp Group</SafeLock>
+                            <SafeLock>30 May 2023</SafeLock>
+                            <SafeLock>₦ 5,000</SafeLock>
+                          </LagosCorpGroupParent>
+                        </BoladeAdegbeteParent>
+                        <Divider10 />
+                      </FrameParent23>
+                    </FrameParent21>
+                    <FrameParent24>
+                      <MyGoalsParent>
+                        <MyGoals>My Goals</MyGoals>
+                        <ViewAll1 onClick={onViewAllText1Click}>
+                          View all
+                        </ViewAll1>
+                      </MyGoalsParent>
+                      <FrameParent25>
+                        <FrameParent26>
+                          <AirplaneParent>
+                            <AirplaneIcon1 alt="" src="/airplane@2x.png" />
+                            <ContributionToLagosCorpGroParent>
+                              <SafeLock>Travel</SafeLock>
+                              <SafeLock>
+                                <Span3>{`₦ 5,000,000.00 `}</Span3>
+                                <Span>{`/ ₦ 10,000,000.00 `}</Span>
+                              </SafeLock>
+                            </ContributionToLagosCorpGroParent>
+                          </AirplaneParent>
+                          <SafeLock>50%</SafeLock>
+                        </FrameParent26>
+                        <RectangleParent>
+                          <RectangleDiv />
+                          <RectangleDiv />
+                          <RectangleDiv />
+                          <RectangleDiv />
+                          <RectangleDiv />
+                          <FrameChild5 />
+                          <FrameChild5 />
+                          <FrameChild5 />
+                          <FrameChild5 />
+                          <FrameChild5 />
+                        </RectangleParent>
+                      </FrameParent25>
+                      <FrameParent27>
+                        <FrameParent28>
+                          <AirplaneParent>
+                            <AirplaneIcon1 alt="" src="/home@2x.png" />
+                            <ContributionToLagosCorpGroParent>
+                              <SafeLock>Dream Home</SafeLock>
+                              <SafeLock>
+                                <Span3>{`₦ 3,000,000.00 `}</Span3>
+                                <Span>{`/ ₦ 10,000,000.00 `}</Span>
+                              </SafeLock>
+                            </ContributionToLagosCorpGroParent>
+                          </AirplaneParent>
+                          <SafeLock>30%</SafeLock>
+                        </FrameParent28>
+                        <RectangleParent>
+                          <RectangleDiv />
+                          <RectangleDiv />
+                          <RectangleDiv />
+                          <RectangleDiv />
+                          <RectangleDiv />
+                          <FrameChild5 />
+                          <FrameChild5 />
+                          <FrameChild5 />
+                          <FrameChild5 />
+                          <FrameChild5 />
+                        </RectangleParent>
+                      </FrameParent27>
+                      <FrameParent25>
+                        <FrameParent30>
+                          <AirplaneParent>
+                            <AirplaneIcon1 alt="" src="/car@2x.png" />
+                            <ContributionToLagosCorpGroParent>
+                              <SafeLock>Dream Car</SafeLock>
+                              <SafeLock>
+                                <Span3>{`₦ 7,000,000.00 `}</Span3>
+                                <Span>{`/ ₦ 10,000,000.00 `}</Span>
+                              </SafeLock>
+                            </ContributionToLagosCorpGroParent>
+                          </AirplaneParent>
+                          <SafeLock>70%</SafeLock>
+                        </FrameParent30>
+                        <RectangleParent>
+                          <RectangleDiv />
+                          <RectangleDiv />
+                          <RectangleDiv />
+                          <RectangleDiv />
+                          <RectangleDiv />
+                          <FrameChild5 />
+                          <FrameChild5 />
+                          <FrameChild5 />
+                          <FrameChild5 />
+                          <FrameChild5 />
+                        </RectangleParent>
+                      </FrameParent25>
+                    </FrameParent24>
+                  </FrameParent9>
+                </FrameParent>
+                <VuesaxbulkmessageQuestionIcon1
                   alt=""
-                  src="/account-balance-wallet@2x.png"
+                  src="/vuesaxbulkmessagequestion@2x.png"
+                  onClick={openMessagePopup}
                 />
-                <Text>
-                  Savi Account Number
-                  <BoldText>{`${walletData.walletNumber}`}</BoldText>
-                </Text>
-                <DotsVerticalIcon4 alt="" />
-              </AccountBalanceWalletParent>
-              <GlobalWalletParent>
-                <GlobalWallet>Global Wallet</GlobalWallet>
-                <Div>{`₦ ${walletData.balance}`}</Div>
-              </GlobalWalletParent>
-              <FrameParent1>
-                <Parent1>
-                  <ArrowIcon4 alt="" />
-                </Parent1>
-                <ThanLastMonth4>than last month</ThanLastMonth4>
-                <AddParent>
-                  <AddIcon8 alt="" onClick={openDepositFunds} />
-                  <SendIcon5 alt="" onClick={openWithdrawFunds} />
-                </AddParent>
-              </FrameParent1>
-              <FrameParent2>
-                <AddGroup>
-                  <AddIcon8
-                    alt=""
-                    src="/add@2x.png"
-                    onClick={openDepositFunds1}
-                  />
-                  <Deposit>Deposit</Deposit>
-                </AddGroup>
-                <SendParent>
-                  <SendIcon5
-                    alt=""
-                    src="/send@2x.png"
-                    onClick={openWithdrawFunds1}
-                  />
-                  <Deposit>Withdraw</Deposit>
-                </SendParent>
-              </FrameParent2>
-            </FrameDiv>
-            <FrameParent3>
-              <AccountBalanceWalletParent>
-                <AccountBalanceWalletIcon1 alt="" src="/group@2x.png" />
-                <DotsVerticalIcon4 alt="" />
-              </AccountBalanceWalletParent>
-              <GlobalWalletParent>
-                <SafeLock>{`Total Group Savings `}</SafeLock>
-                <Div>₦ 0.00</Div>
-              </GlobalWalletParent>
-              <AddContainer>
-                <AddIcon8
-                  alt=""
-                  src="/add@2x.png"
-                  onClick={openDepositFunds2}
-                />
-                <Deposit>Add money</Deposit>
-              </AddContainer>
-              <FrameParent1>
-                <Group>
-                  <Div1>- 15%</Div1>
-                  <ArrowIcon4 alt="" />
-                </Group>
-                <ThanLastMonth5>than last month</ThanLastMonth5>
-                <DepositAndWithdraw3>
-                  <AddIcon8 alt="" onClick={openDepositFunds3} />
-                  <SendIcon5 alt="" onClick={openWithdrawFunds2} />
-                </DepositAndWithdraw3>
-              </FrameParent1>
-            </FrameParent3>
-            <FrameParent5>
-              <AccountBalanceWalletParent>
-                <AccountBalanceWalletIcon1 alt="" src="/profile@2x.png" />
-                <DotsVerticalIcon4 alt="" />
-              </AccountBalanceWalletParent>
-              <GlobalWalletParent>
-                <SafeLock>Total Personal Savings</SafeLock>
-                <Div>₦ 0.00</Div>
-              </GlobalWalletParent>
-              <AddContainer>
-                <AddIcon8
-                  alt=""
-                  src="/add@2x.png"
-                  onClick={openDepositFunds4}
-                />
-                <Deposit>Add money</Deposit>
-              </AddContainer>
-              <FrameParent6>
-                <Group>
-                  <Div1>+ 15%</Div1>
-                  <ArrowIcon6 alt="" />
-                </Group>
-                <ThanLastMonth5>than last month</ThanLastMonth5>
-                <DepositAndWithdraw3>
-                  <AddIcon8 alt="" onClick={openDepositFunds5} />
-                  <SendIcon5 alt="" onClick={openWithdrawFunds3} />
-                </DepositAndWithdraw3>
-              </FrameParent6>
-            </FrameParent5>
-            <FrameParent7>
-              <AccountBalanceWalletParent>
-                <AccountBalanceWalletIcon1 alt="" src="/hide@2x.png" />
-                <DotsVerticalIcon4 alt="" />
-              </AccountBalanceWalletParent>
-              <GlobalWalletParent>
-                <SafeLock>Safe Lock</SafeLock>
-                <Div>₦ ****</Div>
-              </GlobalWalletParent>
-              <AddContainer>
-                <AddIcon8
-                  alt=""
-                  src="/add@2x.png"
-                  onClick={openDepositFunds6}
-                />
-                <Deposit>Add money</Deposit>
-              </AddContainer>
-              <FrameParent6>
-                <Group>
-                  <Div1>+ 15%</Div1>
-                  <ArrowIcon6 alt="" />
-                </Group>
-                <ThanLastMonth5>than last month</ThanLastMonth5>
-                <DepositAndWithdraw3>
-                  <AddIcon8 alt="" onClick={openDepositFunds7} />
-                  <SendIcon5 alt="" onClick={openWithdrawFunds4} />
-                </DepositAndWithdraw3>
-              </FrameParent6>
-            </FrameParent7>
-          </FrameGroup>
-          <FrameParent9>
-            <FrameParent10>
-              <FrameParent11>
-                <TotalIncomeParent>
-                  <TotalIncome>{`Total Income `}</TotalIncome>
-                  <ChevronDownIcon2 alt="" src="/chevrondown@2x.png" />
-                </TotalIncomeParent>
-                <Last12MonthsParent>
-                  <Last12Months1>Last 12 Months</Last12Months1>
-                  <DotsVerticalIcon4 alt="" />
-                </Last12MonthsParent>
-              </FrameParent11>
-              <LineChart>
-                <LineChart1>
-                  <Inline>
-                    <YaxesLabels>
-                      <LineChartAxesLabel>
-                        <Div8>100</Div8>
-                      </LineChartAxesLabel>
-                      <LineChartAxesLabel>
-                        <Feb>80</Feb>
-                      </LineChartAxesLabel>
-                      <LineChartAxesLabel>
-                        <Feb>60</Feb>
-                      </LineChartAxesLabel>
-                      <LineChartAxesLabel>
-                        <Feb>40</Feb>
-                      </LineChartAxesLabel>
-                      <LineChartAxesLabel>
-                        <Feb>20</Feb>
-                      </LineChartAxesLabel>
-                      <LineChartAxesLabel>
-                        <Feb>0</Feb>
-                      </LineChartAxesLabel>
-                    </YaxesLabels>
-                    <ChartContent>
-                      <GridLine6 />
-                      <GridLine7 />
-                      <GridLine8 />
-                      <GridLine9 />
-                      <GridLine10 />
-                      <GridLine11 />
-                      <DefaultLineChart1
-                        alt=""
-                        src="/default-line-chart@2x.png"
-                      />
-                      <DefaultLineChartGradient1
-                        alt=""
-                        src="/default-line-chart-gradient@2x.png"
-                      />
-                      <PointerIcon46 alt="" />
-                      <PointerIcon47 alt="" />
-                      <PointerIcon48 alt="" />
-                      <PointerIcon49 alt="" />
-                      <PointerIcon50 alt="" />
-                      <PointerIcon51 alt="" />
-                      <PointerIcon52 alt="" />
-                      <PointerIcon53 alt="" />
-                      <PointerIcon54 alt="" />
-                      <PointerIcon55 alt="" />
-                      <PointerIcon56 alt="" />
-                      <PointerIcon57 alt="" />
-                      <SecondaryChartIcon alt="" />
-                      <SecondaryChartGradient1 alt="" />
-                      <PointerIcon58 alt="" />
-                      <PointerIcon59 alt="" />
-                      <PointerIcon60 alt="" />
-                      <PointerIcon61 alt="" />
-                      <PointerIcon62 alt="" />
-                      <PointerIcon63 alt="" />
-                      <PointerIcon64 alt="" />
-                      <PointerIcon65 alt="" />
-                      <PointerIcon66 alt="" />
-                      <PointerIcon67 alt="" />
-                      <PointerIcon68 alt="" />
-                      <PointerIcon69 alt="" />
-                      <Tooltips>
-                        <Tooltip1>
-                          <Title>June 2022</Title>
-                          <SecondaryContent>Secondary text</SecondaryContent>
-                          <ShortcutHints>
-                            <Shortcut>
-                              <CommandIcon4 alt="" />
-                            </Shortcut>
-                            <Shortcut>
-                              <CommandIcon4 alt="" />
-                            </Shortcut>
-                          </ShortcutHints>
-                          <Indicator1>
-                            <LegendIndicator8 />
-                            <K>$88k</K>
-                          </Indicator1>
-                          <Indicator2>
-                            <LegendIndicator9 />
-                            <K>$77k</K>
-                          </Indicator2>
-                          <TopBeakIcon4 alt="" />
-                          <RightBeakIcon4 alt="" />
-                          <BottomBeakIcon4 alt="" />
-                          <LeftBeakIcon4 alt="" />
-                        </Tooltip1>
-                      </Tooltips>
-                      <OnHoverIndicator1 />
-                      <Tooltips1>
-                        <Tooltip1>
-                          <Title>June 2022</Title>
-                          <SecondaryContent>Secondary text</SecondaryContent>
-                          <ShortcutHints>
-                            <Shortcut>
-                              <CommandIcon4 alt="" />
-                            </Shortcut>
-                            <Shortcut>
-                              <CommandIcon4 alt="" />
-                            </Shortcut>
-                          </ShortcutHints>
-                          <Indicator1>
-                            <LegendIndicator8 />
-                            <K>$88k</K>
-                          </Indicator1>
-                          <Indicator2>
-                            <LegendIndicator9 />
-                            <K>$77k</K>
-                          </Indicator2>
-                          <TopBeakIcon5 alt="" />
-                          <RightBeakIcon5 alt="" />
-                          <BottomBeakIcon5 alt="" />
-                          <LeftBeakIcon5 alt="" />
-                        </Tooltip1>
-                      </Tooltips1>
-                      <Tooltips2>
-                        <Tooltip1>
-                          <Title2>6:08 PM, Jun 20</Title2>
-                          <SecondaryContent>Secondary text</SecondaryContent>
-                          <ShortcutHints>
-                            <Shortcut>
-                              <CommandIcon4 alt="" />
-                            </Shortcut>
-                            <Shortcut>
-                              <CommandIcon4 alt="" />
-                            </Shortcut>
-                          </ShortcutHints>
-                          <Indicator12>
-                            <LegendIndicator12 />
-                            <K4>
-                              <B>₦</B>
-                              <K5>88k</K5>
-                            </K4>
-                          </Indicator12>
-                          <Indicator22>
-                            <LegendIndicator9 />
-                            <K>$77k</K>
-                          </Indicator22>
-                          <TopBeakIcon6 alt="" />
-                          <RightBeakIcon6 alt="" />
-                          <BottomBeakIcon6 alt="" src="/bottom-beak@2x.png" />
-                          <LeftBeakIcon6 alt="" />
-                        </Tooltip1>
-                      </Tooltips2>
-                      <Tooltips3>
-                        <Tooltip1>
-                          <Title3>6:08 PM, 2022</Title3>
-                          <SecondaryContent3>$31</SecondaryContent3>
-                          <ShortcutHints>
-                            <Shortcut>
-                              <CommandIcon4 alt="" />
-                            </Shortcut>
-                            <Shortcut>
-                              <CommandIcon4 alt="" />
-                            </Shortcut>
-                          </ShortcutHints>
-                          <Indicator13>
-                            <LegendIndicator14 />
-                            <K>$88k</K>
-                          </Indicator13>
-                          <Indicator22>
-                            <LegendIndicator15 />
-                            <K>$77k</K>
-                          </Indicator22>
-                          <TopBeakIcon7 alt="" />
-                          <RightBeakIcon7 alt="" />
-                          <BottomBeakIcon7 alt="" />
-                          <LeftBeakIcon7 alt="" />
-                        </Tooltip1>
-                      </Tooltips3>
-                      <DefaultStrongLineChart1 alt="" />
-                      <PointerIcon70 alt="" />
-                      <PointerIcon71 alt="" />
-                      <PointerIcon72 alt="" />
-                      <PointerIcon73 alt="" />
-                      <PointerIcon74 alt="" />
-                      <PointerIcon75 alt="" />
-                      <PointerIcon76 alt="" />
-                      <PointerIcon77 alt="" />
-                      <PointerIcon78 alt="" />
-                      <PointerIcon79 alt="" />
-                      <PointerIcon80 alt="" />
-                      <PointerIcon81 alt="" />
-                      <PointerIcon82 alt="" />
-                      <PointerIcon83 alt="" />
-                      <PointerIcon84 alt="" />
-                      <PointerIcon85 alt="" />
-                      <PointerIcon86 alt="" />
-                      <PointerIcon87 alt="" />
-                      <PointerIcon88 alt="" />
-                      <PointerIcon89 alt="" />
-                      <PointerIcon90 alt="" />
-                      <PointerIcon91 alt="" />
-                      <SecondaryDashedLineChart1 alt="" />
-                    </ChartContent>
-                  </Inline>
-                  <XaxesLabels>
-                    <LineChartAxesLabel>
-                      <Jan>Jan</Jan>
-                    </LineChartAxesLabel>
-                    <LineChartAxesLabel>
-                      <Feb>Feb</Feb>
-                    </LineChartAxesLabel>
-                    <LineChartAxesLabel>
-                      <Feb>Mar</Feb>
-                    </LineChartAxesLabel>
-                    <LineChartAxesLabel>
-                      <Feb>Apr</Feb>
-                    </LineChartAxesLabel>
-                    <LineChartAxesLabel>
-                      <Feb>May</Feb>
-                    </LineChartAxesLabel>
-                    <LineChartAxesLabel>
-                      <Feb>Jun</Feb>
-                    </LineChartAxesLabel>
-                    <LineChartAxesLabel>
-                      <Feb>Jul</Feb>
-                    </LineChartAxesLabel>
-                    <LineChartAxesLabel>
-                      <Feb>Aug</Feb>
-                    </LineChartAxesLabel>
-                    <LineChartAxesLabel>
-                      <Feb>Sep</Feb>
-                    </LineChartAxesLabel>
-                    <LineChartAxesLabel>
-                      <Feb>Oct</Feb>
-                    </LineChartAxesLabel>
-                    <LineChartAxesLabel>
-                      <Feb>Nov</Feb>
-                    </LineChartAxesLabel>
-                    <LineChartAxesLabel>
-                      <Feb>Dec</Feb>
-                    </LineChartAxesLabel>
-                  </XaxesLabels>
-                </LineChart1>
-              </LineChart>
-            </FrameParent10>
-            <FrameParent12>
-              <UpcomingActivitiesParent>
-                <SafeLock>UPCOMING ACTIVITIES</SafeLock>
-                <ViewAll>View all</ViewAll>
-              </UpcomingActivitiesParent>
-              <FrameParent13>
-                <FrameParent14>
-                  <TotalIncomeParent>
-                    <FrameChild alt="" src="/frame-38813497@2x.png" />
-                    <ContributionToLagosCorpGroParent>
-                      <SafeLock>Contribution to Lagos Corp Group</SafeLock>
-                      <May2920233>May 29, 2023 at 11:30 AM</May2920233>
-                    </ContributionToLagosCorpGroParent>
-                  </TotalIncomeParent>
-                  <Div14>-₦5,000</Div14>
-                </FrameParent14>
-                <Divider7 />
-                <FrameParent14>
-                  <TotalIncomeParent>
-                    <FrameChild alt="" src="/frame-38813497@2x.png" />
-                    <ContributionToLagosCorpGroParent>
-                      <SafeLock>Contribution to Lagos Corp Group</SafeLock>
-                      <May2920233>May 29, 2023 at 11:30 AM</May2920233>
-                    </ContributionToLagosCorpGroParent>
-                  </TotalIncomeParent>
-                  <Div15>+₦5,000</Div15>
-                </FrameParent14>
-                <Divider7 />
-                <FrameParent14>
-                  <TotalIncomeParent>
-                    <FrameChild alt="" src="/frame-38813497@2x.png" />
-                    <ContributionToLagosCorpGroParent>
-                      <SafeLock>Contribution to Lagos Corp Group</SafeLock>
-                      <May2920233>May 29, 2023 at 11:30 AM</May2920233>
-                    </ContributionToLagosCorpGroParent>
-                  </TotalIncomeParent>
-                  <Div15>+₦5,000</Div15>
-                </FrameParent14>
-                <Divider7 />
-              </FrameParent13>
-            </FrameParent12>
-          </FrameParent9>
-          <FrameParent9>
-            <FrameParent21>
-              <TransactionHistoryParent>
-                <TotalIncome>Transaction history</TotalIncome>
-                <FrameParent22>
-                  <RecentlyWrapper>
-                    <SafeLock>Recently</SafeLock>
-                  </RecentlyWrapper>
-                  <SafeLock>Oldest</SafeLock>
-                  <SafeLock>More</SafeLock>
-                </FrameParent22>
-              </TransactionHistoryParent>
-              <FrameParent23>
-                <ReceiverParent>
-                  <SafeLock>Receiver</SafeLock>
-                  <TypeParent>
-                    <SafeLock>Type</SafeLock>
-                    <SafeLock>Date</SafeLock>
-                    <SafeLock>Amount</SafeLock>
-                  </TypeParent>
-                </ReceiverParent>
-                <BoladeAdegbeteParent>
-                  <SafeLock>Bolade Adegbete</SafeLock>
-                  <LagosCorpGroupParent>
-                    <SafeLock>Lagos Corp Group</SafeLock>
-                    <SafeLock>30 May 2023</SafeLock>
-                    <SafeLock>₦ 5,000</SafeLock>
-                  </LagosCorpGroupParent>
-                </BoladeAdegbeteParent>
-                <Divider10 />
-                <BoladeAdegbeteParent>
-                  <SafeLock>Bolade Adegbete</SafeLock>
-                  <LagosCorpGroupParent>
-                    <SafeLock>Lagos Corp Group</SafeLock>
-                    <SafeLock>30 May 2023</SafeLock>
-                    <SafeLock>₦ 5,000</SafeLock>
-                  </LagosCorpGroupParent>
-                </BoladeAdegbeteParent>
-                <Divider10 />
-                <BoladeAdegbeteParent>
-                  <SafeLock>Bolade Adegbete</SafeLock>
-                  <LagosCorpGroupParent>
-                    <SafeLock>Lagos Corp Group</SafeLock>
-                    <SafeLock>30 May 2023</SafeLock>
-                    <SafeLock>₦ 5,000</SafeLock>
-                  </LagosCorpGroupParent>
-                </BoladeAdegbeteParent>
-                <Divider10 />
-                <BoladeAdegbeteParent>
-                  <SafeLock>Bolade Adegbete</SafeLock>
-                  <LagosCorpGroupParent>
-                    <SafeLock>Lagos Corp Group</SafeLock>
-                    <SafeLock>30 May 2023</SafeLock>
-                    <SafeLock>₦ 5,000</SafeLock>
-                  </LagosCorpGroupParent>
-                </BoladeAdegbeteParent>
-                <Divider10 />
-              </FrameParent23>
-            </FrameParent21>
-            <FrameParent24>
-              <MyGoalsParent>
-                <MyGoals>My Goals</MyGoals>
-                <ViewAll1 onClick={onViewAllText1Click}>View all</ViewAll1>
-              </MyGoalsParent>
-              <FrameParent25>
-                <FrameParent26>
-                  <AirplaneParent>
-                    <AirplaneIcon1 alt="" src="/airplane@2x.png" />
-                    <ContributionToLagosCorpGroParent>
-                      <SafeLock>Travel</SafeLock>
-                      <SafeLock>
-                        <Span3>{`₦ 5,000,000.00 `}</Span3>
-                        <Span>{`/ ₦ 10,000,000.00 `}</Span>
-                      </SafeLock>
-                    </ContributionToLagosCorpGroParent>
-                  </AirplaneParent>
-                  <SafeLock>50%</SafeLock>
-                </FrameParent26>
-                <RectangleParent>
-                  <RectangleDiv />
-                  <RectangleDiv />
-                  <RectangleDiv />
-                  <RectangleDiv />
-                  <RectangleDiv />
-                  <FrameChild5 />
-                  <FrameChild5 />
-                  <FrameChild5 />
-                  <FrameChild5 />
-                  <FrameChild5 />
-                </RectangleParent>
-              </FrameParent25>
-              <FrameParent27>
-                <FrameParent28>
-                  <AirplaneParent>
-                    <AirplaneIcon1 alt="" src="/home@2x.png" />
-                    <ContributionToLagosCorpGroParent>
-                      <SafeLock>Dream Home</SafeLock>
-                      <SafeLock>
-                        <Span3>{`₦ 3,000,000.00 `}</Span3>
-                        <Span>{`/ ₦ 10,000,000.00 `}</Span>
-                      </SafeLock>
-                    </ContributionToLagosCorpGroParent>
-                  </AirplaneParent>
-                  <SafeLock>30%</SafeLock>
-                </FrameParent28>
-                <RectangleParent>
-                  <RectangleDiv />
-                  <RectangleDiv />
-                  <RectangleDiv />
-                  <RectangleDiv />
-                  <RectangleDiv />
-                  <FrameChild5 />
-                  <FrameChild5 />
-                  <FrameChild5 />
-                  <FrameChild5 />
-                  <FrameChild5 />
-                </RectangleParent>
-              </FrameParent27>
-              <FrameParent25>
-                <FrameParent30>
-                  <AirplaneParent>
-                    <AirplaneIcon1 alt="" src="/car@2x.png" />
-                    <ContributionToLagosCorpGroParent>
-                      <SafeLock>Dream Car</SafeLock>
-                      <SafeLock>
-                        <Span3>{`₦ 7,000,000.00 `}</Span3>
-                        <Span>{`/ ₦ 10,000,000.00 `}</Span>
-                      </SafeLock>
-                    </ContributionToLagosCorpGroParent>
-                  </AirplaneParent>
-                  <SafeLock>70%</SafeLock>
-                </FrameParent30>
-                <RectangleParent>
-                  <RectangleDiv />
-                  <RectangleDiv />
-                  <RectangleDiv />
-                  <RectangleDiv />
-                  <RectangleDiv />
-                  <FrameChild5 />
-                  <FrameChild5 />
-                  <FrameChild5 />
-                  <FrameChild5 />
-                  <FrameChild5 />
-                </RectangleParent>
-              </FrameParent25>
-            </FrameParent24>
-          </FrameParent9>
-        </FrameParent>
-        <VuesaxbulkmessageQuestionIcon1
-          alt=""
-          src="/vuesaxbulkmessagequestion@2x.png"
-          onClick={openMessagePopup}
-        />
-        <NavbardefaultTypeParent>
-          <CompleteAccountSetupClickWrapper>
-            <CompleteAccountSetupContainer onClick={openKYC}>
-              <CompleteAccountSetup1>
-                Complete account setup
-              </CompleteAccountSetup1>
-              <Span3>{`. `}</Span3>
-              <Span3>
-                <ClickHere>Click here</ClickHere>
-              </Span3>
-            </CompleteAccountSetupContainer>
-          </CompleteAccountSetupClickWrapper>
-        </NavbardefaultTypeParent>
+                <NavbardefaultTypeParent>
+                  <CompleteAccountSetupClickWrapper>
+                    <CompleteAccountSetupContainer onClick={openKYC}>
+                      <CompleteAccountSetup1>
+                        Complete account setup
+                      </CompleteAccountSetup1>
+                      <Span3>{`. `}</Span3>
+                      <Span3>
+                        <ClickHere>Click here</ClickHere>
+                      </Span3>
+                    </CompleteAccountSetupContainer>
+                  </CompleteAccountSetupClickWrapper>
+                </NavbardefaultTypeParent>
+              </div>
+            </>
+          )}
+          {step === 1 && <Personalsavings2 selectstep={handleStep} />}
+          {step === 7 && <AddGoals />}
+          {step === 8 && <PersonalSavingDetailsPage selectstep={handleStep} />}
+        </>
       </DashboardRoot>
       {isDepositFundsOpen && (
         <PortalPopup

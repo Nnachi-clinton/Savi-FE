@@ -11,7 +11,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import { GoogleLogin } from '@react-oauth/google';
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 const isValidEmail = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -105,8 +105,8 @@ const Signup = () => {
   };
   const responseGoogleFailure = (error) => {
     setSignInAttempted(true);
-    setLoginError("Google Sign-In failed. Please try again.");
-    console.error("Google Sign-In Failure:", error);
+    setLoginError('Google Sign-In failed. Please try again.');
+    console.error('Google Sign-In Failure:', error);
   };
 
   const handleSignIn = async () => {
@@ -218,6 +218,10 @@ const Signup = () => {
         <CenterRight>
           <Text1>Savi</Text1>
           <Text2>Welcome back to Savi.</Text2>
+          {/* <Google>
+            <GoogleIcon src={Icon} alt="Google Icon" />
+            Sign up with Google
+          </Google> */}
           <GoogleContainer>
             <GoogleLogin
               onSuccess={responseGoogleSuccess}

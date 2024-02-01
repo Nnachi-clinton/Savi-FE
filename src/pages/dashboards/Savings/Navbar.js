@@ -11,7 +11,7 @@ const StyledNavbar = styled.div`
   width: 100%;
   height: 72px;
   background: var(--White, #fff);
-  z-index: 1;
+  z-index: 0;
   display: flex;
   position: fixed;
   top: 0;
@@ -87,8 +87,7 @@ const Display = styled.div`
 
 function Navbar() {
   const [userData, setUserData] = useState({});
-  const isLoggedIn = false;
-
+  const [step, setStep] = useState(0);
 
   const Id = localStorage.getItem('Id');
   console.log(Id);
@@ -119,8 +118,8 @@ function Navbar() {
         <SearchInput type="text" placeholder="Search..." />
       </Searchbox>
       <Display>
-        {<img src={userData.imageUrl} alt="" />}
-        <Text>{userData.firstName}</Text>
+        {<img src={userData?.imageUrl ?? { EmptyImage }} alt="" />}
+        <Text>{userData?.firstName ?? 'loading...'}</Text>
       </Display>
     </StyledNavbar>
   );

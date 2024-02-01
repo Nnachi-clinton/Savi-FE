@@ -1,17 +1,27 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import { useNavigate, Link } from 'react-router-dom';
 
-function AddGoals(props) {
+function AddGoals({ handleStep }) {
   const [target, setTarget] = useState('');
   const [targetAmount, setTargetAmount] = useState('');
   const [amountToAdd, setAmountToAdd] = useState('');
   const [frequency, setFrequency] = useState('daily');
   const [startDate, setStartDate] = useState('');
   const [withdrawalDate, setWithdrawalDate] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
   const navigate = useNavigate();
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedFile(file);
+  };
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
   const handleInputChange = (e, setter) => {
     setter(e.target.value);
   };
@@ -19,10 +29,11 @@ function AddGoals(props) {
   const handleFrequencyChange = (e) => {
     setFrequency(e.target.value);
   };
+  const userId = localStorage.getItem('Id');
   const handleSubmit = async () => {
     try {
       const response = await axios.post(
-        'https://localhost:7240/api/Savings/SetGoal/34567098756323456',
+        `https://localhost:7240/api/Savings/SetGoal/?id=${userId}`,
         {
           targetName: target,
           targetAmount: targetAmount,
@@ -30,32 +41,92 @@ function AddGoals(props) {
           frequency: frequency,
           startDate: startDate,
           withdrawalDate: withdrawalDate,
+          userId: userId,
+          autosave: isChecked,
+          goalUrl: selectedFile,
+        },
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
         }
       );
       // Handle the response as needed (e.g., redirect, show success message)
       console.log(response.data.result);
       if (response.data.statusCode === 200) {
-        navigate('/modal');
-
-        // Swal.fire({
-        //   icon: 'success',
-        //   title: 'Login successful!',
-        //   showConfirmButton: false,
-        //   timer: 1500,
-        //   position: 'top-end',
-        // });
+        // navigate('/modal');
+        Swal.fire({
+          icon: 'success',
+          title: 'Goal added successful!',
+          showConfirmButton: false,
+          timer: 1500,
+          position: 'top-end',
+        });
       } else {
         console.error('Error:', response.data);
-        // Swal.fire({
-        //   icon: 'error',
-        //   title: 'Error',
-        //   text: `Error: ${response.data.message}`,
-        //   confirmButtonText: 'OK',
-        // });
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: `Error: ${response.data.message}`,
+          confirmButtonText: 'OK',
+        });
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: `Error: ${response.data.message}`,
+          confirmButtonText: 'OK',
+        });
       }
     } catch (error) {
       // Handle errors (e.g., show error message)
       console.error('Error submitting goals:', error);
+      if (error.response) {
+        console.error('Server Error:', error.response.status);
+        console.error('Error Message:', error.response.data.message);
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'An unexpected error occurred: ' + error.message,
+          confirmButtonText: 'OK',
+        });
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'An unexpected error occurred: ' + error.message,
+          confirmButtonText: 'OK',
+        });
+      } else if (error.request) {
+        console.error('No Response from Server');
+
+        Swal.fire({
+          icon: 'error',
+          title: 'No Response from Server',
+          text: 'No response from the server. Please try again.',
+          confirmButtonText: 'OK',
+        });
+        Swal.fire({
+          icon: 'error',
+          title: 'No Response from Server',
+          text: 'No response from the server. Please try again.',
+          confirmButtonText: 'OK',
+        });
+      } else {
+        console.error('Unexpected Error:', error.message);
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Error during login.',
+          text: 'An unexpected error occurred during login.',
+          confirmButtonText: 'OK',
+        });
+        Swal.fire({
+          icon: 'error',
+          title: 'Error during login.',
+          text: 'An unexpected error occurred during login.',
+          confirmButtonText: 'OK',
+        });
+      }
     }
   };
   return (
@@ -108,8 +179,28 @@ function AddGoals(props) {
         value={withdrawalDate}
         onChange={(e) => handleInputChange(e, setWithdrawalDate)}
         placeholder="pick your date"
+        style={{ marginBottom: 10 }}
       />
-
+      <div style={{ width: 320 }}>
+        <label>
+          <input
+            type="checkbox"
+            value={isChecked}
+            onChange={handleCheckboxChange}
+          />
+          AutoSave
+        </label>
+        <p style={{ color: 'red' }}>
+          {isChecked &&
+            'Your account will be AutoDebited once this box is checked'}
+        </p>
+      </div>
+      <div style={{ width: 320 }}>
+        <label>
+          Upload Picture:
+          <input type="file" accept="image/*" onChange={handleFileChange} />
+        </label>
+      </div>
       <Span7 onClick={handleSubmit}>Submit</Span7>
     </Main>
   );
@@ -146,12 +237,14 @@ const Div2 = styled.div`
 const Input = styled.input`
   padding: 8px;
   margin-top: 8px;
+  margin-bottom: -12px;
   width: 320px;
   height: 45px;
 `;
 const Select = styled.select`
   padding: 8px;
   margin-top: 8px;
+  margin-bottom: -10px;
   width: 320px;
   height: 45px;
 `;

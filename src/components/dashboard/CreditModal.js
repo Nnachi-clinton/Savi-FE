@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-function CreditModal({onClose}) {
+function CreditModal({ onClose }) {
   const [amount, setAmount] = useState('');
   //   const [errorMessage, setErrorMessage] = useState('');
 
@@ -22,15 +22,16 @@ function CreditModal({onClose}) {
     e.preventDefault();
     try {
       console.log('Submitted amount:', amount);
-      const walletId = localStorage.getItem("");
-      const savingsId = localStorage.getItem("");
+      const walletId = localStorage.getItem('walletId');
+      console.log(walletId);
+      const savingsId = localStorage.getItem('PersonalGoalId');
       const response = await axios.post(
         'https://localhost:7240/api/Funding/CreditPersonalTarget',
         {
           amount: amount,
-          walletId: '7db3858d-a9c5-48c3-b2df-425afa78db77',
-          savingsGoalId: '8bc4c361-c49a-4305-98f4-b092645433c4',
-        },
+          walletId: walletId,
+          savingsGoalId: savingsId,
+        }
       );
       if (response.status === 200) {
         Swal.fire({
@@ -41,29 +42,29 @@ function CreditModal({onClose}) {
           timer: 5000,
         });
       } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: `Error: ${response.data.message}`,
-            confirmButtonText: 'OK',
-          });
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: `Error: ${response.data.message}`,
+          confirmButtonText: 'OK',
+        });
       }
     } catch (error) {
       console.error('An error occurred:', error);
 
       Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'An unexpected error occurred: ' + error.message,
-          confirmButtonText: 'OK',
-        });
+        icon: 'error',
+        title: 'Error',
+        text: 'An unexpected error occurred: ' + error.message,
+        confirmButtonText: 'OK',
+      });
     }
     onClose();
   };
 
   const handleModalClick = (event) => {
     event.stopPropagation();
-  }
+  };
 
   return (
     <ModalOverlay onClick={onClose}>
