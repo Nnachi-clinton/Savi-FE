@@ -31,6 +31,10 @@ import Dashboard2 from './components/Dashboard2.js';
 import Successfulwithdrawal from './pages/dashboards/WithdrawalModal/Successfulwithdrawal.js';
 import PersonalSavingDetailsPage from './pages/savings/PersonalSavingDetailsPage.js';
 import WithdrawFunds from './components/dashboard/WithdrawFunds.js';
+import ContributionCard from './pages/ExploreActiveGroups/ContributionCard/ContributionCard.js';
+import SavingsGroupCard from './pages/ExploreActiveGroups/SavingsGroupCard/SavingsGroupCard.js';
+import CorpMembersDashboard from './pages/ExploreActiveGroups/CorpMembersDashboard/CorpMembersDashboard.js';
+import ContributionSummary from './pages/ExploreActiveGroups/ContributionSummary/ContributionSummary.js';
 
 // App component
 function App() {
@@ -79,6 +83,14 @@ function App() {
                 element={<PersonalSavingDetailsPage />}
               />
               <Route path="/withdraw" element={<WithdrawFunds />} />
+              <Route
+                path="/contributioncard"
+                element={<ContributionSummary />}
+              />
+              <Route
+                path="/savingsgroupCard"
+                element={<CorpMembersDashboard />}
+              />
             </Routes>
           </GlobalProvider>
         </Router>
