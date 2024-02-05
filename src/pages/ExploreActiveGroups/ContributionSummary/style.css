@@ -7,6 +7,7 @@
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
+  margin-left: 12em;
 }
 .contribution-info {
   flex: 0 0 auto;
@@ -59,9 +60,8 @@
   flex: 0 0 auto;
   display: flex;
   flex-direction: row;
-  gap: 8px;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin-top: 14px;
 }
 .contribution-timeline {
@@ -89,10 +89,8 @@
   flex: 0 0 auto;
   display: flex;
   flex-direction: row;
-  gap: 8px;
   align-items: center;
-  justify-content: space-between;
-  padding-right: 29px;
+  justify-content: flex-start;
   margin-top: 8px;
 }
 .date-heading {
@@ -113,6 +111,7 @@
   font: var(--font-weight-400) var(--font-size-16) 'Inter';
   color: var(--color-dodgerblue-7854f561);
   letter-spacing: 0.15px;
+  cursor: pointer;
 }
 .svg-container {
   flex: 0 0 auto;

@@ -12,8 +12,8 @@ function ContributionCard() {
             <p className="date-text">Jun 1, 2023</p>
             <p className="price-label2">₦50,000</p>
           </div>
-          {/* Button Component is detected here. We've generated code using HTML. See other options in "Component library" dropdown in Settings */}
-          <button className="payment-button">Pay Now</button>
+          {/* 
+          <button className="payment-button">Pay Now</button> */}
         </div>
         <p className="payment-details1">
           <span>Your payment will be debited from your </span>
@@ -23,10 +23,9 @@ function ContributionCard() {
           <span>.&nbsp;&nbsp;</span>
         </p>
       </div>
-      <div className="payment-dismiss-button">
-        {/* Button Component is detected here. We've generated code using HTML. See other options in "Component library" dropdown in Settings */}
+      {/* <div className="payment-dismiss-button">
         <button className="dismiss-button">DISMISS</button>
-      </div>
+      </div> */}
     </div>
   );
 }

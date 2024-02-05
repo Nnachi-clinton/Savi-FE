@@ -35,6 +35,8 @@ import ContributionCard from './pages/ExploreActiveGroups/ContributionCard/Contr
 import SavingsGroupCard from './pages/ExploreActiveGroups/SavingsGroupCard/SavingsGroupCard.js';
 import CorpMembersDashboard from './pages/ExploreActiveGroups/CorpMembersDashboard/CorpMembersDashboard.js';
 import ContributionSummary from './pages/ExploreActiveGroups/ContributionSummary/ContributionSummary.js';
+import DashboardSection from './pages/ExploreActiveGroups/DashboardSection/DashboardSection.js';
+import TransactionCardSection from './pages/ExploreActiveGroups/TransactionCardSection/TransactionCardSection.js';
 
 // App component
 function App() {
@@ -83,13 +85,10 @@ function App() {
                 element={<PersonalSavingDetailsPage />}
               />
               <Route path="/withdraw" element={<WithdrawFunds />} />
-              <Route
-                path="/contributioncard"
-                element={<ContributionSummary />}
-              />
+              <Route path="/contributioncard" element={<DashboardSection />} />
               <Route
                 path="/savingsgroupCard"
-                element={<CorpMembersDashboard />}
+                element={<TransactionCardSection />}
               />
             </Routes>
           </GlobalProvider>

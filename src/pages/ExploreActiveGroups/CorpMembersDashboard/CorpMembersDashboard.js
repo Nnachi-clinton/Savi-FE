@@ -1,5 +1,6 @@
 import ContributionCard from '../ContributionCard/ContributionCard';
 import SavingsGroupCard from '../SavingsGroupCard/SavingsGroupCard';
+import Image from '../assets/img_2650_29411_cfdc0d.jpeg';
 import '../style/reset.css';
 import '../style/variables.css';
 import './style.css';
@@ -14,11 +15,7 @@ function CorpMembersDashboard() {
         </div>
         <ContributionCard />
       </div>
-      <img
-        src="./assets/img_2650_29411_cfdc0d.jpeg"
-        className="hero-image"
-        alt=""
-      />
+      <img src={Image} className="hero-image" alt="" />
       <p className="money-sense-text">
         Bros/Sis, no dull yourself for dis service year money mata. Join Lagos
         Corp Members Thrift Saving Group sharp-sharp! We go secure your money,

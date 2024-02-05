@@ -15,7 +15,7 @@ function ContributionSummary() {
         <p className="price-label1">Daily</p>
       </div>
       <div className="contribution-timeline3">
-        <p className="contribution-timeline">Contribution Timeline</p>
+        <p className="contribution-amount-label">Contribution Timeline</p>
         <p className="contribution-timeline">Estimated Collection</p>
       </div>
       <div className="contribution-timeline2">
@@ -27,8 +27,8 @@ function ContributionSummary() {
         <p className="contribution-schedule">End Date</p>
       </div>
       <div className="contribution-timeline1">
-        <p className="date-heading">May 1, 2022</p>
-        <p className="date-heading">October 1, 2022</p>
+        <p className="price-label">May 1, 2022</p>
+        <p className="price-label1">October 1, 2022</p>
       </div>
       <div className="contribution-details3">
         <p className="contribution-amount-label">Available Slots</p>
