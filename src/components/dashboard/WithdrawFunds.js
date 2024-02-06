@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const Button = styled.button`
   background-color: var(--primary-color);
   color: var(--white);
   border: none;
   border-radius: var(--br-5xs);
-  padding: var(--padding-xs) var(--padding-sm);  // Adjusted padding values
+  padding: var(--padding-xs) var(--padding-sm); // Adjusted padding values
   cursor: pointer;
   font-size: var(--text-md-medium-size);
-  cursor: pointer
+  cursor: pointer;
 `;
 const Text5 = styled.b`
   position: relative;
@@ -75,17 +76,17 @@ const TextParent = styled.div`
   gap: var(--gap-5xs);
 `;
 const Ctadefault = styled.div`
-display: flex;
-width: 320px;
-color: #fff;
-padding: 12px 16px;
-justify-content: center;
-margin: 0 auto;
-border: none;
-align-items: center;
-gap: 8px;
-border-radius: 8px;
-background: var(--Primary-Color, #b5179e);
+  display: flex;
+  width: 320px;
+  color: #fff;
+  padding: 12px 16px;
+  justify-content: center;
+  margin: 0 auto;
+  border: none;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  background: var(--Primary-Color, #b5179e);
 `;
 const WithdrawFundsRoot = styled.div`
   position: fixed; /* Fixed position to overlay on top of the page */
@@ -106,31 +107,61 @@ const WithdrawFundsContainer = styled.div`
   height: 310px;
 `;
 
-const WithdrawFunds = ({onClose}) => {
+const WithdrawFunds = ({ onClose }) => {
   const [amount, setAmount] = useState('');
 
   const handleAmountChange = (event) => {
     setAmount(event.target.value);
   };
 
-  const handleSubmit = () => {
-    // Make API request using Axios
-    axios.post('your-api-endpoint', { amount })
-      .then(response => {
-        // Handle success
-        console.log(response.data);
-      })
-      .catch(error => {
-        // Handle error
-        console.error(error);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      console.log('Submitted amount:', amount);
+      const walletId = localStorage.getItem('walletId');
+      console.log(walletId);
+      const savingsId = localStorage.getItem('PersonalGoalId');
+      const response = await axios.post(
+        'https://localhost:7240/api/Funding/DebitPersonalTarget',
+        {
+          amount: amount,
+          walletId: walletId,
+          savingsGoalId: savingsId,
+        }
+      );
+      if (response.status === 200) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Successful!',
+          html: `A sum of &#8358;${amount} has been deposited into your saving.`,
+          showConfirmButton: false,
+          timer: 5000,
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: `Error: ${response.data.message}`,
+          confirmButtonText: 'OK',
+        });
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'An unexpected error occurred: ' + error.message,
+        confirmButtonText: 'OK',
       });
+    }
     onClose();
   };
 
   const handleModalClick = (event) => {
     event.stopPropagation();
-  }
-  
+  };
+
   return (
     <WithdrawFundsRoot onClick={onClose}>
       <WithdrawFundsContainer onClick={handleModalClick}>

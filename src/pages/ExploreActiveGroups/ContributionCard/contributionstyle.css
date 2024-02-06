@@ -1,0 +1,102 @@
+.contribution-card {
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 57.99%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.contribution-container {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+.contribution-title {
+  flex: 0 0 auto;
+  font: var(--font-weight-500) var(--font-size-16) 'Inter';
+  color: var(--color-black-89c635a1);
+}
+.contribution-container1 {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+.payment-details {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding-bottom: 6px;
+}
+.date-text {
+  flex: 0 0 auto;
+  font: var(--font-weight-300) var(--font-size-16) 'Inter';
+  color: var(--color-black-89c635a1);
+}
+.price-label2 {
+  flex: 0 0 auto;
+  font: var(--font-weight-600) var(--font-size-24) 'Inter';
+  margin-top: 8px;
+  color: var(--color-black-89c635a1);
+}
+.payment-button {
+  flex: 0 0 auto;
+  border: none;
+  border-radius: var(--border-radius-8);
+  font: var(--font-weight-600) var(--font-size-16) 'Inter';
+  background: var(--color-mediumvioletred-c2af2369);
+  box-sizing: border-box;
+  display: block;
+  align-self: center;
+  width: 115px;
+  min-width: 115px;
+  height: 40px;
+  color: var(--color-white);
+  cursor: pointer;
+}
+.payment-details1 {
+  flex: 0 0 auto;
+  font: var(--font-weight-300) var(--font-size-14) / 20px 'Inter';
+  box-sizing: border-box;
+  max-width: 260px;
+  margin-top: 10px;
+  color: var(--color-black-89c635a1);
+  text-align: left;
+}
+.wallet-amount {
+  font: var(--font-weight-500) var(--font-size-14) / 20px 'Inter';
+  text-align: left;
+}
+.payment-amount-text {
+  font: var(--font-weight-400) var(--font-size-14) / 20px 'Inter';
+  text-align: left;
+}
+.payment-dismiss-button {
+  flex: 0 0 auto;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-left: 8px;
+}
+.dismiss-button {
+  border: 1px solid var(--color-lightgrey-7e1cae0c);
+  border-radius: var(--border-radius-8);
+  font: var(--font-weight-600) var(--font-size-16) 'Inter';
+  background: var(--color-991c5d52);
+  box-sizing: border-box;
+  display: block;
+  width: 115px;
+  min-width: 115px;
+  height: 40px;
+  color: var(--color-black-89c635a1);
+  cursor: pointer;
+}

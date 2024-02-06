@@ -31,6 +31,7 @@ import Dashboard2 from './components/Dashboard2.js';
 import Successfulwithdrawal from './pages/dashboards/WithdrawalModal/Successfulwithdrawal.js';
 import PersonalSavingDetailsPage from './pages/savings/PersonalSavingDetailsPage.js';
 import WithdrawFunds from './components/dashboard/WithdrawFunds.js';
+import DashboardSection from './pages/ExploreActiveGroups/DashboardSection/DashboardSection.js';
 import EmptyGroup from './pages/group/EmptyGroup.js';
 
 // App component
@@ -55,7 +56,7 @@ function App() {
               <Route path="/LandingPage" element={<LandingPage />} />
               <Route path="/resetPassword" element={<ResetPassword />} />
               <Route path="/forgotPassword" element={<ForgotPassword />} />
-              <Route path="/dashboard/*" element={<DashBoard />} />
+              <Route path="/dashboard" element={<DashBoard />} />
               {/* <Route path="/login" element={<Login />} /> */}
               <Route path="/kyc-verification" element={<Kyc />} />
               <Route path="/signup" element={<Signup />} />
@@ -81,6 +82,7 @@ function App() {
                 element={<PersonalSavingDetailsPage />}
               />
               <Route path="/withdraw" element={<WithdrawFunds />} />
+              <Route path="/dashboardsection" element={<DashboardSection />} />
             </Routes>
           </GlobalProvider>
         </Router>
