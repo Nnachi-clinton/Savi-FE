@@ -1988,6 +1988,7 @@ const DashBoard = () => {
         console.log(response2.data);
         console.log(response2.data.result);
         console.log(response2.data.result.balance);
+        localStorage.setItem('walletBalance', response2.data.result.balance);
         const wallet = response2.data.result.id;
         console.log(wallet);
         localStorage.setItem('walletId', wallet);
