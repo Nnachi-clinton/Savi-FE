@@ -31,6 +31,7 @@ import Dashboard2 from './components/Dashboard2.js';
 import Successfulwithdrawal from './pages/dashboards/WithdrawalModal/Successfulwithdrawal.js';
 import PersonalSavingDetailsPage from './pages/savings/PersonalSavingDetailsPage.js';
 import WithdrawFunds from './components/dashboard/WithdrawFunds.js';
+import EmptyGroup from './pages/group/EmptyGroup.js';
 
 // App component
 function App() {
@@ -44,6 +45,7 @@ function App() {
               {/* <Route path="/" element={<Home />} /> */}
               <Route path="/Personalsavings2" element={<Personalsavings2 />} />
               <Route path="/EmptySavings" element={<EmptySavings />} />
+              <Route path="/EmptyGroup" element={<EmptyGroup />} />
               <Route path="/Addgoals" element={<AddGoals />} />
               <Route path="/modal" element={<Modal />} />
               <Route path="/" element={<LandingPage />} />
