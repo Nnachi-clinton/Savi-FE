@@ -32,6 +32,7 @@ import Successfulwithdrawal from './pages/dashboards/WithdrawalModal/Successfulw
 import PersonalSavingDetailsPage from './pages/savings/PersonalSavingDetailsPage.js';
 import WithdrawFunds from './components/dashboard/WithdrawFunds.js';
 import DashboardSection from './pages/ExploreActiveGroups/DashboardSection/DashboardSection.js';
+import EmptyGroup from './pages/group/EmptyGroup.js';
 
 // App component
 function App() {
@@ -45,6 +46,7 @@ function App() {
               {/* <Route path="/" element={<Home />} /> */}
               <Route path="/Personalsavings2" element={<Personalsavings2 />} />
               <Route path="/EmptySavings" element={<EmptySavings />} />
+              <Route path="/EmptyGroup" element={<EmptyGroup />} />
               <Route path="/Addgoals" element={<AddGoals />} />
               <Route path="/modal" element={<Modal />} />
               <Route path="/" element={<LandingPage />} />
@@ -54,7 +56,7 @@ function App() {
               <Route path="/LandingPage" element={<LandingPage />} />
               <Route path="/resetPassword" element={<ResetPassword />} />
               <Route path="/forgotPassword" element={<ForgotPassword />} />
-              <Route path="/dashboard/*" element={<DashBoard />} />
+              <Route path="/dashboard" element={<DashBoard />} />
               {/* <Route path="/login" element={<Login />} /> */}
               <Route path="/kyc-verification" element={<Kyc />} />
               <Route path="/signup" element={<Signup />} />
