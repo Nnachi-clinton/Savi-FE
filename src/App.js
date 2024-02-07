@@ -13,7 +13,7 @@ import LandingPage from './pages/landingPage/LandingPage';
 // import Login from './pages/Auth/Login.js';
 import Personalsavings2 from '../src/pages/savings/PersonalSavings2.js';
 import EmptySavings from '../src/pages/savings/EmptySavings.js';
-import EmptyGroupSavings from '../src/pages/groupSavings/EmptyGroupSavings.js';
+import EmptyGroupSavings from './pages/GroupSavings/EmptyGroupSavings.js';
 import AddGoals from '../src/pages/savings/AddGoals.js';
 import Modal from '../src/pages/savings/SavingUpdateModal.js';
 import Signin from '../src/pages/Auth/Login/Sginin.js';
@@ -34,7 +34,8 @@ import PersonalSavingDetailsPage from './pages/savings/PersonalSavingDetailsPage
 import WithdrawFunds from './components/dashboard/WithdrawFunds.js';
 import DashboardSection from './pages/ExploreActiveGroups/DashboardSection/DashboardSection.js';
 import EmptyGroup from './pages/group/EmptyGroup.js';
-import AddGroupSavings from './pages/groupSavings/AddGroupSavings.js';
+import UpdateUser from './User/UpdateUser.js';
+import AddGroupSavings from './pages/GroupSavings/AddGroupSavings.js';
 import AddGroupSavingsModal from './components/modal/AddGroupSavingsModal.js';
 
 // App component
@@ -50,7 +51,10 @@ function App() {
               <Route path="/Personalsavings2" element={<Personalsavings2 />} />
               <Route path="/EmptySavings" element={<EmptySavings />} />
               <Route path="/EmptyGroup" element={<EmptyGroup />} />
-              <Route path="/EmptyGroupSavings" element={<EmptyGroupSavings />} />
+              <Route
+                path="/EmptyGroupSavings"
+                element={<EmptyGroupSavings />}
+              />
               <Route path="/Addgoals" element={<AddGoals />} />
               <Route path="/modal" element={<Modal />} />
               <Route path="/" element={<LandingPage />} />
@@ -66,17 +70,36 @@ function App() {
               <Route path="/signup" element={<Signup />} />
               <Route path="/SignupModal" element={<SignupModal />} />
               <Route path="/dash" element={<Dashboard2 />} />
-              <Route path="/EmailVerifiedModal" element={<EmailVerifiedModal />} />
+              <Route
+                path="/EmailVerifiedModal"
+                element={<EmailVerifiedModal />}
+              />
               <Route path="/CreditModal" element={<CreditModal />} />
-              <Route path="/CreditSuccessfulModal" element={<CreditSuccessfulModal />}/>
+              <Route
+                path="/CreditSuccessfulModal"
+                element={<CreditSuccessfulModal />}
+              />
               <Route path="/withdrawalform" element={<Withdrawalform />} />
               <Route path="/paystack" element={<Paystack />} />
-              <Route path="/successfulwithdrawal" element={<Successfulwithdrawal />} />
-              <Route path="/personal-saving-details" element={<PersonalSavingDetailsPage />} />
+              <Route
+                path="/successfulwithdrawal"
+                element={<Successfulwithdrawal />}
+              />
+              <Route
+                path="/personal-saving-details"
+                element={<PersonalSavingDetailsPage />}
+              />
               <Route path="/withdraw" element={<WithdrawFunds />} />
               <Route path="/dashboardsection" element={<DashboardSection />} />
-              <Route path="/create-group-savings" element={<AddGroupSavings />} />
-              <Route path="/add-group-savings-modal" element={<AddGroupSavingsModal />} />
+              <Route
+                path="/create-group-savings"
+                element={<AddGroupSavings />}
+              />
+              <Route
+                path="/add-group-savings-modal"
+                element={<AddGroupSavingsModal />}
+              />
+              <Route path="/Updateprofile" element={<UpdateUser />} />
             </Routes>
           </GlobalProvider>
         </Router>

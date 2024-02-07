@@ -10,9 +10,10 @@ import Personalsavings2 from '../savings/PersonalSavings2';
 import AddGoals from '../savings/AddGoals';
 import Modal from '../savings/SavingUpdateModal';
 import PersonalSavingDetailsPage from '../savings/PersonalSavingDetailsPage';
-import  ProgressBar from '../../components/dashboard/ProgressBar';
-import { useNavigate  } from 'react-router-dom';
-
+import ProgressBar from '../../components/dashboard/ProgressBar';
+import { useNavigate } from 'react-router-dom';
+import EmptyGroupSavings from '../GroupSavings/EmptyGroupSavings';
+import AddGroupSavings from '../GroupSavings/AddGroupSavings';
 
 const WelcomeBackJohn1 = styled.b`
   position: relative;
@@ -1801,7 +1802,7 @@ const Text = styled.div`
 `;
 
 const DashBoard = () => {
-  const navigate = useNavigate ();
+  const navigate = useNavigate();
   const [isDepositFundsOpen, setDepositFundsOpen] = useState(false);
   const [isWithdrawFundsOpen, setWithdrawFundsOpen] = useState(false);
   const [isDepositFunds1Open, setDepositFunds1Open] = useState(false);
@@ -2044,7 +2045,11 @@ const DashBoard = () => {
 
         // Check if it's an Axios error with a response
         if (error.response) {
-          console.error('Server responded with:', error.response.status, error.response.data);
+          console.error(
+            'Server responded with:',
+            error.response.status,
+            error.response.data
+          );
         } else if (error.request) {
           console.error('No response received:', error.request);
         } else {
@@ -2052,7 +2057,7 @@ const DashBoard = () => {
         }
       }
     };
-    
+
     fetchData();
   }, [Id]);
 
@@ -2598,36 +2603,51 @@ const DashBoard = () => {
                       </MyGoalsParent>
                       {goals && goals.length > 0 ? (
                         goals.slice(0, displayedGoals).map((goal) => (
-                        // goals.map((goal) => (
-                        <FrameParent25 key={goal.id}>
-                          <FrameParent26>
-                            <AirplaneParent>
-                            <AirplaneIcon1
-                              alt=""
-                              src={goal.avatar || '/airplane@2x.png'} 
-                            />
-                              <ContributionToLagosCorpGroParent>
-                                <SafeLock>{goal.targetName}</SafeLock>
-                                <SafeLock>
-                                <Span3>{`₦ ${goal.amountToAdd ? goal.amountToAdd.toLocaleString() : 'N/A'} `}</Span3>
-                                <Span>{`/ ₦ ${goal.targetAmount ? goal.targetAmount.toLocaleString() : 'N/A'} `}</Span>
-                                </SafeLock>
-                              </ContributionToLagosCorpGroParent>
-                            </AirplaneParent>
-                            <SafeLock>{`${((goal.amountToAdd / goal.targetAmount) * 100).toFixed(2)}%`}</SafeLock>
-                          </FrameParent26>
-                          <RectangleParent>
-                          {console.log((goal.amountSaved / goal.goalAmount) * 100)}
-                          <ProgressBar
-                            percentage={(goal.amountSaved / goal.goalAmount) * 100}
-                          />
-                          </RectangleParent>
-                        </FrameParent25>
-                      ))
+                          // goals.map((goal) => (
+                          <FrameParent25 key={goal.id}>
+                            <FrameParent26>
+                              <AirplaneParent>
+                                <AirplaneIcon1
+                                  alt=""
+                                  src={goal.avatar || '/airplane@2x.png'}
+                                />
+                                <ContributionToLagosCorpGroParent>
+                                  <SafeLock>{goal.targetName}</SafeLock>
+                                  <SafeLock>
+                                    <Span3>{`₦ ${
+                                      goal.amountToAdd
+                                        ? goal.amountToAdd.toLocaleString()
+                                        : 'N/A'
+                                    } `}</Span3>
+                                    <Span>{`/ ₦ ${
+                                      goal.targetAmount
+                                        ? goal.targetAmount.toLocaleString()
+                                        : 'N/A'
+                                    } `}</Span>
+                                  </SafeLock>
+                                </ContributionToLagosCorpGroParent>
+                              </AirplaneParent>
+                              <SafeLock>{`${(
+                                (goal.amountToAdd / goal.targetAmount) *
+                                100
+                              ).toFixed(2)}%`}</SafeLock>
+                            </FrameParent26>
+                            <RectangleParent>
+                              {console.log(
+                                (goal.amountSaved / goal.goalAmount) * 100
+                              )}
+                              <ProgressBar
+                                percentage={
+                                  (goal.amountSaved / goal.goalAmount) * 100
+                                }
+                              />
+                            </RectangleParent>
+                          </FrameParent25>
+                        ))
                       ) : (
-                      <p>No goals available.</p>
-                    )}
-                </FrameParent24>
+                        <p>No goals available.</p>
+                      )}
+                    </FrameParent24>
                   </FrameParent9>
                 </FrameParent>
                 <VuesaxbulkmessageQuestionIcon1
@@ -2652,8 +2672,10 @@ const DashBoard = () => {
             </>
           )}
           {step === 1 && <Personalsavings2 selectstep={handleStep} />}
+          {step === 2 && <EmptyGroupSavings selectstep={handleStep} />}
           {step === 7 && <AddGoals />}
           {step === 8 && <PersonalSavingDetailsPage selectstep={handleStep} />}
+          {step === 9 && <AddGroupSavings />}
         </>
       </DashboardRoot>
       {isDepositFundsOpen && (

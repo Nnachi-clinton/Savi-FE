@@ -93,7 +93,10 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-function EmptyGroupSavings(props) {
+function EmptyGroupSavings({ selectstep }) {
+  const handleGroupClick = () => {
+    selectstep(9);
+  };
   return (
     <Div>
       <Span>
@@ -103,7 +106,8 @@ function EmptyGroupSavings(props) {
       <Span2>
         <Div4>You don’t have any active saving group, you can</Div4>
         <LinkText>
-          <span>Create a new group</span>   or   <span>explore groups</span>
+          <span onClick={() => handleGroupClick()}>Create a new group</span> or{' '}
+          <span>explore groups</span>
         </LinkText>
       </Span2>
     </Div>
@@ -113,7 +117,7 @@ function EmptyGroupSavings(props) {
 const Div = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 10em;
+  margin-top: 2em;
   width: 70%;
   margin-left: 27em;
 `;
@@ -196,4 +200,3 @@ const LinkText = styled.div`
 `;
 
 export default EmptyGroupSavings;
-
