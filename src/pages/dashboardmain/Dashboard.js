@@ -10,6 +10,9 @@ import Personalsavings2 from '../savings/PersonalSavings2';
 import AddGoals from '../savings/AddGoals';
 import Modal from '../savings/SavingUpdateModal';
 import PersonalSavingDetailsPage from '../savings/PersonalSavingDetailsPage';
+import  ProgressBar from '../../components/dashboard/ProgressBar';
+import { useNavigate  } from 'react-router-dom';
+
 
 const WelcomeBackJohn1 = styled.b`
   position: relative;
@@ -1798,6 +1801,7 @@ const Text = styled.div`
 `;
 
 const DashBoard = () => {
+  const navigate = useNavigate ();
   const [isDepositFundsOpen, setDepositFundsOpen] = useState(false);
   const [isWithdrawFundsOpen, setWithdrawFundsOpen] = useState(false);
   const [isDepositFunds1Open, setDepositFunds1Open] = useState(false);
@@ -1926,9 +1930,9 @@ const DashBoard = () => {
     setWithdrawFunds4Open(false);
   }, []);
 
-  const onViewAllText1Click = useCallback(() => {
-    // Please sync "Personal Saving" to the project
-  }, []);
+  // const onViewAllText1Click = useCallback(() => {
+  //   // Please sync "Personal Saving" to the project
+  // }, []);
 
   const openMessagePopup = useCallback(() => {
     setMessagePopupOpen(true);
@@ -1956,6 +1960,8 @@ const DashBoard = () => {
   const [userData, setUserData] = useState({});
   const [walletData, setWalletData] = useState({});
   const [walletData2, setWalletData2] = useState({});
+  const [goals, setGoals] = useState([]);
+  const [displayedGoals, setDisplayedGoals] = useState(3);
 
   const Id = localStorage.getItem('Id');
   console.log(Id);
@@ -2018,6 +2024,44 @@ const DashBoard = () => {
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (!Id) {
+          console.error('User ID is missing.'); // Log an error if ID is missing
+          return;
+        }
+
+        const response = await axios.get(
+          `https://localhost:7240/api/Savings/listAllGoals/${Id}`
+        );
+
+        // Update the goals state with the data from the API
+        setGoals(response.data.result);
+      } catch (error) {
+        console.error('Error fetching goals:', error);
+
+        // Check if it's an Axios error with a response
+        if (error.response) {
+          console.error('Server responded with:', error.response.status, error.response.data);
+        } else if (error.request) {
+          console.error('No response received:', error.request);
+        } else {
+          console.error('Error setting up the request:', error.message);
+        }
+      }
+    };
+    
+    fetchData();
+  }, [Id]);
+
+  // const onViewAllText1Click = () => {
+  //   setDisplayedGoals(goals.length);
+  // };
+  const onViewAllText1Click = () => {
+    navigate('/personalsavings2');
+  };
 
   return (
     <>
@@ -2552,88 +2596,38 @@ const DashBoard = () => {
                           View all
                         </ViewAll1>
                       </MyGoalsParent>
-                      <FrameParent25>
-                        <FrameParent26>
-                          <AirplaneParent>
-                            <AirplaneIcon1 alt="" src="/airplane@2x.png" />
-                            <ContributionToLagosCorpGroParent>
-                              <SafeLock>Travel</SafeLock>
-                              <SafeLock>
-                                <Span3>{`₦ 5,000,000.00 `}</Span3>
-                                <Span>{`/ ₦ 10,000,000.00 `}</Span>
-                              </SafeLock>
-                            </ContributionToLagosCorpGroParent>
-                          </AirplaneParent>
-                          <SafeLock>50%</SafeLock>
-                        </FrameParent26>
-                        <RectangleParent>
-                          <RectangleDiv />
-                          <RectangleDiv />
-                          <RectangleDiv />
-                          <RectangleDiv />
-                          <RectangleDiv />
-                          <FrameChild5 />
-                          <FrameChild5 />
-                          <FrameChild5 />
-                          <FrameChild5 />
-                          <FrameChild5 />
-                        </RectangleParent>
-                      </FrameParent25>
-                      <FrameParent27>
-                        <FrameParent28>
-                          <AirplaneParent>
-                            <AirplaneIcon1 alt="" src="/home@2x.png" />
-                            <ContributionToLagosCorpGroParent>
-                              <SafeLock>Dream Home</SafeLock>
-                              <SafeLock>
-                                <Span3>{`₦ 3,000,000.00 `}</Span3>
-                                <Span>{`/ ₦ 10,000,000.00 `}</Span>
-                              </SafeLock>
-                            </ContributionToLagosCorpGroParent>
-                          </AirplaneParent>
-                          <SafeLock>30%</SafeLock>
-                        </FrameParent28>
-                        <RectangleParent>
-                          <RectangleDiv />
-                          <RectangleDiv />
-                          <RectangleDiv />
-                          <RectangleDiv />
-                          <RectangleDiv />
-                          <FrameChild5 />
-                          <FrameChild5 />
-                          <FrameChild5 />
-                          <FrameChild5 />
-                          <FrameChild5 />
-                        </RectangleParent>
-                      </FrameParent27>
-                      <FrameParent25>
-                        <FrameParent30>
-                          <AirplaneParent>
-                            <AirplaneIcon1 alt="" src="/car@2x.png" />
-                            <ContributionToLagosCorpGroParent>
-                              <SafeLock>Dream Car</SafeLock>
-                              <SafeLock>
-                                <Span3>{`₦ 7,000,000.00 `}</Span3>
-                                <Span>{`/ ₦ 10,000,000.00 `}</Span>
-                              </SafeLock>
-                            </ContributionToLagosCorpGroParent>
-                          </AirplaneParent>
-                          <SafeLock>70%</SafeLock>
-                        </FrameParent30>
-                        <RectangleParent>
-                          <RectangleDiv />
-                          <RectangleDiv />
-                          <RectangleDiv />
-                          <RectangleDiv />
-                          <RectangleDiv />
-                          <FrameChild5 />
-                          <FrameChild5 />
-                          <FrameChild5 />
-                          <FrameChild5 />
-                          <FrameChild5 />
-                        </RectangleParent>
-                      </FrameParent25>
-                    </FrameParent24>
+                      {goals && goals.length > 0 ? (
+                        goals.slice(0, displayedGoals).map((goal) => (
+                        // goals.map((goal) => (
+                        <FrameParent25 key={goal.id}>
+                          <FrameParent26>
+                            <AirplaneParent>
+                            <AirplaneIcon1
+                              alt=""
+                              src={goal.avatar || '/airplane@2x.png'} 
+                            />
+                              <ContributionToLagosCorpGroParent>
+                                <SafeLock>{goal.targetName}</SafeLock>
+                                <SafeLock>
+                                <Span3>{`₦ ${goal.amountToAdd ? goal.amountToAdd.toLocaleString() : 'N/A'} `}</Span3>
+                                <Span>{`/ ₦ ${goal.targetAmount ? goal.targetAmount.toLocaleString() : 'N/A'} `}</Span>
+                                </SafeLock>
+                              </ContributionToLagosCorpGroParent>
+                            </AirplaneParent>
+                            <SafeLock>{`${((goal.amountToAdd / goal.targetAmount) * 100).toFixed(2)}%`}</SafeLock>
+                          </FrameParent26>
+                          <RectangleParent>
+                          {console.log((goal.amountSaved / goal.goalAmount) * 100)}
+                          <ProgressBar
+                            percentage={(goal.amountSaved / goal.goalAmount) * 100}
+                          />
+                          </RectangleParent>
+                        </FrameParent25>
+                      ))
+                      ) : (
+                      <p>No goals available.</p>
+                    )}
+                </FrameParent24>
                   </FrameParent9>
                 </FrameParent>
                 <VuesaxbulkmessageQuestionIcon1
