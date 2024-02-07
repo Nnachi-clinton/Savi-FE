@@ -33,6 +33,7 @@ import PersonalSavingDetailsPage from './pages/savings/PersonalSavingDetailsPage
 import WithdrawFunds from './components/dashboard/WithdrawFunds.js';
 import DashboardSection from './pages/ExploreActiveGroups/DashboardSection/DashboardSection.js';
 import EmptyGroup from './pages/group/EmptyGroup.js';
+import UpdateUser from './User/UpdateUser.js';
 
 // App component
 function App() {
@@ -83,6 +84,7 @@ function App() {
               />
               <Route path="/withdraw" element={<WithdrawFunds />} />
               <Route path="/dashboardsection" element={<DashboardSection />} />
+              <Route path="/Updateprofile" element={<UpdateUser />} />
             </Routes>
           </GlobalProvider>
         </Router>
