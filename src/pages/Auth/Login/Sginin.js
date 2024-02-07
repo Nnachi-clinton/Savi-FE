@@ -230,7 +230,6 @@ const Signin = () => {
           <Text2>Welcome back to Savi.</Text2>
           <GoogleContainer>
             <GoogleLogin
-              // buttonText="Sign in with Google"
               onSuccess={responseGoogleSuccess}
               onError={responseGoogleFailure}
             />

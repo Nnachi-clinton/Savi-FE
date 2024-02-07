@@ -96,7 +96,7 @@ const Signup = () => {
           console.log('useridd:', decodedToken['jti']);
           console.log('Id:', id);
           localStorage.setItem('Id', id);
-          navigate('/sidebar');
+          navigate('/dashboard');
         }
       })
       .catch((error) => {
@@ -218,10 +218,6 @@ const Signup = () => {
         <CenterRight>
           <Text1>Savi</Text1>
           <Text2>Welcome back to Savi.</Text2>
-          {/* <Google>
-            <GoogleIcon src={Icon} alt="Google Icon" />
-            Sign up with Google
-          </Google> */}
           <GoogleContainer>
             <GoogleLogin
               onSuccess={responseGoogleSuccess}
