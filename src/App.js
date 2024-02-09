@@ -37,6 +37,7 @@ import EmptyGroup from './pages/group/EmptyGroup.js';
 import UpdateUser from './User/UpdateUser.js';
 import AddGroupSavings from './pages/GroupSavings/AddGroupSavings.js';
 import AddGroupSavingsModal from './components/modal/AddGroupSavingsModal.js';
+import SidebarAdmin from './components/adminDashboard/SidebarAdmin.js';
 
 // App component
 function App() {
@@ -100,6 +101,7 @@ function App() {
                 element={<AddGroupSavingsModal />}
               />
               <Route path="/Updateprofile" element={<UpdateUser />} />
+              <Route path="/sidebaradmin" element={<SidebarAdmin />} />
             </Routes>
           </GlobalProvider>
         </Router>
