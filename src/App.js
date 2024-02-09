@@ -34,6 +34,7 @@ import PersonalSavingDetailsPage from './pages/savings/PersonalSavingDetailsPage
 import WithdrawFunds from './components/dashboard/WithdrawFunds.js';
 import DashboardSection from './pages/ExploreActiveGroups/DashboardSection/DashboardSection.js';
 import EmptyGroup from './pages/group/EmptyGroup.js';
+import ExploreGroupSavings from './pages/ExploreGroupSavingsDetails/ExploreGroupSavings.js';
 import UpdateUser from './User/UpdateUser.js';
 import AddGroupSavings from './pages/GroupSavings/AddGroupSavings.js';
 import AddGroupSavingsModal from './components/modal/AddGroupSavingsModal.js';
@@ -61,6 +62,7 @@ function App() {
               <Route path="signin" element={<Signin />} />
               <Route path="/sidebar" element={<Sidebar />} />
               <Route path="/Navbar" element={<Navbar />} />
+              <Route path="/ExploreGroupSavings" element={<ExploreGroupSavings />} />
               <Route path="/LandingPage" element={<LandingPage />} />
               <Route path="/resetPassword" element={<ResetPassword />} />
               <Route path="/forgotPassword" element={<ForgotPassword />} />
