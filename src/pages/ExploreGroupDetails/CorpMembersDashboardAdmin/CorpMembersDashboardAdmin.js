@@ -14,7 +14,7 @@ function CorpMembersDashboardAdmin(props) {
           <p className="header-title">{props.data.saveName}</p>
           <SavingsGroupCard data={props.data} />
         </div>
-        <ContributionCard data={props.data} />
+        {/* <ContributionCard data={props.data} /> */}
       </div>
       <img src={Image} className="hero-image" alt="" />
       <p className="money-sense-text">
