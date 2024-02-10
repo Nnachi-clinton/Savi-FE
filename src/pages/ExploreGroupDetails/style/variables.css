@@ -1,0 +1,32 @@
+:root {
+  --color-ghostwhite-755ab4a2: rgba(249, 250, 251, 1);
+  --color-white: rgba(255, 255, 255, 1);
+  --color-mediumvioletred-c2af2369: rgba(181, 23, 158, 1);
+  --color-darkgrey-bfcdd69: rgba(152, 162, 179, 1);
+  --color-darkslategrey-7f3d6aff: rgba(41, 45, 50, 1);
+  --color-black-89c635a1: rgba(16, 24, 40, 1);
+  --color-lightgrey-7e1cae0c: rgba(208, 213, 221, 1);
+  --color-991c5d52: transparent;
+  --color-black: rgba(0, 0, 0, 1);
+  --color-darkslategrey-1b46e7ef: rgba(30, 41, 59, 1);
+  --color-darkgrey-35279045: rgba(148, 163, 184, 1);
+  --color-slategrey-de50c981: rgba(100, 116, 139, 1);
+  --color-slategrey-9026d582: rgba(102, 112, 133, 1);
+  --color-dodgerblue-7854f561: rgba(47, 128, 237, 1);
+  --color-darkslategrey-a21b5acd: rgba(71, 85, 105, 1);
+  --color-lavender-ec7c953c: rgba(234, 236, 240, 1);
+  --font-size-32: 32px;
+  --font-size-16: 16px;
+  --font-size-14: 14px;
+  --font-size-24: 24px;
+  --font-size-15: 15px;
+  --font-weight-700: 700;
+  --font-weight-400: 400;
+  --font-weight-600: 600;
+  --font-weight-500: 500;
+  --font-weight-300: 300;
+  --border-radius-8: 8px;
+  --border-radius-100: 100px;
+  --border-radius-200: 200px;
+  --border-radius-16: 16px;
+}
