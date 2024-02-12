@@ -39,7 +39,33 @@
   border: none;
   border-radius: var(--border-radius-100);
   font: var(--font-weight-500) var(--font-size-20) 'Inter';
-  background: var(--color-violet-20faee8d);
+  /* background: var(--color-violet-20faee8d); */
+  box-sizing: border-box;
+  display: block;
+  width: 76px;
+  min-width: 76px;
+  height: 48px;
+  color: var(--color-black-89c635a1);
+  cursor: pointer;
+}
+.button-active {
+  border: none;
+  border-radius: var(--border-radius-100);
+  flex: 0 0 auto;
+  font: var(--font-weight-500) var(--font-size-20) 'Inter';
+  box-sizing: border-box;
+  display: block;
+  width: 76px;
+  min-width: 76px;
+  height: 48px;
+  color: var(--color-black-89c635a1);
+  cursor: pointer;
+}
+.button-new {
+  border: none;
+  border-radius: var(--border-radius-100);
+  flex: 0 0 auto;
+  font: var(--font-weight-500) var(--font-size-20) 'Inter';
   box-sizing: border-box;
   display: block;
   width: 76px;
@@ -80,4 +106,19 @@
   height: 16px;
   padding-right: 4px;
   /* margin-right: 2em; */
+}
+
+.button-all.active,
+.button-active.active,
+.button-new.active {
+  background-color: var(--color-violet-20faee8d);
+  color: var(--color-black-89c635a1);
+  border: none;
+  border-radius: var(--border-radius-100);
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  display: block;
+  width: 76px;
+  min-width: 76px;
+  height: 48px;
 }
