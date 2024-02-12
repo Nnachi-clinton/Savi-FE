@@ -1,0 +1,17 @@
+:root {
+  --color-white: rgba(255, 255, 255, 1);
+  --color-lavender-d88d7bed: rgba(209, 233, 255, 1);
+  --color-dodgerblue-8a8544b8: rgba(46, 144, 250, 1);
+  --color-grey-85d897f1: rgba(117, 117, 117, 1);
+  --color-black: rgba(0, 0, 0, 1);
+  --color-slategrey-9026d582: rgba(102, 112, 133, 1);
+  --color-darkgrey-bfcdd69: rgba(152, 162, 179, 1);
+  --color-dodgerblue-7854f561: rgba(47, 128, 237, 1);
+  --font-size-16: 16px;
+  --font-size-10: 10px;
+  --font-size-24: 24px;
+  --font-weight-500: 500;
+  --font-weight-400: 400;
+  --border-radius-1678: 1678px;
+  --border-radius-336: 336px;
+}

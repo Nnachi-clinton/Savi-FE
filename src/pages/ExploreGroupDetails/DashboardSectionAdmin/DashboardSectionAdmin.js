@@ -1,9 +1,9 @@
 import ContributionSummary from '../ContributionSummary/ContributionSummaryAdmin';
 import CorpMembersDashboard from '../CorpMembersDashboardAdmin/CorpMembersDashboardAdmin';
-import TransactionCardSection from '../TransactionCardSection/TransactionCardSection';
 import './style.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import MemberTable from '../TransactionCardSection/MemberTable';
 
 function DashboardSectionAdmin() {
   const [userData, setUserData] = useState({});
@@ -12,7 +12,7 @@ function DashboardSectionAdmin() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://localhost:7240/api/GroupSavings/GroupSavingsDetails?groupId=112233` // groupId to be changed and made dynamic, this was used for testing purposes
+          `https://localhost:7240/api/GroupSavings/GroupSavingsDetails?groupId=dc3c343c-322b-4fb5-a115-2dd6cce10297` // groupId to be changed and made dynamic, this was used for testing purposes
         );
 
         setUserData(response.data.result);
@@ -34,8 +34,10 @@ function DashboardSectionAdmin() {
           <ContributionSummary data={userData} />
         </div>
         <div className="transaction-history">
-          <p className="transaction-history-title">Members</p>
-          {/* <TransactionCardSection /> */}
+          <p className="transaction-history-title" style={{ padding: 14 }}>
+            Members
+          </p>
+          <MemberTable />
         </div>
       </div>
     </div>

@@ -1,0 +1,53 @@
+.contribution-section1 {
+  flex: 0 0 auto;
+}
+.contribution-section {
+  display: flex;
+  flex-direction: row;
+  /* gap: -290px; */
+  align-items: center;
+  width: 35%;
+  justify-content: flex-start;
+}
+.contribution-card {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+}
+.contribution-label {
+  flex: 0 0 auto;
+  font: var(--font-weight-400) var(--font-size-16) 'Inter';
+  color: var(--color-darkgrey-bfcdd69);
+  letter-spacing: 0.08px;
+  white-space: nowrap;
+}
+.contribution-amount {
+  flex: 0 0 auto;
+  margin-top: 9px;
+  color: var(--color-black);
+}
+.currency-amount {
+  font: var(--font-weight-400) var(--font-size-16) 'Inter';
+}
+.frequency-text {
+  flex: 0 0 auto;
+  font: var(--font-weight-400) var(--font-size-16) 'Inter';
+  margin-top: 9px;
+  color: var(--color-black);
+}
+.duration-text {
+  flex: 0 0 auto;
+  font: var(--font-weight-400) var(--font-size-16) 'Inter';
+  padding-right: 18px;
+  margin-top: 9px;
+  color: var(--color-black);
+}
+.group-link {
+  font: var(--font-weight-400) var(--font-size-16) 'Inter';
+  margin-top: 15px;
+  color: var(--color-dodgerblue-7854f561);
+  letter-spacing: 0.08px;
+  cursor: pointer;
+}

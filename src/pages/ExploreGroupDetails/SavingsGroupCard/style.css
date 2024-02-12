@@ -14,8 +14,10 @@
 }
 .savings-group-title1 {
   flex: 0 0 auto;
-  font: var(--font-weight-600) var(--font-size-14) 'Inter';
-  color: var(--color-darkslategrey-1b46e7ef);
+  /* font: var(--font-weight-600) var(--font-size-14) 'Inter';
+  color: var(--color-darkslategrey-1b46e7ef); */
+  color: var(--color-darkgrey-bfcdd69);
+  font: var(--font-weight-400) var(--font-size-14) 'Inter';
 }
 .svg-container2 {
   flex: 0 0 auto;

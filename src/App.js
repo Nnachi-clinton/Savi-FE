@@ -40,6 +40,9 @@ import AddGroupSavings from './pages/GroupSavings/AddGroupSavings.js';
 import AddGroupSavingsModal from './components/modal/AddGroupSavingsModal.js';
 import SidebarAdmin from './components/adminDashboard/SidebarAdmin.js';
 import DashboardSectionAdmin from './pages/ExploreGroupDetails/DashboardSectionAdmin/DashboardSectionAdmin.js';
+import Cards from './pages/ExploreGroupAdmin/card/Cards.js';
+import NewKeys from './pages/ExploreGroupAdmin/top/NewKeys.js';
+import ActiveCards from './pages/ExploreGroupAdmin copy/card/ActiveCards.js';
 
 // App component
 function App() {
@@ -112,6 +115,9 @@ function App() {
                 path="/dashboardsectionadmin"
                 element={<DashboardSectionAdmin />}
               />
+              <Route path="/cards" element={<Cards />} />
+              <Route path="/header" element={<NewKeys />} />
+              <Route path="/activecards" element={<ActiveCards />} />
             </Routes>
           </GlobalProvider>
         </Router>

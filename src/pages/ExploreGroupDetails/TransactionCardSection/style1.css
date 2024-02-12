@@ -1,0 +1,35 @@
+.member-row {
+  box-sizing: border-box;
+  height: 44px;
+}
+.slot-name-cell {
+  padding-right: 8px;
+  padding-left: 20px;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+  border-left: 1px solid #e5e7eb;
+}
+.member-info {
+  font: var(--font-weight-500) var(--font-size-14) 'Inter';
+  color: var(--color-darkslategrey-fdeca284);
+  letter-spacing: 0.07px;
+  white-space: pre-wrap;
+}
+.slot-info {
+  padding-right: 8px;
+  padding-left: 8px;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+}
+.table-cell-action {
+  padding-right: 20px;
+  padding-left: 8px;
+  border-top: 1px solid #e5e7eb;
+  border-right: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+}
+.payment-status-text {
+  font: var(--font-weight-600) var(--font-size-14) 'Inter';
+  letter-spacing: 0.07px;
+  white-space: pre-wrap;
+}

@@ -46,7 +46,7 @@ function ContributionSummaryAdmin(props) {
       </div>
       <div className="contribution-timeline3">
         <p className="contribution-amount-label">Schedule</p>
-        <p className="contribution-timeline">Group Type</p>
+        <p className="contribution-schedule">Group Type</p>
       </div>
       <div className="contribution-timeline2">
         <p className="price-label">{renderSchedule(props.data.schedule)}</p>

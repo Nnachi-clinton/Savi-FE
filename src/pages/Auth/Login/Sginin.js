@@ -67,13 +67,23 @@ const Signin = () => {
             decodedToken[
               'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
             ];
-
+          const roleDecode =
+            decodedToken[
+              'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
+            ];
+          console.log('role: ', roleDecode);
+          localStorage.setItem('Role', roleDecode);
           console.log('decoded token:', decodedToken);
           console.log('userid:', userid);
           console.log('useridd:', decodedToken['jti']);
           console.log('Id:', id);
           localStorage.setItem('Id', id);
-          navigate('/dashboard');
+          // navigate('/dashboard');
+          if (roleDecode === 'Admin') {
+            navigate('/dashboardsectionadmin');
+          } else {
+            navigate('/dashboard');
+          }
         }
       })
       .catch((error) => {
@@ -127,10 +137,21 @@ const Signin = () => {
           decodedToken[
             'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'
           ];
+        const roleDecode =
+          decodedToken[
+            'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
+          ];
+        console.log('role: ', roleDecode);
+        localStorage.setItem('Role', roleDecode);
         console.log('email:', emailDecode);
         localStorage.setItem('Email', emailDecode);
         localStorage.setItem('Id', id);
-        navigate('/dashboard');
+        // navigate('/dashboard');
+        if (roleDecode === 'Admin') {
+          navigate('/dashboardsectionadmin');
+        } else {
+          navigate('/dashboard');
+        }
 
         Swal.fire({
           icon: 'success',
