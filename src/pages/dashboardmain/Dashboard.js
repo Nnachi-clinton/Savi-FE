@@ -12,8 +12,8 @@ import Modal from '../savings/SavingUpdateModal';
 import PersonalSavingDetailsPage from '../savings/PersonalSavingDetailsPage';
 import ProgressBar from '../../components/dashboard/ProgressBar';
 import { useNavigate } from 'react-router-dom';
-import EmptyGroupSavings from '../GroupSavings/EmptyGroupSavings';
-import AddGroupSavings from '../GroupSavings/AddGroupSavings';
+import EmptyGroupSavings from '../../pages/groupSavings/EmptyGroupSavings';
+import AddGroupSavings from '../../pages/groupSavings/AddGroupSavings';
 
 const WelcomeBackJohn1 = styled.b`
   position: relative;
