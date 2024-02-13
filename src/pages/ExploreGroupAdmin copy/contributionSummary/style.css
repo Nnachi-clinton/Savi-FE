@@ -18,7 +18,7 @@
   justify-content: center;
   gap: 5px;
 }
-.contribution-label {
+.contribution-label1 {
   flex: 0 0 auto;
   font: var(--font-weight-400) var(--font-size-16) 'Inter';
   color: var(--color-darkgrey-bfcdd69);

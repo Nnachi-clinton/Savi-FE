@@ -1,20 +1,23 @@
 .contribution-section1 {
   flex: 0 0 auto;
+  width: 70%;
 }
 .contribution-section {
   display: flex;
   flex-direction: row;
-  /* gap: -290px; */
   align-items: center;
-  width: 35%;
+  width: 45%;
   justify-content: flex-start;
+  column-gap: 10px;
 }
 .contribution-card {
   flex: 0 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: center;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: center !important;
+  width: 40%;
+  max-width: 60%;
 }
 .contribution-label {
   flex: 0 0 auto;
@@ -30,12 +33,14 @@
 }
 .currency-amount {
   font: var(--font-weight-400) var(--font-size-16) 'Inter';
+  white-space: nowrap;
 }
 .frequency-text {
   flex: 0 0 auto;
   font: var(--font-weight-400) var(--font-size-16) 'Inter';
   margin-top: 9px;
   color: var(--color-black);
+  white-space: nowrap;
 }
 .duration-text {
   flex: 0 0 auto;
@@ -43,6 +48,7 @@
   padding-right: 18px;
   margin-top: 9px;
   color: var(--color-black);
+  white-space: nowrap;
 }
 .group-link {
   font: var(--font-weight-400) var(--font-size-16) 'Inter';

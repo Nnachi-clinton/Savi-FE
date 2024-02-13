@@ -1,20 +1,3 @@
-.savings-group-card {
-  background: var(--color-white);
-  padding: 10px;
-  display: flex;
-  padding-left: 50px;
-  margin-left: 410px;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  max-width: 892px;
-  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.16);
-}
-.header-container {
-  flex: 0 0 auto;
-  padding-top: 54px;
-  padding-bottom: 55px;
-}
 .image-container {
   border: none;
   box-sizing: border-box;
@@ -24,107 +7,12 @@
   height: 186px;
   object-fit: cover;
 }
-.money-palava-savers-container1 {
-  flex: 0 1 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-  margin-left: 29px;
-}
-.flex-container {
-  flex: 0 0 auto;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-.button-waiting {
-  flex: 0 0 auto;
-  border: none;
-  border-radius: var(--border-radius-1678);
-  font: var(--font-weight-500) var(--font-size-16) 'Inter';
-  background: var(--color-lavender-d88d7bed);
-  box-sizing: border-box;
-  display: block;
-  width: 92px;
-  min-width: 92px;
-  height: 48px;
-  color: var(--color-dodgerblue-8a8544b8);
-  letter-spacing: 0.08px;
-  cursor: pointer;
-}
-.image-container-with-counter {
-  flex: 0 1 auto;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  margin-left: 317px;
-}
-.image-container2 {
-  flex: 0 1 auto;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: flex-start;
-  height: 47px;
-}
+
 .contribution-section1 {
   flex: 0 0 auto;
 }
-.rounded-image {
-  border: 2.5px solid var(--color-white);
-  border-radius: var(--border-radius-336);
-  box-sizing: border-box;
-  display: block;
-  width: 46px;
-  max-width: initial;
-  height: 47px;
-  object-fit: cover;
-}
-.bonus-points {
-  flex: 0 0 auto;
-  margin-left: -11px;
-}
-.rounded-image1 {
-  border: 2.5px solid var(--color-white);
-  border-radius: var(--border-radius-336);
-  box-sizing: border-box;
-  display: block;
-  width: 47px;
-  max-width: initial;
-  height: 47px;
-  object-fit: cover;
-}
-.image-container1 {
-  flex: 0 0 auto;
-  margin-left: -12px;
-}
-.rounded-container {
-  flex: 0 1 auto;
-  border: 2.5px solid var(--color-white);
-  border-radius: var(--border-radius-336);
-  background: var(--color-grey-85d897f1);
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: center;
-  padding-right: 3px;
-  padding-left: 3px;
-  margin-left: -11px;
-}
-.score-label {
-  flex: 0 0 auto;
-  font: var(--font-weight-500) var(--font-size-10) / 14px 'Heebo';
-  color: var(--color-white);
-  text-align: center;
-}
+
 .svg-container {
-  flex: 0 0 auto;
-  display: flex;
   width: 24px;
   height: 24px;
-  margin-left: 160px;
 }

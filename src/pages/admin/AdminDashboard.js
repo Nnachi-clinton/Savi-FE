@@ -13,8 +13,8 @@ import { useState, useCallback, useEffect } from 'react';
 import NewKeys from '../ExploreGroupAdmin/top/NewKeys';
 
 const Container = styled.div`
-  padding: 16px;
-  background-color: #eaecf0;
+  // padding: 16px;
+  // background-color: #eaecf0;
 `;
 const Section = styled.section`
   padding: 8px;

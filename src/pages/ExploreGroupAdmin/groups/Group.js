@@ -24,7 +24,7 @@ const Div = styled.div`
   align-items: stretch;
   justify-content: flex-start;
   margin-top: 15px;
-  width: 100%;
+  width: 90%;
 `;
 
 const P = styled.p`

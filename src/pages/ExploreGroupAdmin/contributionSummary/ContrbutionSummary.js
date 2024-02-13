@@ -7,15 +7,14 @@ function ContributionSummary() {
         <div className="contribution-card">
           <p className="contribution-label">Contribution</p>
           <p className="contribution-amount">
-            <span className="currency-amount">₦ </span>
-            <span className="currency-amount">500,000</span>
+            <span className="currency-amount">₦500,000 </span>
+            {/* <span className="currency-amount">500,000</span> */}
           </p>
         </div>
         <div className="contribution-card">
           <p className="contribution-label">Exp. Withdrawal</p>
           <p className="contribution-amount">
-            <span className="currency-amount">₦ 3,5</span>
-            <span className="currency-amount">00,000</span>
+            <span className="currency-amount">₦ 3,500,000</span>
           </p>
         </div>
         <div className="contribution-card">
@@ -24,7 +23,7 @@ function ContributionSummary() {
         </div>
         <div className="contribution-card">
           <p className="contribution-label">Duration</p>
-          <p className="duration-text">8 mos</p>
+          <p className="duration-text">8 months</p>
         </div>
         <div className="contribution-card">
           <p className="contribution-label">Available Slot</p>
