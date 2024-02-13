@@ -5,7 +5,7 @@ import '../Glo.css';
 
 function Cards() {
   return (
-    <div style={{ marginTop: '3em' }}>
+    <div style={{ marginTop: '3em', marginLeft: '-5em' }}>
       <div className="savings-group-card">
         <div className="header-container">
           <img

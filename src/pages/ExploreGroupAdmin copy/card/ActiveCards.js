@@ -5,29 +5,31 @@ import '../Glo.css';
 
 function ActiveCards() {
   return (
-    <div style={{ marginTop: '3em' }}>
-      <div className="savings-group-card">
-        <div className="header-container">
+    <div style={{ marginTop: '3em', marginLeft: '-5em' }}>
+      <div className="savings-group-card1">
+        <div className="header-container1">
           <img
             src="/assets/img_194_24282_cfdc0d.jpeg"
-            className="image-container"
+            className="image-container1"
             alt=""
           />
         </div>
-        <div className="money-palava-savers-container1">
-          <div className="flex-container">
-            <button className="button-waiting">Waiting</button>
-            <div className="image-container-with-counter">
-              <div className="image-container2">
-                <div className="contribution-section1">
+        <div className="money-palava-savers-container11">
+          <div className="flex-container1">
+            <button className="button-waiting1">Waiting</button>
+            <div className="image-container-with-counter1">
+              <div className="image-container21">
+                <div className="contribution-section11">
                   <img
                     src="/assets/img_I194_24305_115_2216_e1c0a9.jpeg"
-                    className="rounded-image"
+                    className="rounded-image1"
                     alt=""
                   />
                 </div>
               </div>
-              <Icon className="svg-container" />
+              <div>
+                <Icon className="svg-container1" />
+              </div>
             </div>
           </div>
           <Groups />

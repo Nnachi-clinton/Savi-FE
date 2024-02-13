@@ -6,15 +6,15 @@
   justify-content: flex-start;
   min-width: 1034px;
   width: 70%;
-  margin-top: 4em;
-  margin-left: 25em;
+  margin-top: -65em;
+  margin-left: 20em;
 }
 .savings-group-title {
   flex: 0 0 auto;
-  font: var(--font-weight-700) var(--font-size-32) 'Inter';
+  font: var(--font-weight-700) var(--font-size-32) 'Inter' !important;
   padding-right: 24px;
   padding-left: 24px;
-  color: var(--color-black);
+  color: var(--color-black) !important;
   letter-spacing: 0.15px;
 }
 .saving-groups-container {
@@ -98,7 +98,7 @@
   cursor: pointer;
   white-space: nowrap;
   margin-right: 2em;
-  padding-right: 165px;
+  padding-right: 15px;
 }
 .svg-container {
   display: flex;

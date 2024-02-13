@@ -1,20 +1,22 @@
-.contribution-section1 {
+.contribution-section2 {
   flex: 0 0 auto;
+  width: 90%;
 }
-.contribution-section {
+.contribution-section22 {
   display: flex;
   flex-direction: row;
-  /* gap: -290px; */
+  gap: 50px;
   align-items: center;
-  width: 35%;
+  width: 45%;
   justify-content: flex-start;
 }
-.contribution-card {
+.contribution-card2 {
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: center;
+  gap: 5px;
 }
 .contribution-label {
   flex: 0 0 auto;
@@ -44,7 +46,7 @@
   margin-top: 9px;
   color: var(--color-black);
 }
-.group-link {
+.group-link1 {
   font: var(--font-weight-400) var(--font-size-16) 'Inter';
   margin-top: 15px;
   color: var(--color-dodgerblue-7854f561);

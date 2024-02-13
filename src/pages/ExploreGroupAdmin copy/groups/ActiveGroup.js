@@ -3,7 +3,7 @@ import ContributionSummary from '../contributionSummary/ActiveContrbutionSummary
 function ActiveGroups() {
   return (
     <Div>
-      <P>Money Palava Savers</P>
+      <P>Benz Gang Group</P>
       <PP>
         Make we save together, chop better life! Join this group if you want to
         flex and still save money for better days. We go show you as money fit
@@ -24,7 +24,7 @@ const Div = styled.div`
   align-items: stretch;
   justify-content: flex-start;
   margin-top: 15px;
-  width: 100%;
+  width: 90%;
 `;
 
 const P = styled.p`

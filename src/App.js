@@ -38,6 +38,7 @@ import ExploreGroupSavings from './pages/ExploreGroupSavingsDetails/ExploreGroup
 import UpdateUser from './User/UpdateUser.js';
 import AddGroupSavings from './pages/GroupSavings/AddGroupSavings.js';
 import AddGroupSavingsModal from './components/modal/AddGroupSavingsModal.js';
+import AdminDashboard from './pages/admin/AdminDashboard.js';
 import SidebarAdmin from './components/adminDashboard/SidebarAdmin.js';
 import DashboardSectionAdmin from './pages/ExploreGroupDetails/DashboardSectionAdmin/DashboardSectionAdmin.js';
 import Cards from './pages/ExploreGroupAdmin/card/Cards.js';
@@ -101,6 +102,7 @@ function App() {
               />
               <Route path="/withdraw" element={<WithdrawFunds />} />
               <Route path="/dashboardsection" element={<DashboardSection />} />
+              <Route path="/admin-dashboard" element={<AdminDashboard />} />
               <Route
                 path="/create-group-savings"
                 element={<AddGroupSavings />}
