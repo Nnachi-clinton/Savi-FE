@@ -6,17 +6,21 @@ import '../style/variables.css';
 import './style.css';
 
 function CorpMembersDashboardAdmin(props) {
+  const { selectstep } = props;
   console.log(props.data);
   return (
     <div className="savings-group-container">
       <div className="savings-group-container3">
         <div className="savings-group-container2">
+          <SavingsGroupCard data={props.data} selectstep={selectstep} />
           <p className="header-title">{props.data.saveName}</p>
-          <SavingsGroupCard data={props.data} />
         </div>
-        {/* <ContributionCard data={props.data} /> */}
       </div>
-      <img src={Image} className="hero-image" alt="" />
+      <img
+        src={props.data.safePortraitImageURL}
+        className="hero-imagee"
+        alt=""
+      />
       <p className="money-sense-text">
         {/* Bros/Sis, no dull yourself for dis service year money mata. Join Lagos
         Corp Members Thrift Saving Group sharp-sharp! We go secure your money,

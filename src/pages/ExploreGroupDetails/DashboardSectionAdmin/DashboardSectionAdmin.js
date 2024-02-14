@@ -7,12 +7,13 @@ import MemberTable from '../TransactionCardSection/MemberTable';
 
 function DashboardSectionAdmin({ selectstep }) {
   const [userData, setUserData] = useState({});
-
+  const GroupId = localStorage.getItem('GroupId');
+  console.log(GroupId);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://localhost:7240/api/GroupSavings/GroupSavingsDetails?groupId=dc3c343c-322b-4fb5-a115-2dd6cce10297` // groupId to be changed and made dynamic, this was used for testing purposes
+          `https://localhost:7240/api/GroupSavings/ExploreGroupDetails?groupId=${GroupId}` // groupId to be changed and made dynamic, this was used for testing purposes
         );
 
         setUserData(response.data.result);
@@ -27,8 +28,8 @@ function DashboardSectionAdmin({ selectstep }) {
   }, []);
   console.log(userData);
   return (
-    <div className="money-journey-container">
-      <CorpMembersDashboard data={userData} />
+    <div className="money-journey-container11">
+      <CorpMembersDashboard data={userData} selectstep={selectstep} />
       <div className="savings-group-info">
         <div className="contribution-details1">
           <ContributionSummary data={userData} />

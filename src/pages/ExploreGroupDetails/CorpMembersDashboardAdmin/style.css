@@ -90,8 +90,10 @@
   font: var(--font-weight-700) var(--font-size-32) 'Inter';
   color: var(--color-black);
   letter-spacing: 0.15px;
+  margin-bottom: -1em;
+  margin-top: 1em;
 }
-.hero-image {
+.hero-imagee {
   flex: 0 0 auto;
   border: none;
   border-radius: var(--border-radius-8);
@@ -101,6 +103,7 @@
   max-width: initial;
   height: 260px;
   object-fit: cover;
+  margin-left: 3em;
 }
 .money-sense-text {
   flex: 0 0 auto;
