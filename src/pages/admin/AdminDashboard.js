@@ -93,68 +93,70 @@ const AdminDashboard = () => {
         <>
           {step === 0 && (
             <>
-              <header>
-                <h1> Welcome back Admin,</h1>
-                <p>
-                  <Image src={Calender} alt="Calendar" />
-                  {currentDate}
-                </p>
-              </header>
-              <Section>
-                <DashboardSmallCard
-                  heading="New Registrations"
-                  data="300"
-                  showButton={false}
-                />
-                <DashboardSmallCard
-                  heading="New Saving Groups"
-                  data="50"
-                  showButton={false}
-                />
-                <DashboardSmallCard
-                  heading="New Defaulting Users"
-                  data="100"
-                  showButton={true}
-                />
-              </Section>
-              <SectionCard>
-                <DashboardLargeCard
-                  imageSrc={Users}
-                  heading="Total Saving Groups"
-                  amount="3,000"
-                />
-                <DashboardLargeCard
-                  imageSrc={Money}
-                  heading="Total Funds Saved"
-                  amount="500,000"
-                />
-                <DashboardLargeCard
-                  imageSrc={Withdrawal}
-                  heading="Total Funds Withdrawn"
-                  amount="300,000"
-                />
-              </SectionCard>
-              <Main>
-                <SwcHeading>
-                  <h2>Financial Overview</h2>
-                  <p>Your Financial Review summary and activity.</p>
-                </SwcHeading>
-                <Content>
-                  <SWC heading="Saving" data={'62'} differential={'10.78'} />
-                  <SWC
-                    heading="Withdrawals"
-                    data={'12'}
-                    differential={'1.08'}
+              <div style={{ marginTop: '-66em', marginLeft: '20em' }}>
+                <header>
+                  <h1> Welcome back Admin,</h1>
+                  <p>
+                    <Image src={Calender} alt="Calendar" />
+                    {currentDate}
+                  </p>
+                </header>
+                <Section>
+                  <DashboardSmallCard
+                    heading="New Registrations"
+                    data="300"
+                    showButton={false}
                   />
-                  <SWC heading="Saving" data={'62'} differential={'5.90'} />
-                  <div>
-                    <InputContainer>
-                      <Input placeholder="Search" />
-                      <Icon src={SearchIcon} alt="Search-icon" />
-                    </InputContainer>
-                  </div>
-                </Content>
-              </Main>
+                  <DashboardSmallCard
+                    heading="New Saving Groups"
+                    data="50"
+                    showButton={false}
+                  />
+                  <DashboardSmallCard
+                    heading="New Defaulting Users"
+                    data="100"
+                    showButton={true}
+                  />
+                </Section>
+                <SectionCard>
+                  <DashboardLargeCard
+                    imageSrc={Users}
+                    heading="Total Saving Groups"
+                    amount="3,000"
+                  />
+                  <DashboardLargeCard
+                    imageSrc={Money}
+                    heading="Total Funds Saved"
+                    amount="500,000"
+                  />
+                  <DashboardLargeCard
+                    imageSrc={Withdrawal}
+                    heading="Total Funds Withdrawn"
+                    amount="300,000"
+                  />
+                </SectionCard>
+                <Main>
+                  <SwcHeading>
+                    <h2>Financial Overview</h2>
+                    <p>Your Financial Review summary and activity.</p>
+                  </SwcHeading>
+                  <Content>
+                    <SWC heading="Saving" data={'62'} differential={'10.78'} />
+                    <SWC
+                      heading="Withdrawals"
+                      data={'12'}
+                      differential={'1.08'}
+                    />
+                    <SWC heading="Saving" data={'62'} differential={'5.90'} />
+                    <div>
+                      <InputContainer>
+                        <Input placeholder="Search" />
+                        <Icon src={SearchIcon} alt="Search-icon" />
+                      </InputContainer>
+                    </div>
+                  </Content>
+                </Main>
+              </div>
             </>
           )}
           {step === 1 && <NewKeys selectstep={handleStep} />}
