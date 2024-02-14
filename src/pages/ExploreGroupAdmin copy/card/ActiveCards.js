@@ -63,7 +63,7 @@ import axios from 'axios';
 
 // export default ActiveCards;
 
-function ActiveCards() {
+function ActiveCards({ selectstep }) {
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
@@ -85,13 +85,13 @@ function ActiveCards() {
   return (
     <div style={{ marginTop: '3em', marginLeft: '-5em' }}>
       {userData.map((user, index) => (
-        <ActiveCard key={index} user={user} />
+        <ActiveCard key={index} user={user} selectstep={selectstep} />
       ))}
     </div>
   );
 }
 
-function ActiveCard({ user }) {
+function ActiveCard({ user, selectstep }) {
   return (
     <div className="savings-group-card1" style={{ marginBottom: '1em' }}>
       <div className="header-container1">
@@ -119,7 +119,7 @@ function ActiveCard({ user }) {
             </div>
           </div>
         </div>
-        <Groups data={user} />
+        <Groups data={user} selectstep={selectstep} />
       </div>
     </div>
   );

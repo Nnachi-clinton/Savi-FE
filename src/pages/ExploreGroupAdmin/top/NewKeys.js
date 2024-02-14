@@ -5,7 +5,7 @@ import Cards from '../card/Cards.js';
 import React, { useState } from 'react';
 import ActiveCards from '../../ExploreGroupAdmin copy/card/ActiveCards.js';
 
-function NewKeys() {
+function NewKeys({ selectstep }) {
   const [activeButton, setActiveButton] = useState('All');
 
   const handleButtonClick = (buttonName) => {
@@ -46,7 +46,7 @@ function NewKeys() {
       </div>
       {/* <Cards /> */}
       {activeButton === 'All' && <Cards />}
-      {activeButton === 'Active' && <ActiveCards />}
+      {activeButton === 'Active' && <ActiveCards selectstep={selectstep} />}
       {activeButton === 'New' && <p>I am New Screen</p>}
     </>
   );

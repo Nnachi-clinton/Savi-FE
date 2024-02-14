@@ -5,7 +5,7 @@ function ActiveContributionSummary(props, { selectstep }) {
   const handleGroupClick = (groupId) => {
     localStorage.setItem('GroupId', groupId);
     console.log(groupId);
-    selectstep(7);
+    props.selectstep(7);
   };
   return (
     <div className="contribution-section2">

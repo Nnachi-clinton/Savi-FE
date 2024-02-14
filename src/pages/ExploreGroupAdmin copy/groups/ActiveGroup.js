@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import ContributionSummary from '../contributionSummary/ActiveContrbutionSummary.js';
 function ActiveGroups(props) {
+  const { selectstep } = props;
   console.log(props.data);
   return (
     <Div>
@@ -11,7 +12,7 @@ function ActiveGroups(props) {
         run belle and still dey for account. */}
         {props.data.description}
       </PP>
-      <ContributionSummary data={props.data} />
+      <ContributionSummary data={props.data} selectstep={selectstep} />
     </Div>
   );
 }
