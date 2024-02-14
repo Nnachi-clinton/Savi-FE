@@ -9,8 +9,10 @@ import Withdrawal from '../../assets/Withdrawal.svg';
 import SWC from '../../components/dashboard/SWC';
 import SearchIcon from '../../assets/SearchIcon.svg';
 import SidebarAdmin from '../../components/adminDashboard/SidebarAdmin';
-import { useState, useCallback, useEffect } from 'react';
+import { useState } from 'react';
 import NewKeys from '../ExploreGroupAdmin/top/NewKeys';
+import DashboardSectionAdmin from '../ExploreGroupDetails/DashboardSectionAdmin/DashboardSectionAdmin';
+import ActiveContributionSummary from '../ExploreGroupAdmin copy/contributionSummary/ActiveContrbutionSummary';
 
 const Container = styled.div`
   // padding: 16px;
@@ -156,6 +158,8 @@ const AdminDashboard = () => {
             </>
           )}
           {step === 1 && <NewKeys selectstep={handleStep} />}
+          {/* {step === 8 && <ActiveContributionSummary selectstep={handleStep} />} */}
+          {step === 7 && <DashboardSectionAdmin selectstep={handleStep} />}
         </>
       </Container>
     </>

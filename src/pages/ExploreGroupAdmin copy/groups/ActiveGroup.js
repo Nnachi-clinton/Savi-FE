@@ -1,15 +1,17 @@
 import styled from 'styled-components';
 import ContributionSummary from '../contributionSummary/ActiveContrbutionSummary.js';
-function ActiveGroups() {
+function ActiveGroups(props) {
+  console.log(props.data);
   return (
     <Div>
-      <P>Benz Gang Group</P>
+      <P>{props.data.saveName}</P>
       <PP>
-        Make we save together, chop better life! Join this group if you want to
+        {/* Make we save together, chop better life! Join this group if you want to
         flex and still save money for better days. We go show you as money fit
-        run belle and still dey for account.
+        run belle and still dey for account. */}
+        {props.data.description}
       </PP>
-      <ContributionSummary />
+      <ContributionSummary data={props.data} />
     </Div>
   );
 }

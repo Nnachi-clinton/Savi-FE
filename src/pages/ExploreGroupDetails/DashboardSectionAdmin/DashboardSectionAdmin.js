@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import MemberTable from '../TransactionCardSection/MemberTable';
 
-function DashboardSectionAdmin() {
+function DashboardSectionAdmin({ selectstep }) {
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
