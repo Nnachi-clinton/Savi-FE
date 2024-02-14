@@ -29,7 +29,7 @@ function Cards() {
                   />
                 </div>
               </ImageContainer2>
-              <Icon className="svg-container" />
+              {/* <Icon className="svg-container" /> */}
             </ImageContainer>
           </Container>
           <Groups />
