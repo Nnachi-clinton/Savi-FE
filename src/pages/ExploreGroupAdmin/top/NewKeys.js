@@ -6,6 +6,7 @@ import './Glo.css';
 import Cards from '../card/Cards.js';
 import React, { useState, useRef } from 'react';
 import ActiveCards from '../../ExploreGroupAdmin copy/card/ActiveCards.js';
+import NewCards from '../../ExploreGroupAdmin copy 2/card/NewCards.js';
 
 // function NewKeys({ selectstep }) {
 //   const [activeButton, setActiveButton] = useState('All');
@@ -116,9 +117,9 @@ function NewKeys({ selectstep }) {
         </div>
       </div>
       <div id="content-to-capture">
-        {activeButton === 'All' && <Cards />}
+        {activeButton === 'All' && <Cards selectstep={selectstep} />}
         {activeButton === 'Active' && <ActiveCards selectstep={selectstep} />}
-        {activeButton === 'New' && <p>I am New Screen</p>}
+        {activeButton === 'New' && <NewCards selectstep={selectstep} />}
       </div>
     </>
   );

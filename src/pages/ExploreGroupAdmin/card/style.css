@@ -12,7 +12,10 @@
   flex: 0 0 auto;
 }
 
-.svg-container {
+.svg-container11 {
   width: 24px;
   height: 24px;
+  position: relative;
+  right: 4em;
+  cursor: pointer;
 }

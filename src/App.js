@@ -44,6 +44,7 @@ import DashboardSectionAdmin from './pages/ExploreGroupDetails/DashboardSectionA
 import Cards from './pages/ExploreGroupAdmin/card/Cards.js';
 import NewKeys from './pages/ExploreGroupAdmin/top/NewKeys.js';
 import ActiveCards from './pages/ExploreGroupAdmin copy/card/ActiveCards.js';
+import NewCards from './pages/ExploreGroupAdmin copy 2/card/NewCards.js';
 
 // App component
 function App() {
@@ -120,6 +121,7 @@ function App() {
               <Route path="/cards" element={<Cards />} />
               <Route path="/header" element={<NewKeys />} />
               <Route path="/activecards" element={<ActiveCards />} />
+              <Route path="/newcards" element={<NewCards />} />
             </Routes>
           </GlobalProvider>
         </Router>
