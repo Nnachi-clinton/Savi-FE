@@ -7,27 +7,30 @@ import Users from '../../assets/Users.svg';
 import Money from '../../assets/Money.svg';
 import Withdrawal from "../../assets/Withdrawal.svg";
 import SWC from "../../components/dashboard/SWC";
-import SearchIcon from '../../assets/SearchIcon.svg'
+import SearchIcon from '../../assets/SearchIcon.svg';
+import SWCBarChart from "../../components/dashboard/SWCBarChart";
+
 const Container = styled.div`
-    padding: 16px;
+    padding: 0px 16px;
     background-color: #EAECF0;
 `;
 const Section = styled.section`
-    padding: 8px;
+    padding: 36px 0px 18px 36px;
     display: flex;
     flex-direction: row;
-    margin: 36px;
+    margin: 0px;
+    background-color: #FFFFFF;
 `;
 const SectionCard = styled.section`
-    padding: 18px;
+    padding: 36px 18px;
     display: flex;
     flex-direction: row;
-    margin: 36px 36px 3px;
+    margin: 0px;
     background-color: #FFFFFF;
 `;
 const Main = styled.main`
-    padding: 18px;
-    margin: 0px 36px 36px;
+    padding: 36px 18px;
+    margin: 3px 0px;
     background-color: #FFFFFF;
 `;
 const Image = styled.img`
@@ -70,7 +73,7 @@ const Icon = styled.img`
 `;
 
 const AdminDashboard = () => {
-    const currentDate = new Date().toLocaleDateString('en-US', {
+    const currentDate = new Date().toLocaleDateString('en-NG', {
         month: 'long',
         day: 'numeric',
         year: 'numeric'
@@ -78,7 +81,7 @@ const AdminDashboard = () => {
 
     return (
         <Container>
-            <header>
+            <header style={{backgroundColor: 'white', paddingTop: "16px"}}>
                 <h1> Welcome back Admin,</h1>
                 <p>
                     <Image src={Calender}  alt="Calendar"/>
@@ -147,6 +150,7 @@ const AdminDashboard = () => {
                         </InputContainer>
                     </div>
                 </Content>
+                <SWCBarChart />
             </Main>
         </Container>
     );
