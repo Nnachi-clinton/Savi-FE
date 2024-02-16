@@ -3,8 +3,14 @@ import Icon from './Icon.js';
 import './style.css';
 import '../Glo.css';
 import styled from 'styled-components';
+import React, { useState } from 'react';
 
 function Cards() {
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
+    console.log('toggleDropdown');
+  };
   return (
     <div style={{ marginTop: '3em', marginLeft: '-5em' }}>
       <GroupCard>
@@ -29,7 +35,31 @@ function Cards() {
                   />
                 </div>
               </ImageContainer2>
-              <Icon className="svg-container11" />
+              <div className="dropdown-container">
+                <Icon
+                  className="svg-container11"
+                  onClick={() => toggleDropdown()}
+                />
+                {dropdownVisible && (
+                  <div className="dropdown-content">
+                    <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
+                      Edit
+                    </div>
+                    <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
+                      Delete
+                    </div>
+                    <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
+                      Disable
+                    </div>
+                    <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
+                      Enable
+                    </div>
+                    <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
+                      View details
+                    </div>
+                  </div>
+                )}
+              </div>
             </ImageContainer>
           </Container>
           <Groups />
