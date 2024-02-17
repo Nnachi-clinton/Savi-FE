@@ -80,7 +80,7 @@ const Signin = () => {
           localStorage.setItem('Id', id);
           // navigate('/dashboard');
           if (roleDecode === 'Admin') {
-            navigate('/dashboardsectionadmin');
+            navigate('/admin-dashboard');
           } else {
             navigate('/dashboard');
           }
@@ -148,7 +148,7 @@ const Signin = () => {
         localStorage.setItem('Id', id);
         // navigate('/dashboard');
         if (roleDecode === 'Admin') {
-          navigate('/dashboardsectionadmin');
+          navigate('/admin-dashboard');
         } else {
           navigate('/dashboard');
         }

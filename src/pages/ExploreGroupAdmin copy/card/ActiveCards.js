@@ -2,7 +2,7 @@ import Groups from '../groups/ActiveGroup.js';
 import Icon from './Icon.js';
 import './style.css';
 import '../Glo.css';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 // function ActiveCards() {
@@ -92,6 +92,16 @@ function ActiveCards({ selectstep }) {
 }
 
 function ActiveCard({ user, selectstep }) {
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
+    console.log('toggleDropdown');
+  };
+  const handleGroupClick = (groupId) => {
+    localStorage.setItem('GroupId', groupId);
+    console.log(groupId);
+    selectstep(7);
+  };
   return (
     <div className="savings-group-card1" style={{ marginBottom: '1em' }}>
       <div className="header-container1">
@@ -114,8 +124,33 @@ function ActiveCard({ user, selectstep }) {
                 />
               </div>
             </div>
-            <div>
-              <Icon className="svg-container1" />
+            <div className="dropdown-container1">
+              <Icon
+                className="svg-container1"
+                onClick={() => toggleDropdown()}
+              />
+              {dropdownVisible && (
+                <div className="dropdown-content1">
+                  <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
+                    Edit
+                  </div>
+                  <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
+                    Delete
+                  </div>
+                  <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
+                    Disable
+                  </div>
+                  <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
+                    Enable
+                  </div>
+                  <div
+                    style={{ marginBottom: '4px', cursor: 'pointer' }}
+                    onClick={() => handleGroupClick(user.id)}
+                  >
+                    View details
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
