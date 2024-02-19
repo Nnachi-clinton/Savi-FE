@@ -12,7 +12,7 @@ function DashboardSection() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://localhost:7240/api/GroupSavings/GroupSavingsDetails?groupId=112233` // groupId to be changed and made dynamic, this was used for testing purposes
+          `https://localhost:7240/api/GroupSavings/GroupSavingsDetails?groupId=112233` // !groupId to be changed and made dynamic, this was used for testing purposes
         );
 
         setUserData(response.data.result);

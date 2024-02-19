@@ -1,0 +1,43 @@
+.money-journey-container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  min-width: 1169px;
+  padding-right: 6px;
+  padding-bottom: 12px;
+  margin-left: -6px;
+}
+.savings-group-info {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-right: 43px;
+  padding-left: 43px;
+  margin-top: 33px;
+}
+.contribution-details1 {
+  flex: 1 0 422px;
+  box-sizing: border-box;
+  width: 400px;
+  padding-bottom: 180px;
+}
+.transaction-history {
+  flex: 1 0 414px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  margin-left: 164px;
+}
+.transaction-history-title {
+  flex: 0 0 auto;
+  font: var(--font-weight-500) var(--font-size-15) 'Inter';
+  color: var(--color-darkslategrey-a21b5acd);
+  letter-spacing: 0.07px;
+  margin-bottom: 1em;
+}
