@@ -16,7 +16,7 @@ function UserGroupCards({ selectstep }) {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://localhost:7240/api/GroupSavings/ExploreGroups/22`
+          `https://localhost:7240/api/GroupSavings/ExploreGroups`
         );
 
         setUserData(response.data.result);
@@ -37,21 +37,26 @@ function UserGroupCards({ selectstep }) {
       {userData.length === 0 ? (
         <Span2>
           <Div4>You don’t have any active saving group, you can</Div4>
-          <LinkText style={{ marginRight: '20em' }}>
-            <span onClick={() => handleGroupClick()}>Create a new group</span>
+          <LinkText>
+            <span
+              onClick={() => handleGroupClick()}
+              style={{ paddingRight: '0.3em' }}
+            >
+              Create a new group
+            </span>
             or <span>explore groups</span>
           </LinkText>
         </Span2>
       ) : (
         userData.map((user, index) => (
-          <UserCard key={index} user={user} selectstep={selectstep} />
+          <UserGroupSection key={index} user={user} selectstep={selectstep} />
         ))
       )}
     </div>
   );
 }
 
-function UserCard({ user, selectstep }) {
+function UserGroupSection({ user, selectstep }) {
   return (
     <div className="savings-group-card-user" style={{ marginBottom: '1em' }}>
       <div className="header-container12">
@@ -118,6 +123,7 @@ const Span2 = styled.span`
   align-self: center;
   display: flex;
   margin-top: 330px;
+  margin-left: 32em;
   flex-direction: column;
   padding: 10px 10px 0;
   @media (max-width: 991px) {
@@ -137,7 +143,10 @@ const Div4 = styled.div`
 `;
 
 const LinkText = styled.div`
-  display: flex;
+  // display: flex;
+  margin-left: 28em;
+  gap: 0.5em !important;
+  padding: 0.5em;
 
   span {
     color: #2f80ed;

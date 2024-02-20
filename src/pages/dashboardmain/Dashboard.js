@@ -14,6 +14,8 @@ import ProgressBar from '../../components/dashboard/ProgressBar';
 import { useNavigate } from 'react-router-dom';
 import EmptyGroupSavings from '../../pages/GroupSavings/EmptyGroupSavings';
 import AddGroupSavings from '../GroupSavings/AddGroupSavings.js';
+import UserGroupCards from '../UserGroupCard/card/UserGroupCards.js';
+import DashboardSection from '../ExploreActiveGroups/DashboardSection/DashboardSection.js';
 
 const WelcomeBackJohn1 = styled.b`
   position: relative;
@@ -2672,10 +2674,12 @@ const DashBoard = () => {
             </>
           )}
           {step === 1 && <Personalsavings2 selectstep={handleStep} />}
-          {step === 2 && <EmptyGroupSavings selectstep={handleStep} />}
+          {step === 2 && <UserGroupCards selectstep={handleStep} />} //NOTE -
+          Active Group Screen
           {step === 7 && <AddGoals />}
           {step === 8 && <PersonalSavingDetailsPage selectstep={handleStep} />}
           {step === 9 && <AddGroupSavings />}
+          {step === 10 && <DashboardSection />}
         </>
       </DashboardRoot>
       {isDepositFundsOpen && (

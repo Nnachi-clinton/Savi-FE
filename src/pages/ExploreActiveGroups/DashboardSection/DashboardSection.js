@@ -7,12 +7,12 @@ import axios from 'axios';
 
 function DashboardSection() {
   const [userData, setUserData] = useState({});
-
+  const GroupId = localStorage.getItem('GroupId');
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://localhost:7240/api/GroupSavings/GroupSavingsDetails?groupId=112233` // !groupId to be changed and made dynamic, this was used for testing purposes
+          `https://localhost:7240/api/GroupSavings/GroupSavingsDetails?groupId=${GroupId}` // !groupId to be changed and made dynamic, this was used for testing purposes
         );
 
         setUserData(response.data.result);
@@ -27,7 +27,7 @@ function DashboardSection() {
   }, []);
   console.log(userData);
   return (
-    <div className="money-journey-container">
+    <div className="money-journey-containeraa">
       <CorpMembersDashboard data={userData} />
       <div className="savings-group-info">
         <div className="contribution-details1">

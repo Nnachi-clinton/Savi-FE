@@ -1,4 +1,4 @@
-.contribution-card1 {
+.contribution-card1a {
   border: 1px solid var(--color-lightgrey-7e1cae0c);
   border-radius: var(--border-radius-16);
   background: var(--color-white);
@@ -7,7 +7,7 @@
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
-  margin-left: 12em;
+  margin-left: 7em;
 }
 .contribution-info {
   flex: 0 0 auto;

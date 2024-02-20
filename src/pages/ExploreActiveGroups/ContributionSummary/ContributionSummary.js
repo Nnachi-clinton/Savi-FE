@@ -35,7 +35,7 @@ function ContributionSummary(props) {
     }
   };
   return (
-    <div className="contribution-card1">
+    <div className="contribution-card1a">
       <div className="contribution-info">
         <p className="contribution-amount-label">Contribution Amount</p>
         <p className="contribution-schedule">Schedule</p>

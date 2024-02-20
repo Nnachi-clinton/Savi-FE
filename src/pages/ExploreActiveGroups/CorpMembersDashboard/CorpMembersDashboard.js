@@ -11,7 +11,7 @@ function CorpMembersDashboard(props) {
     <div className="savings-group-container">
       <div className="savings-group-container3">
         <div className="savings-group-container2">
-          <p className="header-title">{props.data.saveName}</p>
+          <p className="header-titleb">{props.data.saveName}</p>
           <SavingsGroupCard data={props.data} />
         </div>
         <ContributionCard data={props.data} />

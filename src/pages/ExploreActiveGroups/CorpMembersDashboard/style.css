@@ -86,10 +86,13 @@
   width: 42.01%;
   padding-bottom: 43px;
 }
-.header-title {
+.header-titleb {
   font: var(--font-weight-700) var(--font-size-32) 'Inter';
   color: var(--color-black);
   letter-spacing: 0.15px;
+  margin-bottom: 0.3em;
+  margin-left: -2em;
+  white-space: nowrap;
 }
 .hero-image {
   flex: 0 0 auto;

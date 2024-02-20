@@ -5,7 +5,7 @@ function UserContributionSummary(props, { selectstep }) {
   const handleGroupClick = (groupId) => {
     localStorage.setItem('GroupId', groupId);
     console.log(groupId);
-    props.selectstep(7);
+    props.selectstep(10);
   };
   return (
     <>
