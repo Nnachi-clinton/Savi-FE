@@ -92,8 +92,9 @@
   letter-spacing: 0.15px;
   margin-bottom: 2px;
   margin-top: 2px;
+  margin-left: -1em;
 }
-.hero-image {
+.hero-imagev {
   flex: 0 0 auto;
   border: none;
   border-radius: var(--border-radius-8);
@@ -103,6 +104,7 @@
   max-width: initial;
   height: 260px;
   object-fit: cover;
+  margin-left: 4em;
 }
 .money-sense-text {
   flex: 0 0 auto;

@@ -1,6 +1,11 @@
 import './style.css';
 
-function ExploreUserContributionSummary() {
+function ExploreUserContributionSummary({ selectstep }) {
+  const handleGroupClick = (groupId) => {
+    localStorage.setItem('GroupId', groupId);
+    console.log(groupId);
+    selectstep(12);
+  };
   return (
     <div className="contribution-section1b">
       <div className="contribution-sectionb">
@@ -30,7 +35,9 @@ function ExploreUserContributionSummary() {
           <p className="frequency-textb">2, 5 and 7</p>
         </div>
       </div>
-      <p className="group-linkb">View Group</p>
+      <p className="group-linkb" onClick={() => handleGroupClick(1234)}>
+        View Group
+      </p>
     </div>
   );
 }

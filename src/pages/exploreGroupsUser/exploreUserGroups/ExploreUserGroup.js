@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import ExploreUserContributionSummary from '../exploreUserContributionSummary/ExploreUserContrbutionSummary.js';
-function ExploreUserGroups() {
+function ExploreUserGroups({ selectstep }) {
   return (
     <Div>
       <P>Money Palava Savers</P>
@@ -9,7 +9,7 @@ function ExploreUserGroups() {
         flex and still save money for better days. We go show you as money fit
         run belle and still dey for account.
       </PP>
-      <ExploreUserContributionSummary />
+      <ExploreUserContributionSummary selectstep={selectstep} />
     </Div>
   );
 }

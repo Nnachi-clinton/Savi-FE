@@ -13,6 +13,11 @@ function ExploreUserGroupCard({ selectstep }) {
     setDropdownVisible(!dropdownVisible);
     console.log('toggleDropdown');
   };
+  const handleGroupClick = (groupId) => {
+    localStorage.setItem('GroupId', groupId);
+    console.log(groupId);
+    selectstep(12);
+  };
   return (
     <>
       <div className="group-card-container22">
@@ -77,7 +82,10 @@ function ExploreUserGroupCard({ selectstep }) {
                       <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
                         Report Group
                       </div>
-                      <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
+                      <div
+                        style={{ marginBottom: '4px', cursor: 'pointer' }}
+                        onClick={() => handleGroupClick(1234)}
+                      >
                         View details
                       </div>
                     </div>
@@ -85,7 +93,7 @@ function ExploreUserGroupCard({ selectstep }) {
                 </div>
               </ImageContainer>
             </Container>
-            <ExploreUserGroups />
+            <ExploreUserGroups selectstep={selectstep} />
           </Group>
         </GroupCard>
       </div>

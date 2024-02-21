@@ -13,12 +13,12 @@ function UserCorpMembersDashboard(props) {
     <div className="savings-group-container">
       <div className="savings-group-container3">
         <div className="savings-group-container2">
-          <p className="header-title6">{props.data.saveName}</p>
+          <p className="header-title6">Lagos Group</p>
           <UserSavingsGroupCard data={props.data} />
         </div>
         <UserContributionCard data={props.data} />
       </div>
-      <img src={Image} className="hero-image" alt="" />
+      <img src={Image} className="hero-imagev" alt="" />
       <p className="money-sense-text">
         {/* Bros/Sis, no dull yourself for dis service year money mata. Join Lagos
         Corp Members Thrift Saving Group sharp-sharp! We go secure your money,

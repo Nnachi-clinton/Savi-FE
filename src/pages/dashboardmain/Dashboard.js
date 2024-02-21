@@ -18,6 +18,7 @@ import UserGroupCards from '../UserGroupCard/card/UserGroupCards.js';
 import DashboardSection from '../ExploreActiveGroups/DashboardSection/DashboardSection.js';
 import ActiveCards from '../ExploreGroupAdmin copy/card/ActiveCards.js';
 import ExploreUserGroupCard from '../exploreGroupsUser/exploreUserCard/ExploreUserCards.js';
+import UserDashboardSection from '../ExploreActiveGroups copy/userDashboardSection/UserDashboardSection2.js';
 
 const WelcomeBackJohn1 = styled.b`
   position: relative;
@@ -2683,6 +2684,7 @@ const DashBoard = () => {
           {step === 9 && <AddGroupSavings />}
           {step === 10 && <DashboardSection selectstep={handleStep} />}
           {step === 11 && <ExploreUserGroupCard selectstep={handleStep} />}
+          {step === 12 && <UserDashboardSection selectstep={handleStep} />}
         </>
       </DashboardRoot>
       {isDepositFundsOpen && (
