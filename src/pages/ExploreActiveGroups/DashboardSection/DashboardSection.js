@@ -5,7 +5,7 @@ import './style.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function DashboardSection() {
+function DashboardSection({ selectstep }) {
   const [userData, setUserData] = useState({});
   const GroupId = localStorage.getItem('GroupId');
   useEffect(() => {
@@ -28,7 +28,7 @@ function DashboardSection() {
   console.log(userData);
   return (
     <div className="money-journey-containeraa">
-      <CorpMembersDashboard data={userData} />
+      <CorpMembersDashboard data={userData} selectstep={selectstep} />
       <div className="savings-group-info">
         <div className="contribution-details1">
           <ContributionSummary data={userData} />

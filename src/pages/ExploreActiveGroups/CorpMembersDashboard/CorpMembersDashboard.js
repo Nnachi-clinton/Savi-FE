@@ -6,13 +6,14 @@ import '../style/variables.css';
 import './style.css';
 
 function CorpMembersDashboard(props) {
+  const { selectstep } = props;
   console.log(props.data);
   return (
     <div className="savings-group-container">
       <div className="savings-group-container3">
         <div className="savings-group-container2">
           <p className="header-titleb">{props.data.saveName}</p>
-          <SavingsGroupCard data={props.data} />
+          <SavingsGroupCard data={props.data} selectstep={selectstep} />
         </div>
         <ContributionCard data={props.data} />
       </div>

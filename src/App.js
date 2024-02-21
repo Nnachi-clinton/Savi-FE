@@ -34,7 +34,7 @@ import PersonalSavingDetailsPage from './pages/savings/PersonalSavingDetailsPage
 import WithdrawFunds from './components/dashboard/WithdrawFunds.js';
 import DashboardSection from './pages/ExploreActiveGroups/DashboardSection/DashboardSection.js';
 import EmptyGroup from './pages/group/EmptyGroup.js';
-import ExploreGroupSavings from './pages/ExploreGroupSavingsDetails/ExploreGroupSavings.js';
+// import ExploreGroupSavings from './pages/ExploreGroupSavingsDetails/ExploreGroupSavings.js';
 import UpdateUser from './User/UpdateUser.js';
 import AddGroupSavings from './pages/GroupSavings/AddGroupSavings.js';
 import AddGroupSavingsModal from './components/modal/AddGroupSavingsModal.js';
@@ -47,6 +47,7 @@ import ActiveCards from './pages/ExploreGroupAdmin copy/card/ActiveCards.js';
 import NewCards from './pages/ExploreGroupAdmin copy 2/card/NewCards.js';
 import UserGroupCards from './pages/UserGroupCard/card/UserGroupCards.js';
 import UserDashboardSection from './pages/ExploreActiveGroups copy/userDashboardSection/UserDashboardSection2.js';
+import ExploreUserGroupCard from './pages/exploreGroupsUser/exploreUserCard/ExploreUserCards.js';
 
 // App component
 function App() {
@@ -71,10 +72,10 @@ function App() {
               <Route path="signin" element={<Signin />} />
               <Route path="/sidebar" element={<Sidebar />} />
               <Route path="/Navbar" element={<Navbar />} />
-              <Route
+              {/* <Route
                 path="/ExploreGroupSavings"
                 element={<ExploreGroupSavings />}
-              />
+              /> */}
               <Route path="/LandingPage" element={<LandingPage />} />
               <Route path="/resetPassword" element={<ResetPassword />} />
               <Route path="/forgotPassword" element={<ForgotPassword />} />
@@ -128,6 +129,10 @@ function App() {
               <Route
                 path="/userexploregroups"
                 element={<UserDashboardSection />}
+              />
+              <Route
+                path="/ExploreUserGroupCard"
+                element={<ExploreUserGroupCard />}
               />
             </Routes>
           </GlobalProvider>

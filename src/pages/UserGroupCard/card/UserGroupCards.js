@@ -32,7 +32,9 @@ function UserGroupCards({ selectstep }) {
     <div style={{ marginTop: '3em', marginLeft: '-5em' }}>
       <Span style={{ marginBottom: '2em' }}>
         <Div2 style={{ marginLeft: '13em' }}>Active Savings</Div2>
-        <Div3 style={{ marginRight: '8em' }}>Explore Groups</Div3>
+        <Div3 style={{ marginRight: '8em' }} onClick={() => selectstep(11)}>
+          Explore Groups
+        </Div3>
       </Span>
       {userData.length === 0 ? (
         <Span2>

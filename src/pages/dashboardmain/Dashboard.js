@@ -16,6 +16,8 @@ import EmptyGroupSavings from '../../pages/GroupSavings/EmptyGroupSavings';
 import AddGroupSavings from '../GroupSavings/AddGroupSavings.js';
 import UserGroupCards from '../UserGroupCard/card/UserGroupCards.js';
 import DashboardSection from '../ExploreActiveGroups/DashboardSection/DashboardSection.js';
+import ActiveCards from '../ExploreGroupAdmin copy/card/ActiveCards.js';
+import ExploreUserGroupCard from '../exploreGroupsUser/exploreUserCard/ExploreUserCards.js';
 
 const WelcomeBackJohn1 = styled.b`
   position: relative;
@@ -2679,7 +2681,8 @@ const DashBoard = () => {
           {step === 7 && <AddGoals />}
           {step === 8 && <PersonalSavingDetailsPage selectstep={handleStep} />}
           {step === 9 && <AddGroupSavings />}
-          {step === 10 && <DashboardSection />}
+          {step === 10 && <DashboardSection selectstep={handleStep} />}
+          {step === 11 && <ExploreUserGroupCard selectstep={handleStep} />}
         </>
       </DashboardRoot>
       {isDepositFundsOpen && (
