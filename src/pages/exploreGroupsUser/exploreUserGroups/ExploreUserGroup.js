@@ -20,11 +20,12 @@ const Div = styled.div`
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
   align-items: stretch;
   justify-content: flex-start;
   margin-top: 15px;
-  width: 90%;
+  width: 70%;
+  margin-left: 9em;
 `;
 
 const P = styled.p`

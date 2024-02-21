@@ -58,13 +58,15 @@ function ExploreUserGroupCard({ selectstep }) {
                       src="/assets/img_I194_24305_115_2216_e1c0a9.jpeg"
                       className="rounded-image"
                       alt=""
-                      style={{ marginLeft: '-8em' }}
+                      style={{ marginLeft: '-14em' }}
                     />
                   </div>
                 </ImageContainer2>
+                <button className="join-button-style">Join</button>
+
                 <div className="dropdown-container">
                   <Icon
-                    className="svg-container11"
+                    className="svg-container111"
                     onClick={() => toggleDropdown()}
                   />
                   {dropdownVisible && (
@@ -110,7 +112,9 @@ const Header = styled.div`
   flex: 0 0 auto;
   padding-top: 54px;
   padding-bottom: 55px;
-  margin-left: 5em;
+  margin-left: 3em;
+  position: relative;
+  left: 9em;
 `;
 
 const Group = styled.div`
@@ -163,4 +167,5 @@ const Button = styled.button`
   height: 48px;
   color: var(--color-dodgerblue-8a8544b8);
   letter-spacing: 0.08px;
+  margin-left: 8em;
 `;
