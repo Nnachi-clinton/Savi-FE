@@ -17,6 +17,7 @@
   flex: 0 0 auto;
   font: var(--font-weight-600) var(--font-size-14) 'Inter';
   color: var(--color-darkslategrey-1b46e7ef);
+  cursor: pointer;
 }
 .svg-container26 {
   flex: 0 0 auto;

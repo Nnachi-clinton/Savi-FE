@@ -7,7 +7,7 @@ import axios from 'axios';
 import UserContributionSummary from '../ContributionSummary/UserContributionSummary';
 import UserCorpMembersDashboard from '../userCorpMembersDashboard/UserCorpMembersDashboard';
 
-function UserDashboardSection() {
+function UserDashboardSection({ selectstep }) {
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
@@ -30,7 +30,7 @@ function UserDashboardSection() {
   console.log(userData);
   return (
     <div className="money-journey-container">
-      <UserCorpMembersDashboard data={userData} />
+      <UserCorpMembersDashboard data={userData} selectstep={selectstep} />
       <div className="savings-group-info">
         <div className="contribution-details1">
           <UserContributionSummary data={userData} />

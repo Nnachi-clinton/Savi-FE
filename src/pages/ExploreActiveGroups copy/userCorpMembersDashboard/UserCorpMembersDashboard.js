@@ -8,13 +8,14 @@ import '../style/variables.css';
 import './style6.css';
 
 function UserCorpMembersDashboard(props) {
+  const { selectstep } = props;
   console.log(props.data);
   return (
     <div className="savings-group-container">
       <div className="savings-group-container3">
         <div className="savings-group-container2">
-          <p className="header-title6">Lagos Group</p>
-          <UserSavingsGroupCard data={props.data} />
+          <p className="header-title6">{props.data.saveName}</p>
+          <UserSavingsGroupCard data={props.data} selectstep={selectstep} />
         </div>
         <UserContributionCard data={props.data} />
       </div>
