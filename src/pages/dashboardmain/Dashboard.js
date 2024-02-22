@@ -2677,14 +2677,14 @@ const DashBoard = () => {
             </>
           )}
           {step === 1 && <Personalsavings2 selectstep={handleStep} />}
-          {step === 2 && <UserGroupCards selectstep={handleStep} />}{' '}
+          {step === 2 && <UserGroupCards selectstep={handleStep} />}
           {/*NOTE -
           Active Group Screen*/}
           {step === 7 && <AddGoals />}
           {step === 8 && <PersonalSavingDetailsPage selectstep={handleStep} />}
           {step === 9 && <AddGroupSavings />}
           {step === 10 && <DashboardSection selectstep={handleStep} />}
-          {step === 11 && <ExploreUserGroupCard selectstep={handleStep} />}{' '}
+          {step === 11 && <ExploreUserGroupCard selectstep={handleStep} />}
           {/*NOTE -
           Explore Group Screen*/}
           {step === 12 && <UserDashboardSection selectstep={handleStep} />}
