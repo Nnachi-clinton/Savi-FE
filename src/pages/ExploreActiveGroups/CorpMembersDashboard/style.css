@@ -80,11 +80,12 @@
   /* max-width: 1000px; */
   margin-left: 12em;
 }
-.savings-group-container2 {
+.savings-group-container2d {
   flex: 0 0 auto;
   box-sizing: border-box;
   width: 42.01%;
   padding-bottom: 43px;
+  margin-top: 2em;
 }
 .header-titleb {
   font: var(--font-weight-700) var(--font-size-32) 'Inter';

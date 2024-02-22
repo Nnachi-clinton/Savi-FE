@@ -1,6 +1,6 @@
 import ContributionCard from '../ContributionCard/ContributionCard';
 import SavingsGroupCard from '../SavingsGroupCard/SavingsGroupCard';
-import Image from '../assets/img_2650_29411_cfdc0d.jpeg';
+// import Image from '../assets/img_2650_29411_cfdc0d.jpeg';
 import '../style/reset.css';
 import '../style/variables.css';
 import './style.css';
@@ -11,13 +11,17 @@ function CorpMembersDashboard(props) {
   return (
     <div className="savings-group-container">
       <div className="savings-group-container3">
-        <div className="savings-group-container2">
+        <div className="savings-group-container2d">
           <p className="header-titleb">{props.data.saveName}</p>
           <SavingsGroupCard data={props.data} selectstep={selectstep} />
         </div>
         <ContributionCard data={props.data} />
       </div>
-      <img src={Image} className="hero-image" alt="" />
+      <img
+        src={props.data.safePortraitImageURL}
+        className="hero-image"
+        alt=""
+      />
       <p className="money-sense-text">
         {/* Bros/Sis, no dull yourself for dis service year money mata. Join Lagos
         Corp Members Thrift Saving Group sharp-sharp! We go secure your money,

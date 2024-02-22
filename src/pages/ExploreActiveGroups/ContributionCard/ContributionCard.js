@@ -11,7 +11,7 @@ function ContributionCard(props) {
   console.log(balance);
 
   return (
-    <div className="contribution-card">
+    <div className="contribution-cardd">
       <div className="contribution-container">
         <p className="contribution-title">{month} CONTRIBUTION</p>
         <div className="contribution-container1">

@@ -16,7 +16,7 @@ function UserGroupCards({ selectstep }) {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://localhost:7240/api/GroupSavings/ExploreGroups`
+          `https://localhost:7240/api/GroupSavings/ListOfActiveGroups` //! pls, don't toouch the url
         );
 
         setUserData(response.data.result);
@@ -70,7 +70,7 @@ function UserGroupSection({ user, selectstep }) {
       </div>
       <div className="money-palava-savers-container112">
         <div className="flex-container12">
-          <button className="button-waiting12">Waiting</button>
+          <button className="button-waiting12">Ongoing</button>
           <div className="image-container-with-counter12">
             <div className="image-container212">
               <div className="contribution-section112">
