@@ -1,6 +1,8 @@
 import './style.css';
 
-function ExploreUserContributionSummary({ selectstep }) {
+function ExploreUserContributionSummary(props) {
+  const { selectstep } = props;
+  console.log(props.data);
   const handleGroupClick = (groupId) => {
     localStorage.setItem('GroupId', groupId);
     console.log(groupId);
@@ -35,7 +37,10 @@ function ExploreUserContributionSummary({ selectstep }) {
           <p className="frequency-textb">2, 5 and 7</p>
         </div>
       </div>
-      <p className="group-linkb" onClick={() => handleGroupClick(1234)}>
+      <p
+        className="group-linkb"
+        onClick={() => handleGroupClick(props.data.id)}
+      >
         View Group
       </p>
     </div>

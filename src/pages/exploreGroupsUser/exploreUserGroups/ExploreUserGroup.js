@@ -1,15 +1,21 @@
 import styled from 'styled-components';
 import ExploreUserContributionSummary from '../exploreUserContributionSummary/ExploreUserContrbutionSummary.js';
-function ExploreUserGroups({ selectstep }) {
+function ExploreUserGroups(props) {
+  const { selectstep } = props;
+  console.log(props.data);
   return (
     <Div>
-      <P>Money Palava Savers</P>
+      <P>{props.data.saveName}</P>
       <PP>
-        Make we save together, chop better life! Join this group if you want to
+        {/* Make we save together, chop better life! Join this group if you want to
         flex and still save money for better days. We go show you as money fit
-        run belle and still dey for account.
+        run belle and still dey for account. */}
+        {props.data.purposeAndGoal}
       </PP>
-      <ExploreUserContributionSummary selectstep={selectstep} />
+      <ExploreUserContributionSummary
+        selectstep={selectstep}
+        data={props.data}
+      />
     </Div>
   );
 }
