@@ -19,7 +19,11 @@ function UserCorpMembersDashboard(props) {
         </div>
         <UserContributionCard data={props.data} />
       </div>
-      <img src={Image} className="hero-imagev" alt="" />
+      <img
+        src={props.data.safePortraitImageURL}
+        className="hero-imagev"
+        alt=""
+      />
       <p className="money-sense-text">
         {/* Bros/Sis, no dull yourself for dis service year money mata. Join Lagos
         Corp Members Thrift Saving Group sharp-sharp! We go secure your money,
