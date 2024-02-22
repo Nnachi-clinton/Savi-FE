@@ -16,7 +16,7 @@ function UserGroupCards({ selectstep }) {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://localhost:7240/api/GroupSavings/ListOfActiveGroups` //! pls, don't toouch the url
+          `https://localhost:7240/api/GroupSavings/ListOfActiveGroups` //! pls, don't change this url
         );
 
         setUserData(response.data.result);
@@ -59,6 +59,18 @@ function UserGroupCards({ selectstep }) {
 }
 
 function UserGroupSection({ user, selectstep }) {
+  const [dropdownVisible, setDropdownVisible] = useState({});
+  const toggleDropdown = (groupId) => {
+    setDropdownVisible((prevState) => ({
+      ...prevState,
+      [groupId]: !prevState[groupId],
+    }));
+  };
+  const handleGroupClick = (groupId) => {
+    localStorage.setItem('GroupId', groupId);
+    console.log(groupId);
+    selectstep(10);
+  };
   return (
     <div className="savings-group-card-user" style={{ marginBottom: '1em' }}>
       <div className="header-container12">
@@ -82,7 +94,26 @@ function UserGroupSection({ user, selectstep }) {
               </div>
             </div>
             <div>
-              <Icon className="svg-container12" />
+              <Icon
+                className="svg-container12"
+                onClick={() => toggleDropdown(user.id)}
+              />
+              {dropdownVisible[user.id] && (
+                <div className="dropdown-content">
+                  <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
+                    Leave Group
+                  </div>
+                  <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
+                    Report Group
+                  </div>
+                  <div
+                    style={{ marginBottom: '4px', cursor: 'pointer' }}
+                    onClick={() => handleGroupClick(user.id)}
+                  >
+                    View details
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

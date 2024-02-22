@@ -14,7 +14,7 @@ function UserDashboardSection({ selectstep }) {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://localhost:7240/api/GroupSavings/ExploreGroupDetails?groupId=${groupId}` // ! groupId to be changed and made dynamic, this was used for testing purposes, Don't TOuch abeg
+          `https://localhost:7240/api/GroupSavings/ExploreGroupDetails?groupId=${groupId}` // !  Don't change this url please
         );
 
         setUserData(response.data.result);
