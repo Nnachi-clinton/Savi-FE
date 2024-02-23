@@ -2684,10 +2684,14 @@ const DashBoard = () => {
           {step === 8 && <PersonalSavingDetailsPage selectstep={handleStep} />}
           {step === 9 && <AddGroupSavings />}
           {step === 10 && <DashboardSection selectstep={handleStep} />}
+          {/*NOTE -
+          Active Group Details*/}
           {step === 11 && <ExploreUserGroupCard selectstep={handleStep} />}
           {/*NOTE -
           Explore Group Screen*/}
           {step === 12 && <UserDashboardSection selectstep={handleStep} />}
+          {/*NOTE -
+          Explore Group Details*/}
         </>
       </DashboardRoot>
       {isDepositFundsOpen && (
