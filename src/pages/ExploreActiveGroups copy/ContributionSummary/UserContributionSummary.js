@@ -19,7 +19,7 @@ function UserContributionSummary(props) {
       case 2:
         return <p>Monthly</p>;
       default:
-        return <p>Invalid Schedule</p>; // !Handle other cases if needed
+        return <p>Invalid Schedule</p>;
     }
   };
   const renderSchedule2 = (scheduleValue) => {
