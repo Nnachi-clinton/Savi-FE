@@ -33,67 +33,100 @@ function Cards({ selectstep }) {
 
   return (
     <div style={{ marginTop: '3em', marginLeft: '-5em' }}>
-      {userData.map((group, index) => (
-        <GroupCard key={index} style={{ marginBottom: '1em' }}>
-          <Header>
-            <img
-              src={group.safePortraitImageURL}
-              className="image-container"
-              alt=""
-            />
-          </Header>
-          <Group>
-            <Container>
-              <Button>Waiting</Button>
-              <ImageContainer>
-                <ImageContainer2>
-                  <div className="contribution-section1">
-                    <img
-                      src="/assets/img_I194_24305_115_2216_e1c0a9.jpeg"
-                      className="rounded-image"
-                      alt=""
-                      style={{ marginLeft: '-8em' }}
-                    />
-                  </div>
-                </ImageContainer2>
-                <div className="dropdown-container">
-                  <Icon
-                    className="svg-container11"
-                    onClick={() => toggleDropdown()}
-                  />
-                  {dropdownVisible && (
-                    <div className="dropdown-content">
-                      <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
-                        Edit
-                      </div>
-                      <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
-                        Delete
-                      </div>
-                      <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
-                        Disable
-                      </div>
-                      <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
-                        Enable
-                      </div>
-                      <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
-                        View details
-                      </div>
+      {userData.length === 0 ? (
+        <div style={{ marginLeft: '45em', marginTop: '20em' }}>
+          No new Group Created Today
+        </div>
+      ) : (
+        userData.map((group, index) => (
+          <GroupCard key={index} style={{ marginBottom: '1em' }}>
+            <Header>
+              <img
+                src={group.safePortraitImageURL}
+                className="image-container"
+                alt=""
+              />
+            </Header>
+            <Group>
+              <Container>
+                <Button className={getButtonClass(group.groupStatus)}>
+                  {getButtonText(group.groupStatus)}
+                </Button>
+                <ImageContainer>
+                  <ImageContainer2>
+                    <div className="contribution-section1">
+                      <img
+                        src="/assets/img_I194_24305_115_2216_e1c0a9.jpeg"
+                        className="rounded-image"
+                        alt=""
+                        style={{ marginLeft: '-8em' }}
+                      />
                     </div>
-                  )}
-                </div>
-              </ImageContainer>
-            </Container>
-            {/* Assuming Groups component accepts data as props */}
-            <Groups data={group} selectstep={selectstep} />
-          </Group>
-        </GroupCard>
-      ))}
+                  </ImageContainer2>
+                  <div className="dropdown-container">
+                    <Icon
+                      className="svg-container11"
+                      onClick={() => toggleDropdown()}
+                    />
+                    {dropdownVisible && (
+                      <div className="dropdown-content">
+                        <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
+                          Edit
+                        </div>
+                        <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
+                          Delete
+                        </div>
+                        <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
+                          Disable
+                        </div>
+                        <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
+                          Enable
+                        </div>
+                        <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
+                          View details
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </ImageContainer>
+              </Container>
+              {/* Assuming Groups component accepts data as props */}
+              <Groups data={group} selectstep={selectstep} />
+            </Group>
+          </GroupCard>
+        ))
+      )}
     </div>
   );
 }
 
 export default Cards;
 
+function getButtonClass(status) {
+  switch (status) {
+    case 0:
+      return 'waiting';
+    case 1:
+      return 'ongoing';
+    case 2:
+      return 'ended';
+    default:
+      return 'default';
+  }
+}
+
+function getButtonText(status) {
+  switch (status) {
+    case 0:
+      return 'Waiting';
+    case 1:
+      return 'Ongoing';
+    case 2:
+      return 'Ended';
+    default:
+      return 'Unknown';
+  }
+}
 const GroupCard = styled.div`
   background: var(--color-white);
   // padding: 10px;
@@ -156,12 +189,10 @@ const Button = styled.button`
   border: none;
   border-radius: var(--border-radius-1678);
   font: var(--font-weight-500) var(--font-size-16) 'Inter';
-  background: var(--color-lavender-d88d7bed);
   box-sizing: border-box;
   display: block;
   width: 92px;
   min-width: 92px;
   height: 48px;
-  color: var(--color-dodgerblue-8a8544b8);
   letter-spacing: 0.08px;
 `;

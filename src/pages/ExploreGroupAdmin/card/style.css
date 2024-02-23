@@ -38,3 +38,21 @@
 /* .dropdown-container:hover .dropdown-content {
   display: block;
 } */
+
+.waiting {
+  background: var(--color-lavender-d88d7bed);
+  color: var(--color-dodgerblue-8a8544b8);
+}
+
+.ongoing {
+  background-color: var(--color-lightcyan-ad89668a);
+  color: var(--color-lightseagreen-623);
+}
+
+.ended {
+  background-color: red;
+}
+
+.default {
+  background-color: grey;
+}
