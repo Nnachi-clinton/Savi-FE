@@ -7,9 +7,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function Cards({ selectstep }) {
-  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [dropdownVisible, setDropdownVisible] = useState({});
   const [userData, setUserData] = useState([]);
-
+  const handleGroupClick = (groupId) => {
+    localStorage.setItem('GroupId', groupId);
+    console.log(groupId);
+    selectstep(7);
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -26,9 +30,11 @@ function Cards({ selectstep }) {
     fetchData();
   }, []);
 
-  const toggleDropdown = () => {
-    setDropdownVisible(!dropdownVisible);
-    console.log('toggleDropdown');
+  const toggleDropdown = (groupId) => {
+    setDropdownVisible((prevState) => ({
+      ...prevState,
+      [groupId]: !prevState[groupId],
+    }));
   };
 
   return (
@@ -66,10 +72,13 @@ function Cards({ selectstep }) {
                   <div className="dropdown-container">
                     <Icon
                       className="svg-container11"
-                      onClick={() => toggleDropdown()}
+                      onClick={() => toggleDropdown(group.id)}
                     />
-                    {dropdownVisible && (
-                      <div className="dropdown-content">
+                    {dropdownVisible[group.id] && (
+                      <div
+                        className="dropdown-content"
+                        style={{ marginLeft: '1em' }}
+                      >
                         <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
                           Edit
                         </div>
@@ -82,7 +91,10 @@ function Cards({ selectstep }) {
                         <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
                           Enable
                         </div>
-                        <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
+                        <div
+                          style={{ marginBottom: '4px', cursor: 'pointer' }}
+                          onClick={() => handleGroupClick(group.id)}
+                        >
                           View details
                         </div>
                       </div>
