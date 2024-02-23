@@ -2070,7 +2070,7 @@ const DashBoard = () => {
   //   setDisplayedGoals(goals.length);
   // };
   const onViewAllText1Click = () => {
-    navigate('/personalsavings2');
+    // navigate('/personalsavings2');
   };
 
   return (
