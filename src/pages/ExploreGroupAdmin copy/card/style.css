@@ -47,13 +47,13 @@
   border: none;
   border-radius: var(--border-radius-1678);
   font: var(--font-weight-500) var(--font-size-16) 'Inter';
-  background: var(--color-lavender-d88d7bed);
+  background: var(--color-lightcyan-ad89668a);
   box-sizing: border-box;
   display: block;
   width: 92px;
   min-width: 92px;
   height: 48px;
-  color: var(--color-dodgerblue-8a8544b8);
+  color: var(--color-lightseagreen-623);
   letter-spacing: 0.08px;
   cursor: pointer;
 }

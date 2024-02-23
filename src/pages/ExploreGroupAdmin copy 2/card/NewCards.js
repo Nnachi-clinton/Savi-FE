@@ -12,7 +12,7 @@ function NewCards({ selectstep }) {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://localhost:7240/api/GroupSavings/ExploreGroups`
+          `https://localhost:7240/api/GroupSavings/GetGroupsCreatedToday`
         );
 
         setUserData(response.data.result);
@@ -26,9 +26,15 @@ function NewCards({ selectstep }) {
 
   return (
     <div style={{ marginTop: '3em', marginLeft: '-5em' }}>
-      {userData.map((user, index) => (
-        <ActiveCard key={index} user={user} selectstep={selectstep} />
-      ))}
+      {userData.length === 0 ? (
+        <div style={{ marginLeft: '45em', marginTop: '20em' }}>
+          No new Group Created Today
+        </div>
+      ) : (
+        userData.map((user, index) => (
+          <ActiveCard key={index} user={user} selectstep={selectstep} />
+        ))
+      )}
     </div>
   );
 }

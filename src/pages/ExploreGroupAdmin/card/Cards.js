@@ -3,68 +3,91 @@ import Icon from './Icon.js';
 import './style.css';
 import '../Glo.css';
 import styled from 'styled-components';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-function Cards() {
+function Cards({ selectstep }) {
   const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [userData, setUserData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://localhost:7240/api/GroupSavings/GetAllGroups`
+        );
+
+        setUserData(response.data.result);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
     console.log('toggleDropdown');
   };
+
   return (
     <div style={{ marginTop: '3em', marginLeft: '-5em' }}>
-      <GroupCard>
-        <Header>
-          <img
-            src="/assets/img_194_24282_cfdc0d.jpeg"
-            className="image-container"
-            alt=""
-          />
-        </Header>
-        <Group>
-          <Container>
-            <Button>Waiting</Button>
-            <ImageContainer>
-              <ImageContainer2>
-                <div className="contribution-section1">
-                  <img
-                    src="/assets/img_I194_24305_115_2216_e1c0a9.jpeg"
-                    className="rounded-image"
-                    alt=""
-                    style={{ marginLeft: '-8em' }}
-                  />
-                </div>
-              </ImageContainer2>
-              <div className="dropdown-container">
-                <Icon
-                  className="svg-container11"
-                  onClick={() => toggleDropdown()}
-                />
-                {dropdownVisible && (
-                  <div className="dropdown-content">
-                    <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
-                      Edit
-                    </div>
-                    <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
-                      Delete
-                    </div>
-                    <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
-                      Disable
-                    </div>
-                    <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
-                      Enable
-                    </div>
-                    <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
-                      View details
-                    </div>
+      {userData.map((group, index) => (
+        <GroupCard key={index} style={{ marginBottom: '1em' }}>
+          <Header>
+            <img
+              src={group.safePortraitImageURL}
+              className="image-container"
+              alt=""
+            />
+          </Header>
+          <Group>
+            <Container>
+              <Button>Waiting</Button>
+              <ImageContainer>
+                <ImageContainer2>
+                  <div className="contribution-section1">
+                    <img
+                      src="/assets/img_I194_24305_115_2216_e1c0a9.jpeg"
+                      className="rounded-image"
+                      alt=""
+                      style={{ marginLeft: '-8em' }}
+                    />
                   </div>
-                )}
-              </div>
-            </ImageContainer>
-          </Container>
-          <Groups />
-        </Group>
-      </GroupCard>
+                </ImageContainer2>
+                <div className="dropdown-container">
+                  <Icon
+                    className="svg-container11"
+                    onClick={() => toggleDropdown()}
+                  />
+                  {dropdownVisible && (
+                    <div className="dropdown-content">
+                      <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
+                        Edit
+                      </div>
+                      <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
+                        Delete
+                      </div>
+                      <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
+                        Disable
+                      </div>
+                      <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
+                        Enable
+                      </div>
+                      <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
+                        View details
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </ImageContainer>
+            </Container>
+            {/* Assuming Groups component accepts data as props */}
+            <Groups data={group} selectstep={selectstep} />
+          </Group>
+        </GroupCard>
+      ))}
     </div>
   );
 }

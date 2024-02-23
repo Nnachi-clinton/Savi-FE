@@ -1,15 +1,18 @@
 import styled from 'styled-components';
 import ContributionSummary from '../contributionSummary/ContrbutionSummary.js';
-function Groups() {
+function Groups(props) {
+  console.log(props.data);
+  const { selectstep } = props;
   return (
     <Div>
-      <P>Money Palava Savers</P>
+      <P>{props.data.saveName}</P>
       <PP>
-        Make we save together, chop better life! Join this group if you want to
+        {props.data.purposeAndGoal}
+        {/* Make we save together, chop better life! Join this group if you want to
         flex and still save money for better days. We go show you as money fit
-        run belle and still dey for account.
+        run belle and still dey for account. */}
       </PP>
-      <ContributionSummary />
+      <ContributionSummary data={props.data} selectstep={selectstep} />
     </Div>
   );
 }

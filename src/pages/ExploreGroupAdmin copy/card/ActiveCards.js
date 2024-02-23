@@ -70,7 +70,7 @@ function ActiveCards({ selectstep }) {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://localhost:7240/api/GroupSavings/ExploreGroups`
+          `https://localhost:7240/api/GroupSavings/ListOfActiveGroups`
         );
 
         setUserData(response.data.result);
@@ -84,9 +84,15 @@ function ActiveCards({ selectstep }) {
 
   return (
     <div style={{ marginTop: '3em', marginLeft: '-5em' }}>
-      {userData.map((user, index) => (
-        <ActiveCard key={index} user={user} selectstep={selectstep} />
-      ))}
+      {userData.length === 0 ? (
+        <div style={{ marginLeft: '45em', marginTop: '20em' }}>
+          No new Group Created Today
+        </div>
+      ) : (
+        userData.map((user, index) => (
+          <ActiveCard key={index} user={user} selectstep={selectstep} />
+        ))
+      )}
     </div>
   );
 }
@@ -113,7 +119,7 @@ function ActiveCard({ user, selectstep }) {
       </div>
       <div className="money-palava-savers-container11">
         <div className="flex-container1">
-          <button className="button-waiting1">Waiting</button>
+          <button className="button-waiting1">Ongoing</button>
           <div className="image-container-with-counter1">
             <div className="image-container21">
               <div className="contribution-section11">

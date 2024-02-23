@@ -1,6 +1,11 @@
 import './style.css';
 
-function ContributionSummary() {
+function ContributionSummary(props) {
+  const handleGroupClick = (groupId) => {
+    localStorage.setItem('GroupId', groupId);
+    console.log(groupId);
+    props.selectstep(7);
+  };
   return (
     <div className="contribution-section1">
       <div className="contribution-section">
@@ -30,7 +35,9 @@ function ContributionSummary() {
           <p className="frequency-text">2, 5 and 7</p>
         </div>
       </div>
-      <p className="group-link">View Group</p>
+      <p className="group-link" onClick={() => handleGroupClick(props.data.id)}>
+        View Group
+      </p>
     </div>
   );
 }
