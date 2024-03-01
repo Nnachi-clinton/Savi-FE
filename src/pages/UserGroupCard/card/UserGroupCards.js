@@ -99,7 +99,10 @@ function UserGroupSection({ user, selectstep }) {
                 onClick={() => toggleDropdown(user.id)}
               />
               {dropdownVisible[user.id] && (
-                <div className="dropdown-content">
+                <div
+                  className="dropdown-content"
+                  style={{ marginLeft: '6em', marginTop: '-2em' }}
+                >
                   <div style={{ marginBottom: '4px', cursor: 'pointer' }}>
                     Leave Group
                   </div>
