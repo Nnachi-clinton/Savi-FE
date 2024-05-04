@@ -25,7 +25,8 @@ const ImageContainer = styled.div`
   justify-content: center;
 `;
 
-const FormContainer = styled.div``;
+const FormContainer = styled.div`
+  display: flex;`;
 
 // const HeaderText = styled.div`
 //   text-align: center;
